@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +20,48 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adote" translatesAutoresizingMaskIntoConstraints="NO" id="sSm-uH-znK">
+                                <rect key="frame" x="0.0" y="198" width="375" height="324"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="324" id="3AS-7q-mYs"/>
+                                    <constraint firstAttribute="width" constant="375" id="hhx-oa-Rsn"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busca Pet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Num-j5-8iM">
+                                <rect key="frame" x="0.0" y="146.5" width="375" height="35.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35.5" id="1QB-hG-0CJ"/>
+                                    <constraint firstAttribute="width" constant="375" id="VaI-dd-JNj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43614515665046394" green="0.57700543041044705" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="sSm-uH-znK" firstAttribute="top" secondItem="Num-j5-8iM" secondAttribute="bottom" constant="16" id="8aY-mY-XIM"/>
+                            <constraint firstAttribute="trailing" secondItem="sSm-uH-znK" secondAttribute="trailing" id="Bhu-nc-WjK"/>
+                            <constraint firstItem="Num-j5-8iM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="DXD-A8-OBj"/>
+                            <constraint firstItem="sSm-uH-znK" firstAttribute="top" secondItem="Num-j5-8iM" secondAttribute="bottom" constant="16" id="GYh-6y-xqP"/>
+                            <constraint firstItem="sSm-uH-znK" firstAttribute="top" secondItem="Num-j5-8iM" secondAttribute="bottom" constant="16" id="Q25-K3-eoy"/>
+                            <constraint firstAttribute="trailing" secondItem="Num-j5-8iM" secondAttribute="trailing" id="Xe6-3T-yyF"/>
+                            <constraint firstItem="Num-j5-8iM" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="126.5" id="edR-hP-sKg"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="sSm-uH-znK" secondAttribute="bottom" constant="145" id="fOZ-9T-Iuh"/>
+                            <constraint firstAttribute="trailing" secondItem="sSm-uH-znK" secondAttribute="trailing" id="hAZ-vR-zVn"/>
+                            <constraint firstItem="sSm-uH-znK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="iM6-Be-5VG"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="sSm-uH-znK" secondAttribute="bottom" constant="145" id="lRg-OE-PJn"/>
+                            <constraint firstItem="sSm-uH-znK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="nsk-As-KcS"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="adote" width="235" height="128"/>
+    </resources>
 </document>

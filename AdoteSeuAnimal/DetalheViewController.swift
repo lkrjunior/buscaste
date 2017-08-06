@@ -361,6 +361,8 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.lblEmail.text = dEmail
         cell.buttonMail.isHidden = false
         cell.buttonTelephone.isHidden = false
+        cell.buttonTelephone.frame.size = CGSize(width: 36, height: 36)
+        cell.buttonMail.frame.size = CGSize(width: 36, height: 36)
         
         return cell
         
