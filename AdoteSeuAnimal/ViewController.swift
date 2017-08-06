@@ -172,6 +172,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         NSLog("1")
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
         
     }
