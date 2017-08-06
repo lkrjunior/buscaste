@@ -15,6 +15,9 @@
 		C616266B1ED9BCC50021FF79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C61626691ED9BCC50021FF79 /* LaunchScreen.storyboard */; };
 		C61626761ED9BCC50021FF79 /* AdoteSeuAnimalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61626751ED9BCC50021FF79 /* AdoteSeuAnimalTests.swift */; };
 		C61626811ED9BCC50021FF79 /* AdoteSeuAnimalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61626801ED9BCC50021FF79 /* AdoteSeuAnimalUITests.swift */; };
+		C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */; };
+		C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */; };
+		C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		C616267C1ED9BCC50021FF79 /* AdoteSeuAnimalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdoteSeuAnimalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61626801ED9BCC50021FF79 /* AdoteSeuAnimalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoteSeuAnimalUITests.swift; sourceTree = "<group>"; };
 		C61626821ED9BCC50021FF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheViewController.swift; sourceTree = "<group>"; };
+		C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		C616265C1ED9BCC50021FF79 /* AdoteSeuAnimal */ = {
 			isa = PBXGroup;
 			children = (
+				C616268E1ED9BD7B0021FF79 /* ClassesJSON */,
 				C616265D1ED9BCC50021FF79 /* AppDelegate.swift */,
 				C616265F1ED9BCC50021FF79 /* ViewController.swift */,
 				C61626611ED9BCC50021FF79 /* Main.storyboard */,
@@ -106,6 +113,9 @@
 				C61626691ED9BCC50021FF79 /* LaunchScreen.storyboard */,
 				C616266C1ED9BCC50021FF79 /* Info.plist */,
 				C61626641ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld */,
+				C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */,
+				C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */,
+				C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */,
 			);
 			path = AdoteSeuAnimal;
 			sourceTree = "<group>";
@@ -126,6 +136,13 @@
 				C61626821ED9BCC50021FF79 /* Info.plist */,
 			);
 			path = AdoteSeuAnimalUITests;
+			sourceTree = "<group>";
+		};
+		C616268E1ED9BD7B0021FF79 /* ClassesJSON */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ClassesJSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +213,7 @@
 				TargetAttributes = {
 					C61626591ED9BCC50021FF79 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 3CKK2BT2CF;
 						ProvisioningStyle = Automatic;
 					};
 					C61626701ED9BCC50021FF79 = {
@@ -262,9 +280,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */,
 				C61626601ED9BCC50021FF79 /* ViewController.swift in Sources */,
 				C616265E1ED9BCC50021FF79 /* AppDelegate.swift in Sources */,
+				C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,
+				C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,9 +439,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3CKK2BT2CF;
 				INFOPLIST_FILE = AdoteSeuAnimal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tcc.AdoteSeuAnimal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tcc.BuscaPet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -430,9 +453,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3CKK2BT2CF;
 				INFOPLIST_FILE = AdoteSeuAnimal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tcc.AdoteSeuAnimal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tcc.BuscaPet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -511,6 +536,7 @@
 				C61626871ED9BCC50021FF79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C61626881ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimalTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +545,7 @@
 				C616268A1ED9BCC50021FF79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C616268B1ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimalUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +554,7 @@
 				C616268D1ED9BCC50021FF79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
