@@ -18,6 +18,11 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     var email : String = ""
     var telefone : String = ""
     
+    @IBAction func btnCadastro(_ sender: Any)
+    {
+        self.showTelaPerfil()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +49,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             {
                 nomeUsuario = usuario[0].nome!
                 idUsuario = Int(usuario[0].idUsuario)
+                email = usuario[0].email!
                 print(nomeUsuario)
                 
                 //Exemplo delete 
@@ -57,15 +63,48 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             print("Erro ao recuperar os dados do SQLite")
         }
         
-        if let accessToken = FBSDKAccessToken.current()
+        if idUsuario > 0
         {
-            NSLog("Logado " + accessToken.tokenString)
-        }
-        else
-        {
-            NSLog("Não Logado")
+            self.showTelaInicial()
         }
         
+        //if let accessToken = FBSDKAccessToken.current()
+        //{
+        //    NSLog("Logado " + accessToken.tokenString)
+        //}
+        //else
+        //{
+        //    NSLog("Não Logado")
+        //}
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if idUsuario > 0
+        {
+            self.showTelaInicial()
+        }
+    }
+    
+    func showTelaInicial()
+    {
+        let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
+        //tb.selectedIndex = 4
+        self.present(tb, animated: true, completion: nil)
+    }
+    
+    func showTelaPerfil()
+    {
+        //let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
+        //tb.selectedIndex = 4
+        //self.present(tb, animated: true, completion: nil)
+        
+        let view = self.storyboard?.instantiateViewController(withIdentifier:"PerfilScene") as! PerfilViewController
+        view.setPerfil(pNome: nomeUsuario, pEmail: email)
+        self.present(view, animated: true, completion: nil)
     }
     
     func botaoLoginClick()
@@ -86,6 +125,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             if result.grantedPermissions.contains("email")
             {
                 self.GetDadosFacebook()
+                self.showTelaPerfil()
             }
         }
     }
@@ -102,11 +142,11 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             
             if ((error) != nil)
             {
-                print("Error took place: \(error)")
+                print("Error took place: \(String(describing: error))")
             }
             else
             {
-                print("Print entire fetched result: \(result)")
+                print("Print entire fetched result: \(String(describing: result))")
             }
         })
     }

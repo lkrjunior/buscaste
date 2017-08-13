@@ -20,6 +20,8 @@
 		C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */; };
 		C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4611F40A6BB004B7B24 /* Usuario+CoreDataClass.swift */; };
 		C62EF4641F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */; };
+		C62EF4661F40C203004B7B24 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4651F40C203004B7B24 /* PerfilViewController.swift */; };
+		C62EF4681F40C443004B7B24 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4671F40C443004B7B24 /* TabBarController.swift */; };
 		C65E85ED1F3F87E30068EF3E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; };
 		C65E85EF1F3F87EE0068EF3E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; };
 		C65E85F11F3F87FE0068EF3E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */; };
@@ -81,6 +83,8 @@
 		C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheTableViewCell.swift; sourceTree = "<group>"; };
 		C62EF4611F40A6BB004B7B24 /* Usuario+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Usuario+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Usuario+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C62EF4651F40C203004B7B24 /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
+		C62EF4671F40C443004B7B24 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C65E85EC1F3F87E30068EF3E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				C616265D1ED9BCC50021FF79 /* AppDelegate.swift */,
 				C616265F1ED9BCC50021FF79 /* ViewController.swift */,
 				C61626611ED9BCC50021FF79 /* Main.storyboard */,
+				C62EF4671F40C443004B7B24 /* TabBarController.swift */,
 				C61626671ED9BCC50021FF79 /* Assets.xcassets */,
 				C61626691ED9BCC50021FF79 /* LaunchScreen.storyboard */,
 				C616266C1ED9BCC50021FF79 /* Info.plist */,
@@ -155,6 +160,7 @@
 				C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */,
 				C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */,
 				C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */,
+				C62EF4651F40C203004B7B24 /* PerfilViewController.swift */,
 			);
 			path = AdoteSeuAnimal;
 			sourceTree = "<group>";
@@ -337,8 +343,10 @@
 			files = (
 				C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */,
 				C61626601ED9BCC50021FF79 /* ViewController.swift in Sources */,
+				C62EF4681F40C443004B7B24 /* TabBarController.swift in Sources */,
 				C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */,
 				C616265E1ED9BCC50021FF79 /* AppDelegate.swift in Sources */,
+				C62EF4661F40C203004B7B24 /* PerfilViewController.swift in Sources */,
 				C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */,
 				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,
