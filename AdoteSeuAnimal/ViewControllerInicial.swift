@@ -45,6 +45,11 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
                 nomeUsuario = usuario[0].nome!
                 idUsuario = Int(usuario[0].idUsuario)
                 print(nomeUsuario)
+                
+                //Exemplo delete 
+                //let usuarioDelete = usuario[0] as NSManagedObject
+                //context.delete(usuarioDelete)
+                //try context.save()
             }
         }
         catch
