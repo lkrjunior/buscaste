@@ -24,6 +24,7 @@
 		C65E85F31F3F880F0068EF3E /* FBSDKCoreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F41F3F880F0068EF3E /* FBSDKLoginKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F51F3F880F0068EF3E /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		C65E85EC1F3F87E30068EF3E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInicial.swift; sourceTree = "<group>"; };
+		C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdoteSeuAnimal.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,7 @@
 		C616265C1ED9BCC50021FF79 /* AdoteSeuAnimal */ = {
 			isa = PBXGroup;
 			children = (
+				C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */,
 				C616268E1ED9BD7B0021FF79 /* ClassesJSON */,
 				C616265D1ED9BCC50021FF79 /* AppDelegate.swift */,
 				C616265F1ED9BCC50021FF79 /* ViewController.swift */,
@@ -144,6 +148,7 @@
 				C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */,
 				C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */,
 				C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */,
+				C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */,
 			);
 			path = AdoteSeuAnimal;
 			sourceTree = "<group>";
@@ -254,6 +259,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 3CKK2BT2CF;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					C61626701ED9BCC50021FF79 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -323,6 +333,7 @@
 				C61626601ED9BCC50021FF79 /* ViewController.swift in Sources */,
 				C616265E1ED9BCC50021FF79 /* AppDelegate.swift in Sources */,
 				C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */,
+				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,
 				C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */,
 			);
@@ -478,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconApp;
+				CODE_SIGN_ENTITLEMENTS = AdoteSeuAnimal/AdoteSeuAnimal.entitlements;
 				DEVELOPMENT_TEAM = 3CKK2BT2CF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +508,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconApp;
+				CODE_SIGN_ENTITLEMENTS = AdoteSeuAnimal/AdoteSeuAnimal.entitlements;
 				DEVELOPMENT_TEAM = 3CKK2BT2CF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
