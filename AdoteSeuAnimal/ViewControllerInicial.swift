@@ -8,10 +8,15 @@
 
 import UIKit
 import FBSDKLoginKit
+import CoreData
 
 class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     
     let botaoLogin = FBSDKLoginButton()
+    var idUsuario : Int = 0
+    var nomeUsuario : String = ""
+    var email : String = ""
+    var telefone : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +26,31 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         botaoLogin.addTarget(self, action: #selector(botaoLoginClick), for: UIControlEvents.touchUpInside)
         botaoLogin.delegate = self
         view.addSubview(botaoLogin)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let requisicao = NSFetchRequest<Usuario>(entityName : "Usuario")
+        
+        do
+        {
+            //Exemplo Save
+            //let usuarioSave = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: context)
+            //usuarioSave.setValue("teste", forKey: "nome")
+            //try context.save()
+            
+            
+            let usuario = try context.fetch(requisicao)
+            if usuario.count > 0
+            {
+                nomeUsuario = usuario[0].nome!
+                idUsuario = Int(usuario[0].idUsuario)
+                print(nomeUsuario)
+            }
+        }
+        catch
+        {
+            print("Erro ao recuperar os dados do SQLite")
+        }
         
         if let accessToken = FBSDKAccessToken.current()
         {

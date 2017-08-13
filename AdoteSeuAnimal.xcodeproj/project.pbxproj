@@ -18,6 +18,8 @@
 		C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */; };
 		C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */; };
 		C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */; };
+		C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4611F40A6BB004B7B24 /* Usuario+CoreDataClass.swift */; };
+		C62EF4641F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */; };
 		C65E85ED1F3F87E30068EF3E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; };
 		C65E85EF1F3F87EE0068EF3E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; };
 		C65E85F11F3F87FE0068EF3E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */; };
@@ -77,6 +79,8 @@
 		C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C62B53661EDB6DAD00C37E6F /* DetalheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheViewController.swift; sourceTree = "<group>"; };
 		C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheTableViewCell.swift; sourceTree = "<group>"; };
+		C62EF4611F40A6BB004B7B24 /* Usuario+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Usuario+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Usuario+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C65E85EC1F3F87E30068EF3E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		C61626511ED9BCC50021FF79 = {
 			isa = PBXGroup;
 			children = (
+				C62EF4611F40A6BB004B7B24 /* Usuario+CoreDataClass.swift */,
+				C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */,
 				C616265C1ED9BCC50021FF79 /* AdoteSeuAnimal */,
 				C61626741ED9BCC50021FF79 /* AdoteSeuAnimalTests */,
 				C616267F1ED9BCC50021FF79 /* AdoteSeuAnimalUITests */,
@@ -331,11 +337,13 @@
 			files = (
 				C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */,
 				C61626601ED9BCC50021FF79 /* ViewController.swift in Sources */,
+				C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */,
 				C616265E1ED9BCC50021FF79 /* AppDelegate.swift in Sources */,
 				C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */,
 				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,
 				C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */,
+				C62EF4641F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
