@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import CoreData
+import Alamofire
 
 class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
 {
@@ -22,12 +23,15 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     
     @IBAction func btnSalvarClick(_ sender: Any)
     {
-        self.showApp()
+        self.Save()
     }
+    
     var botaoLogin = FBSDKLoginButton()
     
     var nomeUsuario : String = ""
     var email : String = ""
+    var idPessoa : Int = 0
+    var telefone : String = ""
     var cadastro : Bool = false
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!)
@@ -35,13 +39,103 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
         
     }
     
+    func Save()
+    {
+        self.carrega(inicio: true)
+        nomeUsuario = txtNome.text!
+        telefone = txtTelefone.text!
+        email = txtEmail.text!
+        
+        var jsonRepresentation : String {
+            let jsonDict = ["idPessoa" : String(idPessoa), "nome" : nomeUsuario, "telefone" : telefone, "email" : email]
+            if let data = try? JSONSerialization.data(withJSONObject: jsonDict, options: []),
+                let jsonString = String(data:data, encoding:.utf8) {
+                return jsonString
+            } else { return "" }
+        }
+        let params = ["idPessoa": idPessoa,
+                      "nome": nomeUsuario,
+                      "email": email,
+                      "telefone": telefone
+        ] as [String : Any]
+        
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/Pessoa/SavePessoa", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                let dict = self.convertToDictionary(text: json!)
+                let status = dict?["status"] as! Int
+                let id = dict?["id"] as! Int
+                if status == 1
+                {
+                    self.idPessoa = id
+                    
+                    self.SaveBD()
+                
+                    self.showApp()
+                }
+            }
+        }
+     
+        
+        print(jsonRepresentation)
+        self.carrega(inicio: false)
+    }
+    
+    func convertToDictionary(text: String) -> [String: AnyObject]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+    
+    func SaveBD(somenteExcluir : Bool = false)
+    {
+        do
+        {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let requisicao = NSFetchRequest<Usuario>(entityName : "Usuario")
+            let usuario = try context.fetch(requisicao)
+            if usuario.count > 0
+            {
+                let usuarioDelete = usuario[0] as NSManagedObject
+                context.delete(usuarioDelete)
+                try context.save()
+            }
+            
+            if somenteExcluir == false
+            {
+                let usuarioSave = NSEntityDescription.insertNewObject(forEntityName: "Usuario", into: context)
+                usuarioSave.setValue(nomeUsuario, forKey: "nome")
+                usuarioSave.setValue(email, forKey: "email")
+                usuarioSave.setValue(idPessoa, forKey: "idUsuario")
+                usuarioSave.setValue(telefone, forKey: "telefone")
+                try context.save()
+            }
+        }
+        catch
+        {
+            print("Erro ao salvar os dados no banco de dados")
+        }
+    }
+
     func carrega(inicio: Bool)
     {
         if inicio == true
         {
             carregamento.center = self.view.center
+            carregamento.frame.origin.x = carregamento.frame.origin.x - 40
             carregamento.hidesWhenStopped = true
-            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             self.view.addSubview(carregamento)
             carregamento.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()
@@ -56,11 +150,13 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
     {
+        self.SaveBD(somenteExcluir: true)
         self.showTelaIncial()
     }
     
     @IBAction func btnLogoutClick(_ sender: Any)
     {
+        self.SaveBD(somenteExcluir: true)
         self.showTelaIncial()
     }
     
@@ -100,6 +196,30 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
         else
         {
             self.btnLogout.setTitle("Logout", for: UIControlState.normal)
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let requisicao = NSFetchRequest<Usuario>(entityName : "Usuario")
+            
+            do
+            {
+                let usuario = try context.fetch(requisicao)
+                if usuario.count > 0
+                {
+                    nomeUsuario = usuario[0].nome!
+                    idPessoa = Int(usuario[0].idUsuario)
+                    email = usuario[0].email!
+                    telefone = usuario[0].telefone!
+                    txtNome.text = nomeUsuario
+                    txtEmail.text = email
+                    txtTelefone.text = telefone
+                }
+            }
+            catch
+            {
+                print("Erro ao ler os dados do banco de dados")
+            }
+            
         }
         
         if (FBSDKAccessToken.current()) != nil
