@@ -13,8 +13,8 @@ import Alamofire
 
 class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
 {
-    var carregamento:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBOutlet weak var carrega: UIActivityIndicatorView!
     @IBOutlet weak var btnLogout: UIButton!
 
     @IBOutlet weak var txtNome: UITextField!
@@ -74,15 +74,15 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                     self.idPessoa = id
                     
                     self.SaveBD()
-                
+                    
+                    self.carrega(inicio: false)
+                    
                     self.showApp()
                 }
             }
         }
-     
         
         print(jsonRepresentation)
-        self.carrega(inicio: false)
     }
     
     func convertToDictionary(text: String) -> [String: AnyObject]? {
@@ -132,17 +132,15 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     {
         if inicio == true
         {
-            carregamento.center = self.view.center
-            carregamento.frame.origin.x = carregamento.frame.origin.x - 40
-            carregamento.hidesWhenStopped = true
-            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-            self.view.addSubview(carregamento)
-            carregamento.startAnimating()
+            carrega.hidesWhenStopped = true
+            carrega.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            carrega.isHidden = false
+            carrega.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()
         }
         else
         {
-            carregamento.stopAnimating()
+            carrega.stopAnimating()
             //UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
@@ -175,12 +173,10 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     
     override func viewDidAppear(_ animated: Bool)
     {
-        self.carrega(inicio: true)
         if (FBSDKAccessToken.current()) != nil && cadastro
         {
             self.GetDadosFacebook()
         }
-        self.carrega(inicio: false)
     }
     
     override func viewDidLoad() {
@@ -234,6 +230,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     
     func GetDadosFacebook()
     {
+        self.carrega(inicio: true)
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, email, name"])
         
         graphRequest.start(completionHandler: { (connection, result, error) -> Void in
@@ -252,6 +249,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                     guard let email = jsonResult["email"] as? String else { return }
                     self.txtEmail.text = email
                     self.txtNome.text = nome
+                    self.carrega(inicio: false)
                 }
             }
         })
