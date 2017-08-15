@@ -29,6 +29,7 @@
 		C65E85F41F3F880F0068EF3E /* FBSDKLoginKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F51F3F880F0068EF3E /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */; };
+		C6D68BBA1F4279ED00DA1232 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D68BB91F4279ED00DA1232 /* Util.swift */; };
 		C6F2A1A81F40FEB100240BD3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F2A1A71F40FEB100240BD3 /* Alamofire.framework */; };
 		C6F2A1AA1F40FEBB00240BD3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */; };
 		C6F2A1AB1F40FEC300240BD3 /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -97,6 +98,7 @@
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInicial.swift; sourceTree = "<group>"; };
 		C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdoteSeuAnimal.entitlements; sourceTree = "<group>"; };
+		C6D68BB91F4279ED00DA1232 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C6F2A1A71F40FEB100240BD3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = FrameworksArchives/Alamofire.framework; sourceTree = "<group>"; };
 		C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = FrameworksArchives/SwiftyJSON.framework; sourceTree = "<group>"; };
 		C6F2A1AD1F40FF3000240BD3 /* CadastroJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CadastroJSON.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		C616265C1ED9BCC50021FF79 /* AdoteSeuAnimal */ = {
 			isa = PBXGroup;
 			children = (
+				C6D68BB81F4279D600DA1232 /* Util */,
 				C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */,
 				C616268E1ED9BD7B0021FF79 /* ClassesJSON */,
 				C616265D1ED9BCC50021FF79 /* AppDelegate.swift */,
@@ -213,6 +216,14 @@
 				C65E85EC1F3F87E30068EF3E /* Bolts.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6D68BB81F4279D600DA1232 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C6D68BB91F4279ED00DA1232 /* Util.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +374,7 @@
 				C616265E1ED9BCC50021FF79 /* AppDelegate.swift in Sources */,
 				C62EF4661F40C203004B7B24 /* PerfilViewController.swift in Sources */,
 				C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */,
+				C6D68BBA1F4279ED00DA1232 /* Util.swift in Sources */,
 				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
 				C6F2A1AE1F40FF3000240BD3 /* CadastroJSON.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,

@@ -250,6 +250,11 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                     self.txtEmail.text = email
                     self.txtNome.text = nome
                     self.carrega(inicio: false)
+                    
+                    //let alert = UIAlertController(title: "Informação", message: "Informe seu telefone para continuar", preferredStyle: UIAlertControllerStyle.alert)
+                    //alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = Util.Alerta(titulo: "Atenção", mensagem: "Informe o telefone para continuar")
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         })
