@@ -18,10 +18,28 @@ class Util
         return alert
     }
     
+    static func AlertaView(titulo : String, mensagem : String, view : UIViewController)
+    {
+        let alert = UIAlertController(title: titulo, message: mensagem, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        view.present(alert, animated: true, completion: nil)
+    }
+
     static func AlertaErro(mensagem : String) -> UIAlertController
     {
         let alert = UIAlertController(title: "Erro", message: mensagem, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         return alert
+    }
+    
+    static func AlertaErroView(mensagem : String, view : UIViewController, indicatorView : UIActivityIndicatorView!)
+    {
+        let alert = UIAlertController(title: "Erro", message: mensagem, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        view.present(alert, animated: true, completion: nil)
+        if (indicatorView != nil)
+        {
+            indicatorView.stopAnimating()
+        }
     }
 }
