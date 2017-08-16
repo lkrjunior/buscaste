@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableViewAnimal: UITableView!
     
     var totalAnimal : Int = 0
+    var totalAnimalPage : Int = 3
     var animalTipoArray = [Int]()
     var idArray = [Int]()
     var animal = [String]()
@@ -22,6 +23,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var genero = [String]()
     var raca = [String]()
     var descricao = [String]()
+    
+    //refresh
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        refreshControl.attributedTitle = NSAttributedString(string: "Atualizando")
+        
+        return refreshControl
+    }()
+    
+    //refresh
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        self.GetDadosAnimal()
+        
+        //self.tableViewAnimal.reloadData()
+        refreshControl.endRefreshing()
+    }
     
     func carrega(inicio: Bool)
     {
@@ -48,11 +70,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NSLog("viewDidLoad")
         self.automaticallyAdjustsScrollViewInsets = false
         
+        //refresh
+        self.tableViewAnimal.addSubview(self.refreshControl)
+        
         self.GetDadosAnimal()
         
     }
     
     func readJSONObjectAnimal(object: [String: AnyObject]) {
+        animalTipoArray = [Int]()
+        idArray = [Int]()
+        animal = [String]()
+        dataA = [String]()
+        genero = [String]()
+        raca = [String]()
+        descricao = [String]()
+        
         guard let lista = object["lista"] as? [[String: AnyObject]] else
         { return }
         totalAnimal = lista.count
@@ -172,14 +205,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         NSLog("1")
+        NSLog("totalAnimal " + String(totalAnimal))
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
         
     }
-
+    
     func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         NSLog("2")
         return totalAnimal
+    }
+    
+    //refresh
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        NSLog("Fim da view")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
