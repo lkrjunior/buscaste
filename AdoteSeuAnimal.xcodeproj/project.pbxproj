@@ -30,6 +30,8 @@
 		C65E85F51F3F880F0068EF3E /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */; };
 		C6D68BBA1F4279ED00DA1232 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D68BB91F4279ED00DA1232 /* Util.swift */; };
+		C6E2DB621F48728300EC6FAC /* MeusAnimaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */; };
+		C6E2DB641F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */; };
 		C6F2A1A81F40FEB100240BD3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F2A1A71F40FEB100240BD3 /* Alamofire.framework */; };
 		C6F2A1AA1F40FEBB00240BD3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */; };
 		C6F2A1AB1F40FEC300240BD3 /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -99,6 +101,8 @@
 		C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInicial.swift; sourceTree = "<group>"; };
 		C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdoteSeuAnimal.entitlements; sourceTree = "<group>"; };
 		C6D68BB91F4279ED00DA1232 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeusAnimaisViewController.swift; path = ../MeusAnimaisViewController.swift; sourceTree = "<group>"; };
+		C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeusAnimaisTableViewCell.swift; sourceTree = "<group>"; };
 		C6F2A1A71F40FEB100240BD3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = FrameworksArchives/Alamofire.framework; sourceTree = "<group>"; };
 		C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = FrameworksArchives/SwiftyJSON.framework; sourceTree = "<group>"; };
 		C6F2A1AD1F40FF3000240BD3 /* CadastroJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CadastroJSON.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				C62B53681EDBA40F00C37E6F /* DetalheTableViewCell.swift */,
 				C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */,
 				C62EF4651F40C203004B7B24 /* PerfilViewController.swift */,
+				C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */,
+				C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */,
 			);
 			path = AdoteSeuAnimal;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */,
+				C6E2DB621F48728300EC6FAC /* MeusAnimaisViewController.swift in Sources */,
 				C61626601ED9BCC50021FF79 /* ViewController.swift in Sources */,
 				C62EF4681F40C443004B7B24 /* TabBarController.swift in Sources */,
 				C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */,
@@ -378,6 +385,7 @@
 				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
 				C6F2A1AE1F40FF3000240BD3 /* CadastroJSON.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,
+				C6E2DB641F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift in Sources */,
 				C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */,
 				C62EF4641F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift in Sources */,
 			);
