@@ -9,14 +9,22 @@
 import UIKit
 
 class MeusAnimaisTableViewCell: UITableViewCell {
+    
+    var idTipo : Int = 0
+    var idAnimal : Int = 0
+    
     @IBOutlet weak var lblNome: UILabel!
 
     @IBOutlet weak var lblGenero: UILabel!
 
     @IBOutlet weak var lblDescricao: UILabel!
-    @IBAction func btnEditar(_ sender: Any) {
+    @IBAction func btnEditar(_ sender: Any)
+    {
+        
     }
-    @IBAction func Deletar(_ sender: Any) {
+    @IBAction func Deletar(_ sender: Any)
+    {
+        
     }
     
     public func Ajusta()
