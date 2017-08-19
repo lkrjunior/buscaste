@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var genero = [String]()
     var raca = [String]()
     var descricao = [String]()
+    var nome = [String]()
     
     //refresh
     lazy var refreshControl: UIRefreshControl = {
@@ -85,6 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         genero = [String]()
         raca = [String]()
         descricao = [String]()
+        nome = [String]()
         
         guard let lista = object["lista"] as? [[String: AnyObject]] else
         { return }
@@ -120,10 +122,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if animalTipo == 1
             {
                 animal.append("Animal para doação")
+                guard let nomeJ = listaObj["nome"] as? String? else { break }
+                nome.append(nomeJ!)
             }
             else
             {
                 animal.append("Animal abandonado")
+                nome.append("")
             }
             
             dataA.append(data)
@@ -200,7 +205,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell.lblAnimal.text = animal[indexPath.row]
             cell.lblData.text = dataA[indexPath.row]
-            cell.lblGenero.text = "Genero: " + (genero[indexPath.row] == "" ? "não identificado" : genero[indexPath.row])
+            cell.lblGenero.text = "Nome: " + (genero[indexPath.row] == "" ? "não identificado" : nome[indexPath.row] + " (" + genero[indexPath.row] + ")")
             cell.lblRaca.text = "Raça: " + (raca[indexPath.row] == "" ? "não identificada" : raca[indexPath.row])
             cell.lblDesricao.text = "Descrição: " + descricao[indexPath.row]
         }
