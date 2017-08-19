@@ -21,6 +21,11 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     var genero : [String] = [String]()
     var descricao : [String] = [String]()
     
+    @IBAction func btnAdicionarClick(_ sender: Any)
+    {
+        self.showAdicionar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -96,6 +101,12 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 }
             }
+    }
+    
+    func showAdicionar()
+    {
+        let view = self.storyboard?.instantiateViewController(withIdentifier:"MeusAnimaisSalvar") as! MeusAnimaisSalvarViewController
+        self.present(view, animated: true, completion: nil)
     }
     
     func GetDadosBD()

@@ -420,10 +420,10 @@
             </objects>
             <point key="canvasLocation" x="-40.799999999999997" y="1688.9055472263869"/>
         </scene>
-        <!--View Controller-->
+        <!--Meus Animais Salvar View Controller-->
         <scene sceneID="1Ut-xx-YVc">
             <objects>
-                <viewController id="OAr-sa-lR7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MeusAnimaisSalvar" id="OAr-sa-lR7" customClass="MeusAnimaisSalvarViewController" customModule="AdoteSeuAnimal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="77P-fF-gOj"/>
                         <viewControllerLayoutGuide type="bottom" id="OOH-Q8-9iz"/>
@@ -432,13 +432,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cadastro do animal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITf-5J-hzA">
-                                <rect key="frame" x="16" y="28" width="275" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cadastro do animal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITf-5J-hzA">
+                                <rect key="frame" x="16" y="25" width="343" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dje-gw-LLf">
+                                <rect key="frame" x="16" y="21" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="btnSairClick:" destination="OAr-sa-lR7" eventType="touchUpInside" id="Jr1-g7-p4Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-ZX-e02">
+                                <rect key="frame" x="316" y="22" width="43" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Salvar"/>
+                                <connections>
+                                    <action selector="btnSalvarClick:" destination="OAr-sa-lR7" eventType="touchUpInside" id="wWA-gO-V0d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -533,7 +550,7 @@
         <!--Meus animais-->
         <scene sceneID="G4j-yj-46J">
             <objects>
-                <viewController id="naa-o2-1bw" customClass="MeusAnimaisViewController" customModule="AdoteSeuAnimal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MeusAnimais" id="naa-o2-1bw" customClass="MeusAnimaisViewController" customModule="AdoteSeuAnimal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zb2-0s-R2I"/>
                         <viewControllerLayoutGuide type="bottom" id="yZo-Wa-1uu"/>
@@ -553,6 +570,9 @@
                                 <rect key="frame" x="297" y="22" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Adicionar"/>
+                                <connections>
+                                    <action selector="btnAdicionarClick:" destination="naa-o2-1bw" eventType="touchUpInside" id="9Wv-qO-FoP"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gbN-s6-Ipi">
                                 <rect key="frame" x="0.0" y="55" width="375" height="563"/>
