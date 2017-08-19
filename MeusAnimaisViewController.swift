@@ -16,6 +16,8 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     var carregamento:UIActivityIndicatorView = UIActivityIndicatorView()
     
     var idPessoa : Int = 0
+    var nomePessoa : String = ""
+    var telefonePessoa : String = ""
     var totalItens : Int = 0
     var nome : [String] = [String]()
     var genero : [String] = [String]()
@@ -122,6 +124,8 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
             if usuario.count > 0
             {
                 idPessoa = Int(usuario[0].idUsuario)
+                nomePessoa = usuario[0].nome!
+                telefonePessoa = usuario[0].telefone!
             }
         }
         catch
