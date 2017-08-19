@@ -201,7 +201,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             let myColor : CGColor = UIColor.darkText.cgColor
             cell.contentView.layer.borderColor = myColor
-            cell.contentView.layer.borderWidth = 2;
+            cell.contentView.layer.borderWidth = 2
+            cell.contentView.layer.cornerRadius = 10
             
             cell.lblAnimal.text = animal[indexPath.row]
             cell.lblData.text = dataA[indexPath.row]
