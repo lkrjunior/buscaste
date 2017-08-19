@@ -42,13 +42,14 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellMeusAnimais", for: indexPath) as! MeusAnimaisTableViewCell
         cell.lblDescricao.text = "teste"
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.Ajusta()
         return cell
         
     }
     
     func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         NSLog("2")
-        return 1
+        return 2
     }
 
 }

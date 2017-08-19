@@ -18,4 +18,12 @@ class MeusAnimaisTableViewCell: UITableViewCell {
     }
     @IBAction func Deletar(_ sender: Any) {
     }
+    
+    public func Ajusta()
+    {
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 10
+        
+    }
 }
