@@ -24,10 +24,11 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.GetDadosBD()
         self.GetDados()
-
     }
 
     func GetDados()
