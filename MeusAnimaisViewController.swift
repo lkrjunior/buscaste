@@ -116,12 +116,13 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
             }
     }
     
-    func showAdicionar()
+    func showAdicionar(idAnimal : Int = 0)
     {
         let view = self.storyboard?.instantiateViewController(withIdentifier:"MeusAnimaisSalvar") as! MeusAnimaisSalvarViewController
         view.idPessoa = self.idPessoa
         view.telefonePessoa = self.telefonePessoa
         view.emailPessoa = self.emailPessoa
+        view.idAnimal = idAnimal
         self.present(view, animated: true, completion: nil)
     }
     
@@ -248,8 +249,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     
     func EditarAnimal(idAnimal : Int)
     {
-        
-        
+        self.showAdicionar(idAnimal: idAnimal)
     }
 
 }

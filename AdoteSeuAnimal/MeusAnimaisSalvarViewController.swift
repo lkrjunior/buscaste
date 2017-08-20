@@ -32,6 +32,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     var idPessoa : Int = 0
     var telefonePessoa : String = ""
     var emailPessoa : String = ""
+    var idAnimal : Int = 0
     
     @IBAction func btnSairClick(_ sender: Any)
     {
@@ -88,6 +89,14 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         imageAlbum.restorationIdentifier = "Album"
         imageCamera.delegate = self
         imageAlbum.delegate = self
+        if (idAnimal > 0)
+        {
+            self.CarregaDados()
+        }
+    }
+    
+    func CarregaDados()
+    {
         
     }
     
@@ -151,7 +160,8 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 {
                     
                     //Salvar o animal
-                    let paramsCad = ["animalTipo": 1,
+                    let paramsCad = ["id" : self.idAnimal,
+                                     "animalTipo": 1,
                                      "pessoa": ["idPessoa": self.idPessoa],
                                      "genero": ["idGenero": self.generosId],
                                      "raca": ["idRaca": self.racasId],
