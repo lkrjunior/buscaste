@@ -128,11 +128,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         
         let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.5)
         
-        let img2 = imagemDados!.base64EncodedString()
+        let img = imagemDados!.base64EncodedString()
         
         let params = ["nome": "nome",
                       "tipo": "jpg",
-                      "fotoString": img2
+                      "fotoString": img
             ] as [String : AnyObject]
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
