@@ -30,6 +30,8 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     var cidadesAux = [String]()
     var cidadesAuxIds = [Int]()
     var idPessoa : Int = 0
+    var telefonePessoa : String = ""
+    var emailPessoa : String = ""
     
     @IBAction func btnSairClick(_ sender: Any)
     {
@@ -157,8 +159,8 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                                      "porte": ["idPorte": self.portesId],
                                      "peso": self.txtPeso.text!,
                                      "cidade": ["idCidade": self.cidadesId, "Uf" : ["idUf": self.ufsId]],
-                                     "telefone": "123",
-                                     "email": "a@a.com.br",
+                                     "telefone": self.telefonePessoa,
+                                     "email": self.emailPessoa,
                                      "descricao": self.txtDescricao.text!,
                                      "vacinas": self.txtVacinas.text!,
                                      "foto": ["idFoto": idFoto],

@@ -18,6 +18,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     var idPessoa : Int = 0
     var nomePessoa : String = ""
     var telefonePessoa : String = ""
+    var emailPessoa : String = ""
     var totalItens : Int = 0
     var nome : [String] = [String]()
     var genero : [String] = [String]()
@@ -109,6 +110,8 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     {
         let view = self.storyboard?.instantiateViewController(withIdentifier:"MeusAnimaisSalvar") as! MeusAnimaisSalvarViewController
         view.idPessoa = self.idPessoa
+        view.telefonePessoa = self.telefonePessoa
+        view.emailPessoa = self.emailPessoa
         self.present(view, animated: true, completion: nil)
     }
     
@@ -127,6 +130,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                 idPessoa = Int(usuario[0].idUsuario)
                 nomePessoa = usuario[0].nome!
                 telefonePessoa = usuario[0].telefone!
+                emailPessoa = usuario[0].email!
             }
         }
         catch
