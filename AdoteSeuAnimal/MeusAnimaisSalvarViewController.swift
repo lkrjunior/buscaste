@@ -33,6 +33,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     var telefonePessoa : String = ""
     var emailPessoa : String = ""
     var idAnimal : Int = 0
+    var carregarDados : Bool = false
     
     @IBAction func btnSairClick(_ sender: Any)
     {
@@ -89,7 +90,19 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         imageAlbum.restorationIdentifier = "Album"
         imageCamera.delegate = self
         imageAlbum.delegate = self
-        if (idAnimal > 0)
+        
+        self.CarregaCombos()
+        self.CarregaJSONCombos()
+        
+        //trocando de lugar
+        //if (idAnimal > 0)
+        //{
+        //    self.CarregaDados()
+        //}
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (idAnimal > 0 && carregarDados)
         {
             self.CarregaDados()
         }
@@ -97,7 +110,102 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     
     func CarregaDados()
     {
+        print("Carregando dados")
         
+        self.carrega(inicio: true)
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/AnimalGet/GetAnimal?idTipo=1&idAnimal=" + String(idAnimal), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            {
+                response in
+                
+                if let data = response.data
+                {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    if (json == nil || json == "")
+                    {
+                        Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
+                    }
+                    else
+                    {
+                        let listaDict = Util.converterParaDictionary(text: json!)
+                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        
+                        for dict in lista!
+                        {
+                            var listaDic = dict as Dictionary
+                            
+                            //let idAnimal = dict["id"] as! Int?
+                            let nomeAnimal = dict["nome"] as! String?
+                            let descricao = dict["descricao"] as! String?
+                            
+                            self.txtNome.text = nomeAnimal
+                            self.txtDescricao.text = descricao
+                            
+                            if !(listaDic["genero"] is NSNull)
+                            {
+                                let generoObj = dict["genero"] as? [String : AnyObject]
+                                self.txtGenero.text = generoObj?["genero"] as? String
+                                self.generosId = (generoObj?["idGenero"] as? Int)!
+                            }
+                            
+                            if !(listaDic["foto"] is NSNull)
+                            {
+                                let fotoObj = dict["foto"] as? [String : AnyObject]
+                                if let fileBase64 = fotoObj?["fotoString"] as? String
+                                {
+                                    let imageArray = NSData(base64Encoded: fileBase64, options: [])
+                                    self.imagem.image = UIImage(data: imageArray! as Data)
+                                    self.imagem.reloadInputViews()
+                                }
+
+                            }
+                            
+                            if !(listaDic["raca"] is NSNull)
+                            {
+                                let racaObj = dict["raca"] as? [String : AnyObject]
+                                self.txtRaca.text = racaObj?["raca"] as? String
+                                self.racasId = (racaObj?["idRaca"] as? Int)!
+                            }
+                            
+                            let idade = dict["idade"] as! Int?
+                            self.txtIdade.text = String(idade!)
+                            
+                            
+                            if !(listaDic["porte"] is NSNull)
+                            {
+                                let porteObj = dict["porte"] as? [String : AnyObject]
+                                self.txtPorte.text = porteObj?["porte"] as? String
+                                self.portesId = (porteObj?["idPorte"] as? Int)!
+                            }
+                            
+                            let peso = dict["peso"] as! Double?
+                            self.txtPeso.text = String(peso!)
+                            
+                            
+                            if !(listaDic["cidade"] is NSNull)
+                            {
+                                let cidadeObj = dict["cidade"] as? [String : AnyObject]
+                                self.txtCidade.text = cidadeObj?["cidade"] as? String
+                                self.cidadesId = (cidadeObj?["idCidade"] as? Int)!
+                                
+                                let ufObj = cidadeObj?["uf"] as? [String : AnyObject]
+                                self.txtUF.text = ufObj?["uf"] as? String
+                                self.ufsId = (ufObj?["idUf"] as? Int)!
+                                
+                                self.CarregaCidadesPeloUf()
+                            }
+                            
+                            let vacinas = dict["vacinas"] as! String?
+                            self.txtVacinas.text = vacinas!
+                            
+                        }
+                        self.carrega(inicio: false)
+                    }
+                    self.carregarDados = false
+                }
+        }
+
     }
     
     func Camera()
@@ -129,8 +237,9 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     
     override func viewWillAppear(_ animated: Bool)
     {
-        self.CarregaCombos()
-        self.CarregaJSONCombos()
+        //trocando de lugar
+        //self.CarregaCombos()
+        //self.CarregaJSONCombos()
     }
     
     
@@ -138,7 +247,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     {
         self.carrega(inicio: true)
         
-        let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.5)
+        let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.3)
         
         let img = imagemDados!.base64EncodedString()
         
@@ -210,53 +319,6 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 }
             }
         }
-
-        /*
-        Alamofire.upload(
-            multipartFormData: { multipartFormData in
-                multipartFormData.append(img!, withName: "unicorn")
-        },
-            to: "http://lkrjunior-com.umbler.net/api/FotoAdd/SaveFotoAdd",
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .success(let upload, _, _):
-                    upload.responseJSON { response in
-                        debugPrint(response)
-                    }
-                case .failure(let encodingError):
-                    print(encodingError)
-                }
-        }
-        )
-        */
-        
-        
-        /*
-        Alamofire.upload(imagemDados!, to: "http://lkrjunior-com.umbler.net/api/FotoAdd/SaveFotoAdd").responseJSON { response in
-            debugPrint(response)
-        }
-        */
-        /*
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
-            
-            if let data = response.data {
-                let json = String(data: data, encoding: String.Encoding.utf8)
-                print("Response: \(String(describing: json))")
-                
-                let dict = Util.converterParaDictionary(text: json!)
-                let status = dict?["status"] as! Int
-                //let id = dict?["id"] as! Int
-                if status == 1
-                {
-                    //self.idPessoa = id
-                    
-                    self.carrega(inicio: false)
-                    
-                    self.showVoltar()
-                }
-            }
-        }
-        */
     }
     
     func CarregaJSONCombos()
@@ -562,20 +624,25 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             txtUF.text = ufs[row]
             ufsId = ufsIds[row]
             
-            var i : Int = 0
-            for item in cidadesIdsUfs {
-                if (item == self.ufsId)
-                {
-                    cidadesAux.append(cidades[i])
-                    cidadesAuxIds.append(cidadesIds[i])
-                }
-                i = i + 1
-            }
+            self.CarregaCidadesPeloUf()
         }
         else
         {
             txtRaca.text = racas[row]
             racasId = racasIds[row]
+        }
+    }
+    
+    func CarregaCidadesPeloUf()
+    {
+        var i : Int = 0
+        for item in cidadesIdsUfs {
+            if (item == self.ufsId)
+            {
+                cidadesAux.append(cidades[i])
+                cidadesAuxIds.append(cidadesIds[i])
+            }
+            i = i + 1
         }
     }
 

@@ -123,6 +123,10 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
         view.telefonePessoa = self.telefonePessoa
         view.emailPessoa = self.emailPessoa
         view.idAnimal = idAnimal
+        if (idAnimal > 0)
+        {
+            view.carregarDados = true
+        }
         self.present(view, animated: true, completion: nil)
     }
     
