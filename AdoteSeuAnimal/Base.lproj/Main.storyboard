@@ -715,22 +715,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVW-CX-dpu">
-                                                    <rect key="frame" x="318" y="8" width="40" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="editar"/>
-                                                    <connections>
-                                                        <action selector="btnEditar:" destination="cXN-og-Uzj" eventType="touchUpInside" id="rql-vi-Krf"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFe-Gq-wNq">
-                                                    <rect key="frame" x="318" y="55" width="40" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="deletar"/>
-                                                    <connections>
-                                                        <action selector="Deletar:" destination="cXN-og-Uzj" eventType="touchUpInside" id="MIW-3l-GMo"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -783,8 +767,6 @@
         <image name="adote" width="235" height="128"/>
         <image name="album" width="76" height="67"/>
         <image name="camera" width="85" height="73"/>
-        <image name="deletar" width="97" height="86"/>
-        <image name="editar" width="104" height="83"/>
         <image name="mail" width="128" height="128"/>
         <image name="semfoto" width="400" height="400"/>
         <image name="telephone" width="128" height="128"/>

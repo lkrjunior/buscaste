@@ -173,5 +173,19 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
         NSLog("2")
         return totalItens
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Deletar") { (action, indexPath) in
+            print("Deletar " + String(indexPath.row))
+        }
+        
+        let share = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
+            print("Editar " + String(indexPath.row))
+        }
+        
+        share.backgroundColor = UIColor.blue
+        
+        return [delete, share]
+    }
 
 }

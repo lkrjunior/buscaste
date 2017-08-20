@@ -18,14 +18,6 @@ class MeusAnimaisTableViewCell: UITableViewCell {
     @IBOutlet weak var lblGenero: UILabel!
 
     @IBOutlet weak var lblDescricao: UILabel!
-    @IBAction func btnEditar(_ sender: Any)
-    {
-        
-    }
-    @IBAction func Deletar(_ sender: Any)
-    {
-        
-    }
     
     public func Ajusta()
     {
