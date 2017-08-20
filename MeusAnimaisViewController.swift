@@ -202,11 +202,53 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     
     func DeletarAnimal(idAnimal : Int)
     {
+        let alert = UIAlertController(title: "Confirmação", message: "Confirma deletar o animal.", preferredStyle: UIAlertControllerStyle.alert)
         
+        alert.addAction(UIAlertAction(title: "Sim", style: .default, handler: { (action: UIAlertAction!) in
+            print("Sim")
+            
+            self.carrega(inicio: true)
+            
+            let params = ["id": idAnimal,
+                          "pessoa": ["idPessoa": self.idPessoa],
+                          "animalTipo": 1,
+                          "excluir" : "true"
+                ] as [String : AnyObject]
+            
+            Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+                
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    
+                    let dict = Util.converterParaDictionary(text: json!)
+                    let status = dict?["status"] as! Int
+                    if status == 1
+                    {
+                        self.carrega(inicio: false)
+                        
+                        self.GetDados()
+                    }
+                    else
+                    {
+                        self.carrega(inicio: false)
+                    }
+                }
+            }
+
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Não", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Não")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func EditarAnimal(idAnimal : Int)
     {
+        
         
     }
 
