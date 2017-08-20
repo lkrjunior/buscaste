@@ -29,6 +29,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     var cidadesId : Int = 0
     var cidadesAux = [String]()
     var cidadesAuxIds = [Int]()
+    var idPessoa : Int = 0
     
     @IBAction func btnSairClick(_ sender: Any)
     {
@@ -143,14 +144,57 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 
                 let dict = Util.converterParaDictionary(text: json!)
                 let status = dict?["status"] as! Int
-                //let id = dict?["id"] as! Int
+                let idFoto = dict?["id"] as! Int
                 if status == 1
                 {
-                    //self.idPessoa = id
                     
+                    //Salvar o animal
+                    let paramsCad = ["animalTipo": 1,
+                                     "pessoa": ["idPessoa": self.idPessoa],
+                                     "genero": ["idGenero": self.generosId],
+                                     "raca": ["idRaca": self.racasId],
+                                     "idade": self.txtIdade.text!,
+                                     "porte": ["idPorte": self.portesId],
+                                     "peso": self.txtPeso.text!,
+                                     "cidade": ["idCidade": self.cidadesId, "Uf" : ["idUf": self.ufsId]],
+                                     "telefone": "123",
+                                     "email": "a@a.com.br",
+                                     "descricao": self.txtDescricao.text!,
+                                     "vacinas": self.txtVacinas.text!,
+                                     "foto": ["idFoto": idFoto],
+                                     "nome": self.txtNome.text!,
+                        ] as [String : AnyObject]
+                    Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+                        
+                        if let data = response.data {
+                            let json = String(data: data, encoding: String.Encoding.utf8)
+                            print("Response: \(String(describing: json))")
+                            
+                            let dict = Util.converterParaDictionary(text: json!)
+                            let status = dict?["status"] as! Int
+                            if status == 1
+                            {
+                                self.carrega(inicio: false)
+                                
+                                self.showVoltar()
+                            }
+                            else
+                            {
+                                self.carrega(inicio: false)
+                            }
+                        }
+                    }
+
+                    
+                    
+                    
+                    //self.carrega(inicio: false)
+                    
+                    //self.showVoltar()
+                }
+                else
+                {
                     self.carrega(inicio: false)
-                    
-                    self.showVoltar()
                 }
             }
         }

@@ -108,6 +108,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     func showAdicionar()
     {
         let view = self.storyboard?.instantiateViewController(withIdentifier:"MeusAnimaisSalvar") as! MeusAnimaisSalvarViewController
+        view.idPessoa = self.idPessoa
         self.present(view, animated: true, completion: nil)
     }
     
