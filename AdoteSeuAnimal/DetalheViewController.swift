@@ -145,13 +145,27 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                     guard let idFoto = fotoObj["idFoto"] as? Int else { return }
                     if idFoto > 0
                     {
-                        guard let fotoByte = fotoObj["foto"] as? String else { return }
+                        //guard let fotoByte = fotoObj["foto"] as? String else { return }
                         guard let tipoFoto = fotoObj["tipo"] as? String else { return }
-                        NSLog(fotoByte)
+                        //NSLog(fotoByte)
                         NSLog(tipoFoto)
                     
                         mapKitView.isHidden = true
-                    
+                        
+                        if let fileBase64 = fotoObj["fotoString"] as? String {
+                            DispatchQueue.main.async() {
+                                let imageArray = NSData(base64Encoded: fileBase64, options: [])
+                                self.imageView.image = UIImage(data: imageArray! as Data)
+                                self.imageView.reloadInputViews()
+                                self.carrega(inicio: false)
+                            }
+                            
+                        } else {
+                            print("missing `file` entry")
+                            self.carrega(inicio: false)
+                        }
+                        
+                        /*
                         if let fileBase64 = fotoObj["foto"] as? String {
                             DispatchQueue.main.async() {
                                 let imageArray = NSData(base64Encoded: fileBase64, options: [])
@@ -163,6 +177,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                         } else {
                             print("missing `file` entry")
                         }
+                        */
                     }
                     else
                     {

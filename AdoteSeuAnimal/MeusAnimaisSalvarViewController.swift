@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var generos = [String]()
     var generosIds = [Int]()
@@ -37,11 +37,13 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     
     @IBAction func btnSalvarClick(_ sender: Any)
     {
-        
+        self.Save()
     }
     @IBAction func btnCameraClick(_ sender: Any) {
+        self.Camera()
     }
     @IBAction func btnAlbumClick(_ sender: Any) {
+        self.Album()
     }
     
     @IBOutlet weak var carregamento: UIActivityIndicatorView!
@@ -56,6 +58,9 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     @IBOutlet weak var txtDescricao: UITextField!
     @IBOutlet weak var txtVacinas: UITextField!
     @IBOutlet weak var imagem: UIImageView!
+    
+    var imageCamera = UIImagePickerController()
+    var imageAlbum = UIImagePickerController()
     
     func carrega(inicio: Bool)
     {
@@ -76,13 +81,126 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        imageCamera.restorationIdentifier = "Camera"
+        imageAlbum.restorationIdentifier = "Album"
+        imageCamera.delegate = self
+        imageAlbum.delegate = self
         
+    }
+    
+    func Camera()
+    {
+        imageCamera.sourceType = .camera
+        present(imageCamera, animated: true, completion: nil)
+    }
+    
+    func Album()
+    {
+        imageAlbum.sourceType = .savedPhotosAlbum
+        present(imageAlbum, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let imagemRecuperada = info[ UIImagePickerControllerOriginalImage] as! UIImage
+        imagem.image = imagemRecuperada
+
+        if (picker.restorationIdentifier == "Album")
+        {
+            imageAlbum.dismiss(animated: true, completion: nil)
+        }
+        else
+        {
+            imageCamera.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         self.CarregaCombos()
         self.CarregaJSONCombos()
+    }
+    
+    
+    func Save()
+    {
+        self.carrega(inicio: true)
+        
+        let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.5)
+        
+        let img2 = imagemDados!.base64EncodedString()
+        
+        let params = ["nome": "nome",
+                      "tipo": "jpg",
+                      "fotoString": img2
+            ] as [String : AnyObject]
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                let dict = Util.converterParaDictionary(text: json!)
+                let status = dict?["status"] as! Int
+                //let id = dict?["id"] as! Int
+                if status == 1
+                {
+                    //self.idPessoa = id
+                    
+                    self.carrega(inicio: false)
+                    
+                    self.showVoltar()
+                }
+            }
+        }
+
+        /*
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(img!, withName: "unicorn")
+        },
+            to: "http://lkrjunior-com.umbler.net/api/FotoAdd/SaveFotoAdd",
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        debugPrint(response)
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+        }
+        )
+        */
+        
+        
+        /*
+        Alamofire.upload(imagemDados!, to: "http://lkrjunior-com.umbler.net/api/FotoAdd/SaveFotoAdd").responseJSON { response in
+            debugPrint(response)
+        }
+        */
+        /*
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                let dict = Util.converterParaDictionary(text: json!)
+                let status = dict?["status"] as! Int
+                //let id = dict?["id"] as! Int
+                if status == 1
+                {
+                    //self.idPessoa = id
+                    
+                    self.carrega(inicio: false)
+                    
+                    self.showVoltar()
+                }
+            }
+        }
+        */
     }
     
     func CarregaJSONCombos()
