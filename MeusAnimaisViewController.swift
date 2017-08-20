@@ -23,6 +23,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     var nome : [String] = [String]()
     var genero : [String] = [String]()
     var descricao : [String] = [String]()
+    var id : [Int] = [Int]()
     
     @IBAction func btnAdicionarClick(_ sender: Any)
     {
@@ -42,6 +43,13 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     func GetDados()
     {
         self.carrega(inicio: true)
+        
+        totalItens = 0
+        nome = [String]()
+        genero = [String]()
+        descricao = [String]()
+        id = [Int]()
+
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/GetAnimal?idTipo=1&idCadastro=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
@@ -67,9 +75,11 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                             //let dict = Util.converterParaDictionary(text: listaObj)
                             var listaDic = dict as Dictionary
                             
+                            let idAnimal = dict["id"] as! Int?
                             let nomeAnimal = dict["nome"] as! String?
                             let descricao = dict["descricao"] as! String?
                             
+                            self.id.append(idAnimal!)
                             
                             if !(listaDic["genero"] is NSNull)
                             {
@@ -176,16 +186,28 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Deletar") { (action, indexPath) in
-            print("Deletar " + String(indexPath.row))
+            print("Deletar " + String(self.id[indexPath.row]))
+            self.DeletarAnimal(idAnimal: self.id[indexPath.row])
         }
         
         let share = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
-            print("Editar " + String(indexPath.row))
+            print("Editar " + String(self.id[indexPath.row]))
+            self.EditarAnimal(idAnimal: self.id[indexPath.row])
         }
         
         share.backgroundColor = UIColor.blue
         
         return [delete, share]
+    }
+    
+    func DeletarAnimal(idAnimal : Int)
+    {
+        
+    }
+    
+    func EditarAnimal(idAnimal : Int)
+    {
+        
     }
 
 }
