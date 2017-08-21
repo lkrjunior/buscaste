@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     var generos = [String]()
     var generosIds = [Int]()
@@ -93,6 +93,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         
         self.CarregaCombos()
         self.CarregaJSONCombos()
+        self.AjustaTextFields()
         
         //trocando de lugar
         //if (idAnimal > 0)
@@ -101,7 +102,137 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         //}
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    func addToolBar(textField: UITextField)
+    {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(MeusAnimaisSalvarViewController.donePressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MeusAnimaisSalvarViewController.cancelPressed))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        textField.delegate = self
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func donePressed()
+    {
+        view.endEditing(true)
+    }
+    
+    func cancelPressed()
+    {
+        view.endEditing(true)
+    }
+    
+    func AjustaTextFields()
+    {
+        txtIdade.keyboardType = .numberPad
+        txtPeso.keyboardType = .decimalPad
+        self.addToolBar(textField: txtNome)
+        self.addToolBar(textField: txtIdade)
+        self.addToolBar(textField: txtPeso)
+        self.addToolBar(textField: txtDescricao)
+        self.addToolBar(textField: txtVacinas)
+        
+        self.txtGenero.restorationIdentifier = "genero"
+        self.txtRaca.restorationIdentifier = "raca"
+        self.txtPorte.restorationIdentifier = "porte"
+        self.txtUF.restorationIdentifier = "uf"
+        self.txtCidade.restorationIdentifier = "cidade"
+        
+        self.txtGenero.addTarget(self, action: #selector(MeusAnimaisSalvarViewController.textFieldTouchInside(textField:)), for: UIControlEvents.touchDown)
+        self.txtRaca.addTarget(self, action: #selector(MeusAnimaisSalvarViewController.textFieldTouchInside(textField:)), for: UIControlEvents.touchDown)
+        self.txtPorte.addTarget(self, action: #selector(MeusAnimaisSalvarViewController.textFieldTouchInside(textField:)), for: UIControlEvents.touchDown)
+        self.txtUF.addTarget(self, action: #selector(MeusAnimaisSalvarViewController.textFieldTouchInside(textField:)), for: UIControlEvents.touchDown)
+        self.txtCidade.addTarget(self, action: #selector(MeusAnimaisSalvarViewController.textFieldTouchInside(textField:)), for: UIControlEvents.touchDown)
+        
+        self.txtNome.delegate = self
+        self.txtGenero.delegate = self
+        self.txtRaca.delegate = self
+        self.txtPorte.delegate = self
+        self.txtIdade.delegate = self
+        self.txtPeso.delegate = self
+        self.txtUF.delegate = self
+        self.txtCidade.delegate = self
+        self.txtDescricao.delegate = self
+        self.txtVacinas.delegate = self
+        
+        self.txtNome.tag = 0
+        self.txtGenero.tag = 1
+        self.txtRaca.tag = 2
+        self.txtIdade.tag = 3
+        self.txtPorte.tag = 4
+        self.txtPeso.tag = 5
+        self.txtUF.tag = 6
+        self.txtCidade.tag = 7
+        self.txtDescricao.tag = 8
+        self.txtVacinas.tag = 9
+    }
+    
+    func textFieldTouchInside(textField: UITextField)
+    {
+        let id = textField.restorationIdentifier ?? ""
+        let valor = textField.text ?? ""
+        switch id {
+        case "genero":
+            if (valor == "" && generos.count > 0)
+            {
+                textField.text = generos[0]
+                generosId = generosIds[0]
+            }
+            return
+        case "raca":
+            if (valor == "" && racas.count > 0)
+            {
+                textField.text = racas[0]
+                racasId = racasIds[0]
+            }
+            return
+        case "porte":
+            if (valor == "" && portes.count > 0)
+            {
+                textField.text = portes[0]
+                portesId = portesIds[0]
+            }
+            return
+        case "uf":
+            if (valor == "" && ufs.count > 0)
+            {
+                textField.text = ufs[0]
+                ufsId = ufsIds[0]
+                self.CarregaCidadesPeloUf()
+            }
+            return
+        case "cidade":
+            if (valor == "" && cidades.count > 0)
+            {
+                textField.text = cidades[0]
+                cidadesId = cidadesIds[0]
+            }
+            return
+        default:
+            return
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        
         if (idAnimal > 0 && carregarDados)
         {
             self.CarregaDados()
@@ -269,6 +400,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 {
                     
                     //Salvar o animal
+                    let pesoString = self.txtPeso.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
                     let paramsCad = ["id" : self.idAnimal,
                                      "animalTipo": 1,
                                      "pessoa": ["idPessoa": self.idPessoa],
@@ -276,7 +408,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                                      "raca": ["idRaca": self.racasId],
                                      "idade": self.txtIdade.text!,
                                      "porte": ["idPorte": self.portesId],
-                                     "peso": self.txtPeso.text!,
+                                     "peso": pesoString,
                                      "cidade": ["idCidade": self.cidadesId, "Uf" : ["idUf": self.ufsId]],
                                      "telefone": self.telefonePessoa,
                                      "email": self.emailPessoa,
