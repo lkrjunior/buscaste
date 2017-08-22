@@ -22,6 +22,12 @@
 		C62EF4641F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */; };
 		C62EF4661F40C203004B7B24 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4651F40C203004B7B24 /* PerfilViewController.swift */; };
 		C62EF4681F40C443004B7B24 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62EF4671F40C443004B7B24 /* TabBarController.swift */; };
+		C63E3A871F4CF94900F3E4E7 /* AnimaisAbandonadosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A861F4CF94900F3E4E7 /* AnimaisAbandonadosViewController.swift */; };
+		C63E3A891F4CF96900F3E4E7 /* AnimaisAbandonadosSalvarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A881F4CF96900F3E4E7 /* AnimaisAbandonadosSalvarViewController.swift */; };
+		C63E3A8B1F4CF99C00F3E4E7 /* AnimaisAbandonadosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A8A1F4CF99C00F3E4E7 /* AnimaisAbandonadosTableViewCell.swift */; };
+		C63E3A8D1F4CF9EA00F3E4E7 /* FiltrosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A8C1F4CF9EA00F3E4E7 /* FiltrosViewController.swift */; };
+		C63E3A8F1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A8E1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift */; };
+		C63E3A911F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A901F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift */; };
 		C65E85ED1F3F87E30068EF3E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; };
 		C65E85EF1F3F87EE0068EF3E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; };
 		C65E85F11F3F87FE0068EF3E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */; };
@@ -96,6 +102,12 @@
 		C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Usuario+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C62EF4651F40C203004B7B24 /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		C62EF4671F40C443004B7B24 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C63E3A861F4CF94900F3E4E7 /* AnimaisAbandonadosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimaisAbandonadosViewController.swift; sourceTree = "<group>"; };
+		C63E3A881F4CF96900F3E4E7 /* AnimaisAbandonadosSalvarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimaisAbandonadosSalvarViewController.swift; sourceTree = "<group>"; };
+		C63E3A8A1F4CF99C00F3E4E7 /* AnimaisAbandonadosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimaisAbandonadosTableViewCell.swift; sourceTree = "<group>"; };
+		C63E3A8C1F4CF9EA00F3E4E7 /* FiltrosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrosViewController.swift; sourceTree = "<group>"; };
+		C63E3A8E1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrosSalvarViewController.swift; sourceTree = "<group>"; };
+		C63E3A901F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrosTableViewCell.swift; sourceTree = "<group>"; };
 		C65E85EC1F3F87E30068EF3E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -185,6 +197,12 @@
 				C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */,
 				C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */,
 				C6E2DB651F48B37300EC6FAC /* MeusAnimaisSalvarViewController.swift */,
+				C63E3A861F4CF94900F3E4E7 /* AnimaisAbandonadosViewController.swift */,
+				C63E3A881F4CF96900F3E4E7 /* AnimaisAbandonadosSalvarViewController.swift */,
+				C63E3A8A1F4CF99C00F3E4E7 /* AnimaisAbandonadosTableViewCell.swift */,
+				C63E3A8C1F4CF9EA00F3E4E7 /* FiltrosViewController.swift */,
+				C63E3A8E1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift */,
+				C63E3A901F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift */,
 			);
 			path = AdoteSeuAnimal;
 			sourceTree = "<group>";
@@ -382,16 +400,22 @@
 				C62EF4681F40C443004B7B24 /* TabBarController.swift in Sources */,
 				C6E2DB661F48B37300EC6FAC /* MeusAnimaisSalvarViewController.swift in Sources */,
 				C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */,
+				C63E3A8F1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift in Sources */,
+				C63E3A871F4CF94900F3E4E7 /* AnimaisAbandonadosViewController.swift in Sources */,
 				C616265E1ED9BCC50021FF79 /* AppDelegate.swift in Sources */,
 				C62EF4661F40C203004B7B24 /* PerfilViewController.swift in Sources */,
 				C61626CE1ED9FD6B0021FF79 /* CustomTableViewCell.swift in Sources */,
 				C6D68BBA1F4279ED00DA1232 /* Util.swift in Sources */,
+				C63E3A8B1F4CF99C00F3E4E7 /* AnimaisAbandonadosTableViewCell.swift in Sources */,
+				C63E3A8D1F4CF9EA00F3E4E7 /* FiltrosViewController.swift in Sources */,
 				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
+				C63E3A911F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift in Sources */,
 				C6F2A1AE1F40FF3000240BD3 /* CadastroJSON.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,
 				C6E2DB641F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift in Sources */,
 				C62B53691EDBA40F00C37E6F /* DetalheTableViewCell.swift in Sources */,
 				C62EF4641F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift in Sources */,
+				C63E3A891F4CF96900F3E4E7 /* AnimaisAbandonadosSalvarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
