@@ -8,11 +8,10 @@
 
 import UIKit
 
-class AnimaisAbandonadosViewController: UIViewController {
+class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -21,15 +20,16 @@ class AnimaisAbandonadosViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellAnimaisAbandonados", for: indexPath) as! AnimaisAbandonadosTableViewCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
+        return cell
+        
     }
-    */
+    
+    func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
 
 }
