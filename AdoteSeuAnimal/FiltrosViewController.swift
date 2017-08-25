@@ -38,7 +38,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func GetDados()
     {
-        self.carrega(inicio: true)
+        Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
         totalItens = 0
         genero = [String]()
@@ -114,7 +114,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                             */
                         }
                         self.tableViewFiltros.reloadData()
-                        self.carrega(inicio: false)
+                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }
         }
@@ -127,39 +127,11 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func GetDadosBD()
     {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let requisicao = NSFetchRequest<Usuario>(entityName : "Usuario")
-        
-        do
+        idPessoa = 0
+        let usuario = Util.GetDadosBD_Usuario()
+        if usuario.count > 0
         {
-            idPessoa = 0
-            let usuario = try context.fetch(requisicao)
-            if usuario.count > 0
-            {
-                idPessoa = Int(usuario[0].idUsuario)
-            }
-        }
-        catch
-        {
-            print("Erro ao ler os dados do banco de dados")
-        }
-        
-    }
-    
-    func carrega(inicio: Bool)
-    {
-        if inicio == true
-        {
-            carregamento.center = self.view.center
-            carregamento.hidesWhenStopped = true
-            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-            self.view.addSubview(carregamento)
-            carregamento.startAnimating()
-        }
-        else
-        {
-            carregamento.stopAnimating()
+            idPessoa = Int(usuario[0].idUsuario)
         }
     }
 

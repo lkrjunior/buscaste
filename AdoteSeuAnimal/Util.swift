@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class Util
 {
@@ -40,6 +41,40 @@ class Util
         if (indicatorView != nil)
         {
             indicatorView.stopAnimating()
+        }
+    }
+    
+    static func carrega(carregamento: UIActivityIndicatorView, view: UIViewController, inicio: Bool)
+    {
+        if inicio == true
+        {
+            carregamento.center = view.view.center
+            carregamento.hidesWhenStopped = true
+            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            view.view.addSubview(carregamento)
+            carregamento.startAnimating()
+        }
+        else
+        {
+            carregamento.stopAnimating()
+        }
+    }
+
+    static func GetDadosBD_Usuario() -> [Usuario]
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let requisicao = NSFetchRequest<Usuario>(entityName : "Usuario")
+        
+        do
+        {
+            let usuario = try context.fetch(requisicao)
+            return usuario
+        }
+        catch
+        {
+            print("Erro ao ler os dados do banco de dados")
+            return [Usuario]()
         }
     }
     
