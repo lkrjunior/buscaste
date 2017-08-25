@@ -726,6 +726,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblGenero" destination="Api-g3-Hfc" id="zWp-eL-mxO"/>
+                                            <outlet property="lblIdade" destination="fZ2-Ye-NcE" id="oC2-ws-BWb"/>
+                                            <outlet property="lblPeso" destination="caa-f7-P0j" id="QXj-gB-lP6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

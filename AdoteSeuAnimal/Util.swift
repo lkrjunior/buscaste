@@ -183,5 +183,11 @@ class Util
         }
     }
     
+    static func AjustaLayoutCell(view : UITableViewCell)
+    {
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10
+    }
     
 }

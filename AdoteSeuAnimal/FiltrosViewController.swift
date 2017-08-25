@@ -138,7 +138,13 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellFiltros", for: indexPath) as! FiltrosTableViewCell
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        Util.AjustaLayoutCell(view: cell)
+        
+        cell.lblGenero.text = genero[indexPath.row]
+        cell.lblIdade.text = "Idade: " + String(idadeMin[indexPath.row]) + " a " + String(idadeMax[indexPath.row])
+        cell.lblPeso.text = "Idade: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
         
         return cell
         
@@ -147,5 +153,27 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return totalItens
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Deletar") { (action, indexPath) in
+            print("Deletar " + String(self.id[indexPath.row]))
+            self.Deletar(idFiltro: self.id[indexPath.row])
+        }
+        
+        let share = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
+            print("Editar " + String(self.id[indexPath.row]))
+            self.Editar(idFiltro: self.id[indexPath.row])
+        }
+        
+        share.backgroundColor = UIColor.blue
+        
+        return [delete, share]
+    }
 
+    func Deletar(idFiltro : Int)
+    {}
+    
+    func Editar(idFiltro : Int)
+    {}
+    
 }

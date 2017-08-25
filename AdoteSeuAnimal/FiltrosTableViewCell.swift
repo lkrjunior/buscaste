@@ -9,6 +9,9 @@
 import UIKit
 
 class FiltrosTableViewCell: UITableViewCell {
+    @IBOutlet weak var lblGenero: UILabel!
+    @IBOutlet weak var lblIdade: UILabel!
+    @IBOutlet weak var lblPeso: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
