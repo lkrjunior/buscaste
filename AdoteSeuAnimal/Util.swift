@@ -53,4 +53,100 @@ class Util
         }
         return nil
     }
+    
+    static func JSON_RetornaInt(dict: Dictionary<String, AnyObject>, campo : String) -> Int
+    {
+        let obj = dict[campo] as AnyObject?
+        if !(obj is NSNull)
+        {
+            let int = dict[campo] as! Int?
+            return int!
+        }
+        else
+        {
+            return 0
+        }
+    }
+    
+    static func JSON_RetornaString(dict: Dictionary<String, AnyObject>, campo : String) -> String
+    {
+        let obj = dict[campo] as AnyObject?
+        if !(obj is NSNull)
+        {
+            let string = dict[campo] as! String?
+            return string!
+        }
+        else
+        {
+            return ""
+        }
+    }
+    
+    static func JSON_RetornaStringInterna(dict: Dictionary<String, AnyObject>, objeto: String, campo : String) -> String
+    {
+        if !(dict[objeto] is NSNull)
+        {
+            let obj = dict[objeto] as? [String : AnyObject]
+            let interno = obj?[campo] as AnyObject!
+            if !(interno is NSNull)
+            {
+                let string = obj?[campo] as! String
+                return string
+            }
+            else
+            {
+                return ""
+            }
+        }
+        else
+        {
+            return ""
+        }
+    }
+    
+    static func JSON_RetornaIntInterna(dict: Dictionary<String, AnyObject>, objeto: String, campo : String) -> Int
+    {
+        if !(dict[objeto] is NSNull)
+        {
+            let obj = dict[objeto] as? [String : AnyObject]
+            let interno = obj?[campo] as AnyObject!
+            if !(interno is NSNull)
+            {
+                let int = obj?[campo] as! Int
+                return int
+            }
+            else
+            {
+                return 0
+            }
+        }
+        else
+        {
+            return 0
+        }
+    }
+    
+    static func JSON_RetornaObjInterna(dict: Dictionary<String, AnyObject>, objeto: String, campo : String) -> [String : AnyObject]
+    {
+        if !(dict[objeto] is NSNull)
+        {
+            let obj = dict[objeto] as? [String : AnyObject]
+            let interno = obj?[campo] as AnyObject!
+            if !(interno is NSNull)
+            {
+                let obj = obj?[campo] as! [String : AnyObject]
+                return obj
+            }
+            else
+            {
+                return [String : AnyObject]()
+            }
+        }
+        else
+        {
+            return [String : AnyObject]()
+        }
+    }
+    
+    
 }

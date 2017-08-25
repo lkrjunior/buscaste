@@ -379,6 +379,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         self.carrega(inicio: true)
         
         let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.3)
+        //let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.2)
         
         let img = imagemDados!.base64EncodedString()
         
