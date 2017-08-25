@@ -10,6 +10,10 @@ import UIKit
 
 class FiltrosSalvarViewController: UIViewController {
 
+    var idPessoa : Int = 0
+    var idFiltro : Int = 0
+    var carregarDados : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

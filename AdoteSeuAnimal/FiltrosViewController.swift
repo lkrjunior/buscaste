@@ -14,6 +14,11 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var tableViewFiltros: UITableView!
     
+    @IBAction func btnAdicionarClick(_ sender: Any)
+    {
+        self.showAdicionar()
+    }
+    
     var carregamento:UIActivityIndicatorView = UIActivityIndicatorView()
     
     var idPessoa : Int = 0
@@ -120,9 +125,16 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func showAdicionar(idAnimal : Int = 0)
+    func showAdicionar(idFiltro : Int = 0)
     {
-        
+        let view = self.storyboard?.instantiateViewController(withIdentifier:"FiltrosSalvarSid") as! FiltrosSalvarViewController
+        view.idPessoa = self.idPessoa
+        view.idFiltro = idFiltro
+        if (idFiltro > 0)
+        {
+            view.carregarDados = true
+        }
+        self.present(view, animated: true, completion: nil)
     }
     
     func GetDadosBD()
