@@ -21,8 +21,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     var genero : [String] = [String]()
     var idadeMin : [Int] = [Int]()
     var idadeMax : [Int] = [Int]()
-    var pesoMin : [Int] = [Int]()
-    var pesoMax : [Int] = [Int]()
+    var pesoMin : [Double] = [Double]()
+    var pesoMax : [Double] = [Double]()
     var id : [Int] = [Int]()
     
     override func viewDidLoad() {
@@ -44,8 +44,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
         genero = [String]()
         idadeMin = [Int]()
         idadeMax = [Int]()
-        pesoMin = [Int]()
-        pesoMax = [Int]()
+        pesoMin = [Double]()
+        pesoMax = [Double]()
         id = [Int]()
         
         
@@ -76,8 +76,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                             self.genero.append(Util.JSON_RetornaStringInterna(dict: listaDic, objeto: "genero", campo: "genero"))
                             self.idadeMin.append(Util.JSON_RetornaInt(dict: dict, campo: "idadeMin"))
                             self.idadeMax.append(Util.JSON_RetornaInt(dict: dict, campo: "idadeMax"))
-                            self.pesoMin.append(Util.JSON_RetornaInt(dict: dict, campo: "pesoMin"))
-                            self.pesoMax.append(Util.JSON_RetornaInt(dict: dict, campo: "pesoMax"))
+                            self.pesoMin.append(Util.JSON_RetornaDouble(dict: dict, campo: "pesoMin"))
+                            self.pesoMax.append(Util.JSON_RetornaDouble(dict: dict, campo: "pesoMax"))
                             
                             /*
                             if !(listaDic["genero"] is NSNull)
@@ -144,7 +144,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.lblGenero.text = genero[indexPath.row]
         cell.lblIdade.text = "Idade: " + String(idadeMin[indexPath.row]) + " a " + String(idadeMax[indexPath.row])
-        cell.lblPeso.text = "Idade: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
+        cell.lblPeso.text = "Peso: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
         
         return cell
         

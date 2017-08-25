@@ -89,6 +89,20 @@ class Util
         return nil
     }
     
+    static func JSON_RetornaDouble(dict: Dictionary<String, AnyObject>, campo : String) -> Double
+    {
+        let obj = dict[campo] as AnyObject?
+        if !(obj is NSNull)
+        {
+            let double = dict[campo] as! Double?
+            return double!
+        }
+        else
+        {
+            return 0
+        }
+    }
+    
     static func JSON_RetornaInt(dict: Dictionary<String, AnyObject>, campo : String) -> Int
     {
         let obj = dict[campo] as AnyObject?
