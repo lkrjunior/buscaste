@@ -186,6 +186,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     {}
     
     func Editar(idFiltro : Int)
-    {}
+    {
+        self.showAdicionar(idFiltro: idFiltro)
+    }
     
 }

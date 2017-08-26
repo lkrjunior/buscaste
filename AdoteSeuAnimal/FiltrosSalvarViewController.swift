@@ -371,5 +371,80 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        
+        if (idFiltro > 0 && carregarDados)
+        {
+            self.CarregaDados()
+        }
+    }
+    
+    func CarregaDados()
+    {
+        print("Carregando dados")
+        
+        Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/GetPessoaFiltro?idFiltro=" + String(idFiltro), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            {
+                response in
+                
+                if let data = response.data
+                {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    if (json == nil || json == "")
+                    {
+                        Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
+                    }
+                    else
+                    {
+                        let listaDict = Util.converterParaDictionary(text: json!)
+                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        
+                        for dict in lista!
+                        {
+                            
+                            let genero = Util.JSON_RetornaStringInterna(dict: dict, objeto: "genero", campo: "genero")
+                            let generoId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "genero", campo: "idGenero")
+                            
+                            let raca = Util.JSON_RetornaStringInterna(dict: dict, objeto: "raca", campo: "raca")
+                            let racaId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "raca", campo: "idRaca")
+                            
+                            let porte = Util.JSON_RetornaStringInterna(dict: dict, objeto: "porte", campo: "porte")
+                            let porteId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "porte", campo: "idPorte")
+                            
+                            let idadeMin = Util.JSON_RetornaInt(dict: dict, campo: "idadeMin")
+                            let idadeMax = Util.JSON_RetornaInt(dict: dict, campo: "idadeMax")
+                            
+                            let pesoMin = Util.JSON_RetornaDouble(dict: dict, campo: "pesoMin")
+                            let pesoMax = Util.JSON_RetornaDouble(dict: dict, campo: "pesoMax")
+                            
+                            self.txtGenero.text = genero
+                            self.generosId = generoId
+                            
+                            self.txtRaca.text = raca
+                            self.racasId = racaId
+                            
+                            self.txtPorte.text = porte
+                            self.portesId = porteId
+                            
+                            self.txtIdadeMim.text = String(idadeMin)
+                            self.txtIdadeMax.text = String(idadeMax)
+                            
+                            self.txtPesoMin.text = String(pesoMin)
+                            self.txtPesoMax.text = String(pesoMax)
+                            
+                            
+                        }
+                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                    }
+                    self.carregarDados = false
+                }
+        }
+        
+    }
 
 }
