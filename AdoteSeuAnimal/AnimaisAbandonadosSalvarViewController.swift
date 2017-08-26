@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AnimaisAbandonadosSalvarViewController: UIViewController {
+class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDelegate {
     @IBAction func btnSalvarClick(_ sender: Any)
     {
         
@@ -28,7 +28,42 @@ class AnimaisAbandonadosSalvarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.AjustaTextFields()
+        
+    }
+    
+    func AjustaTextFields()
+    {
         lblLocalizacao.text = ""
+        txtDescricao.delegate = self
+        self.addToolBar(textField: txtDescricao)
+    }
+    
+    func addToolBar(textField: UITextField)
+    {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(AnimaisAbandonadosSalvarViewController.donePressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AnimaisAbandonadosSalvarViewController.cancelPressed))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        textField.delegate = self
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func donePressed()
+    {
+        view.endEditing(true)
+    }
+    
+    func cancelPressed()
+    {
+        view.endEditing(true)
     }
 
     func showVoltar()
