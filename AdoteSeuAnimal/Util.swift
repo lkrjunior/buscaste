@@ -204,4 +204,84 @@ class Util
         view.layer.cornerRadius = 10
     }
     
+    static func compressImage_2048 (_ image: UIImage) -> UIImage {
+        
+        let actualHeight:CGFloat = image.size.height
+        let actualWidth:CGFloat = image.size.width
+        let imgRatio:CGFloat = actualWidth/actualHeight
+        let maxWidth:CGFloat = 2048.0
+        let resizedHeight:CGFloat = maxWidth/imgRatio
+        let compressionQuality:CGFloat = 0.5
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: maxWidth, height: resizedHeight)
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let imageData:Data = UIImageJPEGRepresentation(img, compressionQuality)!
+        UIGraphicsEndImageContext()
+        
+        return UIImage(data: imageData)!
+        
+    }
+    
+    static func compressImage_1536 (_ image: UIImage) -> UIImage {
+        
+        let actualHeight:CGFloat = image.size.height
+        let actualWidth:CGFloat = image.size.width
+        let imgRatio:CGFloat = actualWidth/actualHeight
+        let maxWidth:CGFloat = 1536.0
+        let resizedHeight:CGFloat = maxWidth/imgRatio
+        let compressionQuality:CGFloat = 0.5
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: maxWidth, height: resizedHeight)
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let imageData:Data = UIImageJPEGRepresentation(img, compressionQuality)!
+        UIGraphicsEndImageContext()
+        
+        return UIImage(data: imageData)!
+        
+    }
+    
+    static func compressImage_1024 (_ image: UIImage) -> UIImage {
+        
+        let actualHeight:CGFloat = image.size.height
+        let actualWidth:CGFloat = image.size.width
+        let imgRatio:CGFloat = actualWidth/actualHeight
+        let maxWidth:CGFloat = 1024.0
+        let resizedHeight:CGFloat = maxWidth/imgRatio
+        let compressionQuality:CGFloat = 0.5
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: maxWidth, height: resizedHeight)
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let imageData:Data = UIImageJPEGRepresentation(img, compressionQuality)!
+        UIGraphicsEndImageContext()
+        
+        return UIImage(data: imageData)!
+        
+    }
+    
+    static func compressImage_512 (_ image: UIImage) -> UIImage {
+        
+        let actualHeight:CGFloat = image.size.height
+        let actualWidth:CGFloat = image.size.width
+        let imgRatio:CGFloat = actualWidth/actualHeight
+        let maxWidth:CGFloat = 512.0
+        let resizedHeight:CGFloat = maxWidth/imgRatio
+        let compressionQuality:CGFloat = 0.5
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: maxWidth, height: resizedHeight)
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let imageData:Data = UIImageJPEGRepresentation(img, compressionQuality)!
+        UIGraphicsEndImageContext()
+        
+        return UIImage(data: imageData)!
+        
+    }
+    
 }
