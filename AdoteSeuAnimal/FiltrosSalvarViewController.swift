@@ -17,7 +17,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var btnSalvarClick: UIButton!
     @IBAction func btnSalvar_Click(_ sender: Any)
     {
-        
+        self.Save()
     }
 
     @IBOutlet weak var txtGenero: UITextField!
@@ -51,6 +51,47 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.AjustaTextFields()
     }
     
+    func Save()
+    {
+        Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
+        
+        //Salvar o filtro
+        let pesoMinString = self.txtPesoMin.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
+        let pesoMaxString = self.txtPesoMax.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
+        let idadeMin = self.txtIdadeMim.text! == "" ? "0" : self.txtIdadeMim.text!
+        let idadeMax = self.txtIdadeMax.text! == "" ? "0" : self.txtIdadeMax.text!
+        let paramsCad = ["idPessoaFiltro" : self.idFiltro,
+                         "pessoa": ["idPessoa": self.idPessoa],
+                         "genero": ["idGenero": self.generosId],
+                         "raca": ["idRaca": self.racasId],
+                         "porte": ["idPorte": self.portesId],
+                         "idadeMin": idadeMin,
+                         "idadeMax": idadeMax,
+                         "pesoMin": pesoMinString,
+                         "pesoMax": pesoMaxString,
+                         ] as [String : AnyObject]
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                let dict = Util.converterParaDictionary(text: json!)
+                let status = dict?["status"] as! Int
+                if status == 1
+                {
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                    
+                    self.showVoltar()
+                }
+                else
+                {
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                }
+            }
+        }
+    }
+
     func CarregaJSONCombos()
     {
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
