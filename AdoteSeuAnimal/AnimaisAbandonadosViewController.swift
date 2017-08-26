@@ -83,7 +83,9 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                             self.data.append(Util.JSON_RetornaString(dict: dict, campo: "dataFormatada"))
                             self.latitude.append(Util.JSON_RetornaDouble(dict: dict, campo: "latitude"))
                             self.longitude.append(Util.JSON_RetornaDouble(dict: dict, campo: "longitude"))
+                            self.local.append(Util.JSON_RetornaString(dict: dict, campo: "localizacao"))
                             
+                            /* TROCANDO DE LUGAR, IRA SALVAR NO BD
                             let localizacao : CLLocation = CLLocation(latitude: self.latitude.last!, longitude: self.longitude.last!)
                             
                             CLGeocoder().reverseGeocodeLocation(localizacao, completionHandler: { (detalhesLocal, erro) in
@@ -101,7 +103,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                                     print(erro ?? "")
                                 }
                             })
-                            
+                            */
                         }
                         self.tableViewAnimais.reloadData()
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
