@@ -35,6 +35,7 @@
 		C65E85F41F3F880F0068EF3E /* FBSDKLoginKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F51F3F880F0068EF3E /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */; };
+		C68E38131F5117D800228EDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68E38121F5117D800228EDB /* CoreLocation.framework */; };
 		C6D68BBA1F4279ED00DA1232 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D68BB91F4279ED00DA1232 /* Util.swift */; };
 		C6E2DB621F48728300EC6FAC /* MeusAnimaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */; };
 		C6E2DB641F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */; };
@@ -113,6 +114,7 @@
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInicial.swift; sourceTree = "<group>"; };
 		C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdoteSeuAnimal.entitlements; sourceTree = "<group>"; };
+		C68E38121F5117D800228EDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C6D68BB91F4279ED00DA1232 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeusAnimaisViewController.swift; path = ../MeusAnimaisViewController.swift; sourceTree = "<group>"; };
 		C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeusAnimaisTableViewCell.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C68E38131F5117D800228EDB /* CoreLocation.framework in Frameworks */,
 				C6F2A1AA1F40FEBB00240BD3 /* SwiftyJSON.framework in Frameworks */,
 				C6F2A1A81F40FEB100240BD3 /* Alamofire.framework in Frameworks */,
 				C65E85F11F3F87FE0068EF3E /* FBSDKCoreKit.framework in Frameworks */,
@@ -236,6 +239,7 @@
 		C65E85EB1F3F87E20068EF3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C68E38121F5117D800228EDB /* CoreLocation.framework */,
 				C6F2A1A91F40FEBB00240BD3 /* SwiftyJSON.framework */,
 				C6F2A1A71F40FEB100240BD3 /* Alamofire.framework */,
 				C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */,
