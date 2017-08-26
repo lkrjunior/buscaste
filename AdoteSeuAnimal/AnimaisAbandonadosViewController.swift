@@ -118,12 +118,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     func showAdicionar(idAnimal : Int = 0)
     {
         let view = self.storyboard?.instantiateViewController(withIdentifier:"AnimaisAbandonadosSalvarSid") as! AnimaisAbandonadosSalvarViewController
-        //view.idPessoa = self.idPessoa
-        //view.idFiltro = idFiltro
-        if (idAnimal > 0)
-        {
-            //view.carregarDados = true
-        }
+        view.idPessoa = self.idPessoa
         self.present(view, animated: true, completion: nil)
     }
     
