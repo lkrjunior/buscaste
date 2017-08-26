@@ -377,6 +377,80 @@
             </objects>
             <point key="canvasLocation" x="-39.200000000000003" y="1018.7406296851575"/>
         </scene>
+        <!--Animais Abandonados Salvar View Controller-->
+        <scene sceneID="YiD-fh-bQo">
+            <objects>
+                <viewController restorationIdentifier="AnimaisAbandonadosSalvarRid" storyboardIdentifier="AnimaisAbandonadosSalvarSid" id="hym-ka-5lL" customClass="AnimaisAbandonadosSalvarViewController" customModule="AdoteSeuAnimal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kC7-JO-6ad"/>
+                        <viewControllerLayoutGuide type="bottom" id="DaL-ce-koX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LoR-n4-QY0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Animal abandonado?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAa-Xu-tSQ">
+                                <rect key="frame" x="16" y="25" width="343" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiR-nA-uaY">
+                                <rect key="frame" x="16" y="21" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="btnFecharClick:" destination="hym-ka-5lL" eventType="touchUpInside" id="qHX-rX-Nfg"/>
+                                    <action selector="btnSairClick:" destination="OAr-sa-lR7" eventType="touchUpInside" id="3Sw-kq-VJh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxe-YD-iiK">
+                                <rect key="frame" x="316" y="22" width="43" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Salvar"/>
+                                <connections>
+                                    <action selector="btnSalvarClick:" destination="hym-ka-5lL" eventType="touchUpInside" id="Qa3-JM-VQ9"/>
+                                    <action selector="btnSalvarClick:" destination="OAr-sa-lR7" eventType="touchUpInside" id="R1x-Uf-3iF"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Descrição para o animal abandonado" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="juf-AO-fKu">
+                                <rect key="frame" x="16" y="59" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQd-b5-dBW">
+                                <rect key="frame" x="16" y="97" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Vci-aE-fYy">
+                                <rect key="frame" x="16" y="126" width="343" height="521"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-KH-KkW">
+                                <rect key="frame" x="177" y="376" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="carregamento" destination="Ana-KH-KkW" id="ykR-66-XiC"/>
+                        <outlet property="lblLocalizacao" destination="zQd-b5-dBW" id="qKu-jI-L8z"/>
+                        <outlet property="mkMapa" destination="Vci-aE-fYy" id="4nR-ud-QN5"/>
+                        <outlet property="txtDescricao" destination="juf-AO-fKu" id="vDt-C0-kMY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LhJ-vc-Mde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1119.2" y="1788.7556221889056"/>
+        </scene>
         <!--View Controller Inicial-->
         <scene sceneID="mKN-Fy-6d8">
             <objects>

@@ -7,29 +7,36 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class AnimaisAbandonadosSalvarViewController: UIViewController {
+    @IBAction func btnSalvarClick(_ sender: Any)
+    {
+        
+    }
+    @IBAction func btnFecharClick(_ sender: Any)
+    {
+        self.showVoltar()
+    }
+    
+    @IBOutlet weak var txtDescricao: UITextField!
+    @IBOutlet weak var lblLocalizacao: UILabel!
+    @IBOutlet weak var mkMapa: MKMapView!
+    @IBOutlet weak var carregamento: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        lblLocalizacao.text = ""
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func showVoltar()
+    {
+        let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
+        tb.selectedIndex = 2
+        self.present(tb, animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

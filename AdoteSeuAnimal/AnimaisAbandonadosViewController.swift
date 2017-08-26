@@ -17,7 +17,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var tableViewAnimais: UITableView!
     @IBAction func btnAdicionarClick(_ sender: Any)
     {
-        
+        self.showAdicionar()
     }
 
     var carregamento : UIActivityIndicatorView = UIActivityIndicatorView()
@@ -158,6 +158,61 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     
     func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return totalItens
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Deletar") { (action, indexPath) in
+            print("Deletar " + String(self.id[indexPath.row]))
+            self.Deletar(idAnimal: self.id[indexPath.row])
+        }
+        
+        return [delete]
+    }
+    
+    func Deletar(idAnimal : Int)
+    {
+        let alert = UIAlertController(title: "Confirmação", message: "Confirma deletar o animal abandonado.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Sim", style: .default, handler: { (action: UIAlertAction!) in
+            print("Sim")
+            
+            Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
+            
+            let params = ["id": idAnimal,
+                          "animalTipo" : 2,
+                          "pessoa": ["idPessoa": self.idPessoa],
+                          "excluir" : "true"
+                ] as [String : AnyObject]
+            
+            Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+                
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    
+                    let dict = Util.converterParaDictionary(text: json!)
+                    let status = dict?["status"] as! Int
+                    if status == 1
+                    {
+                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                        
+                        self.GetDados()
+                    }
+                    else
+                    {
+                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                    }
+                }
+            }
+            
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Não", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Não")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
