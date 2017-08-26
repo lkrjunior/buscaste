@@ -598,6 +598,7 @@
                                 <state key="normal" title="X"/>
                                 <connections>
                                     <action selector="btnSairClick:" destination="OAr-sa-lR7" eventType="touchUpInside" id="X2P-Vb-3Ki"/>
+                                    <action selector="lblFecharClick:" destination="wgV-lF-1Ru" eventType="touchUpInside" id="U3s-JD-P87"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxD-NS-rhW">
@@ -606,6 +607,7 @@
                                 <state key="normal" title="Salvar"/>
                                 <connections>
                                     <action selector="btnSalvarClick:" destination="OAr-sa-lR7" eventType="touchUpInside" id="F90-Vf-xn2"/>
+                                    <action selector="btnSalvar_Click:" destination="wgV-lF-1Ru" eventType="touchUpInside" id="ixe-zH-Spz"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Genero" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N7i-eJ-p3m">
@@ -657,9 +659,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6QI-et-ye7">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="btnSalvarClick" destination="IxD-NS-rhW" id="KKa-qD-NAA"/>
+                        <outlet property="carregamento" destination="6QI-et-ye7" id="4Dt-LH-kZO"/>
+                        <outlet property="txtGenero" destination="N7i-eJ-p3m" id="ZGa-Sb-bpM"/>
+                        <outlet property="txtIdadeMax" destination="QMN-WW-OXh" id="u6Q-4o-5Tu"/>
+                        <outlet property="txtIdadeMim" destination="HXb-3d-lZr" id="SeI-5B-qjG"/>
+                        <outlet property="txtPesoMax" destination="7vj-vG-hfs" id="0Y3-Yl-8tb"/>
+                        <outlet property="txtPesoMin" destination="mpO-cy-6bN" id="jz1-og-JyF"/>
+                        <outlet property="txtPorte" destination="KCv-WV-A2l" id="6Fo-nh-Icu"/>
+                        <outlet property="txtRaca" destination="rVn-Bj-AOy" id="oxn-tN-VZQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0MU-Ut-lIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
