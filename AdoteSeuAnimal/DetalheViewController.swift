@@ -335,7 +335,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cellDetalhe", for: indexPath) as! DetalheTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellDetalhe", for: indexPath) as! DetalheTableViewCell
         
         cell.lblId.text = nome
         

@@ -387,7 +387,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         //30kb let imagemSalvar = Util.compressImage_512(imagem.image!)
         //30kb let imagemDados = UIImageJPEGRepresentation(imagemSalvar, 0.3)
         
-        let imagemSalvar = Util.compressImage_1024(imagem.image!)
+        let imagemSalvar = Util.compressImage_512(imagem.image!)
         let imagemDados = UIImageJPEGRepresentation(imagemSalvar, 0.5)
         
         //let imagemSalvarPequena = Util.compressImage_512(imagem.image!)

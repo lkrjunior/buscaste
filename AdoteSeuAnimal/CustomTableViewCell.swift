@@ -14,6 +14,8 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var lblGenero: UILabel!
     @IBOutlet weak var lblRaca: UILabel!
     @IBOutlet weak var lblDesricao: UILabel!
+    @IBOutlet weak var imagem: UIImageView!
+    @IBOutlet weak var lblLocalizacao: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

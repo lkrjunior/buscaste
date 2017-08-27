@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var carregamento:UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBOutlet weak var tableViewAnimal: UITableView!
+    
+    //27/08/2017
+    var totalAnimalPagina : Int = 5
+    var paginaAtual : Int = 1
     
     var totalAnimal : Int = 0
     var totalAnimalPage : Int = 3
@@ -24,6 +29,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var raca = [String]()
     var descricao = [String]()
     var nome = [String]()
+    //27/08/2017
+    var fotosId = [Int]()
+    var fotos = [String]()
+    var localizacao = [String]()
     
     //refresh
     lazy var refreshControl: UIRefreshControl = {
@@ -39,6 +48,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //refresh
     func handleRefresh(_ refreshControl: UIRefreshControl) {
+       
+        //27/08/2017
+        paginaAtual = 1
+        totalAnimal = 0
         
         self.GetDadosAnimal()
         
@@ -74,11 +87,79 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //refresh
         self.tableViewAnimal.addSubview(self.refreshControl)
         
+        paginaAtual = 1
+        totalAnimal = 0
+        
         self.GetDadosAnimal()
         
     }
     
     func readJSONObjectAnimal(object: [String: AnyObject]) {
+        
+        if (paginaAtual == 1)
+        {
+            animalTipoArray = [Int]()
+            idArray = [Int]()
+            animal = [String]()
+            dataA = [String]()
+            genero = [String]()
+            raca = [String]()
+            descricao = [String]()
+            nome = [String]()
+            //fotosId = [Int]()
+            //fotos = [String]()
+            localizacao = [String]()
+        }
+        
+        guard let lista = object["lista"] as? [[String: AnyObject]] else
+        { return }
+        //totalAnimal = lista.count
+        totalAnimal = totalAnimal + lista.count
+
+        for listaObj in lista {
+            let animalTipo = Util.JSON_RetornaInt(dict: listaObj, campo: "animalTipoInt")
+            let id = Util.JSON_RetornaInt(dict: listaObj, campo: "id")
+            let data = Util.JSON_RetornaString(dict: listaObj, campo: "dataFormatada")
+            let desc = Util.JSON_RetornaString(dict: listaObj, campo: "descricao")
+            let generoObj = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "genero", campo: "genero")
+            genero.append(generoObj)
+            let racaObj = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "raca", campo: "raca")
+            raca.append(racaObj)
+            
+            let uf = Util.JSON_RetornaObjInterna(dict: listaObj, objeto: "cidade", campo: "uf")
+            let cidade = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "cidade", campo: "cidade")
+            if uf.count > 0
+            {
+                let ufInterna = Util.JSON_RetornaString(dict: uf, campo: "uf")
+                localizacao.append(cidade + "/" + ufInterna)
+            }
+            else
+            {
+                let local = Util.JSON_RetornaString(dict: listaObj, campo: "localizacao")
+                localizacao.append(local)
+
+            }
+            
+            if animalTipo == 1
+            {
+                animal.append("Animal para doação")
+                let nomeJ = Util.JSON_RetornaString(dict: listaObj, campo: "nome")
+                nome.append(nomeJ)
+            }
+            else
+            {
+                animal.append("Animal abandonado")
+                nome.append("")
+            }
+            
+            dataA.append(data)
+            descricao.append(desc)
+            animalTipoArray.append(animalTipo)
+            idArray.append(id)
+        }
+    }
+    
+    func NAOUSAR_readJSONObjectAnimal(object: [String: AnyObject]) {
         animalTipoArray = [Int]()
         idArray = [Int]()
         animal = [String]()
@@ -87,11 +168,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         raca = [String]()
         descricao = [String]()
         nome = [String]()
+        fotos = [String]()
+        localizacao = [String]()
         
         guard let lista = object["lista"] as? [[String: AnyObject]] else
         { return }
         totalAnimal = lista.count
-
+        
+        
         for listaObj in lista {
             guard let animalTipo = listaObj["animalTipoInt"] as? Int else { return }
             guard let id = listaObj["id"] as? Int else { return }
@@ -141,7 +225,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func GetDadosAnimal()
     {
         self.carrega(inicio: true)
-        var request = URLRequest(url: URL(string: "http://lkrjunior-com.umbler.net/api/Animal/GetAnimal")!)
+        //27/08/2017
+        let paginacao = "?pagina=\(paginaAtual)&itens=\(totalAnimalPagina)"
+        var request = URLRequest(url: URL(string: "http://lkrjunior-com.umbler.net/api/Animal/GetAnimal" + paginacao)!)
         request.httpMethod = "GET"
         //var timeoutPadrao = request.timeoutInterval
         request.timeoutInterval = 90
@@ -163,12 +249,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 if let dictionary = object as? [String: AnyObject] {
                     self.readJSONObjectAnimal(object: dictionary)
-                    DispatchQueue.main.async() {
+
+                    DispatchQueue.main.sync {
                         self.tableViewAnimal.delegate = self
                         self.tableViewAnimal.dataSource = self
                         self.tableViewAnimal.reloadData()
                         self.carrega(inicio: false)
+                        //self.CarregaImagens()
                     }
+                    //DispatchQueue.main.async {
+                    //    self.CarregaImagens()
+                    //}
                 }
             } catch {
                 // Handle Error
@@ -196,7 +287,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "CellLinhaDoTempo", for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellLinhaDoTempo", for: indexPath) as! CustomTableViewCell
         if animal.count > 0
         {
             let myColor : CGColor = UIColor.darkText.cgColor
@@ -206,9 +297,97 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell.lblAnimal.text = animal[indexPath.row]
             cell.lblData.text = dataA[indexPath.row]
-            cell.lblGenero.text = "Nome: " + (genero[indexPath.row] == "" ? "não identificado" : nome[indexPath.row] + " (" + genero[indexPath.row] + ")")
-            cell.lblRaca.text = "Raça: " + (raca[indexPath.row] == "" ? "não identificada" : raca[indexPath.row])
-            cell.lblDesricao.text = "Descrição: " + descricao[indexPath.row]
+            cell.lblGenero.text = (genero[indexPath.row] == "" ? "" : nome[indexPath.row] + " (" + genero[indexPath.row] + ")")
+            cell.lblRaca.text = "" + (raca[indexPath.row] == "" ? "" : raca[indexPath.row])
+            cell.lblDesricao.text = "" + descricao[indexPath.row]
+            cell.lblLocalizacao.text = localizacao[indexPath.row]
+            
+            //27/08/2017
+            cell.imagem.layer.masksToBounds = true
+            //cell.imagem.layer.cornerRadius = cell.imagem.frame.width / 2
+            cell.imagem.layer.cornerRadius = 50
+            if animalTipoArray[indexPath.row] != 1
+            {
+                cell.imagem.image = UIImage(imageLiteralResourceName: "animalPerdido")
+                cell.imagem.reloadInputViews()
+                cell.lblGenero.text = descricao[indexPath.row]
+                cell.lblRaca.text = localizacao[indexPath.row]
+                cell.lblDesricao.text = ""
+                cell.lblLocalizacao.text = ""
+            }
+            else
+            {
+                var busca : Bool = true
+                var j : Int = 0
+                for _ in self.fotosId {
+                    if idArray[indexPath.row] == fotosId[j]
+                    {
+                        busca = false
+                    }
+                    j = j + 1
+                }
+                if busca == true
+                {
+                    cell.imagem.image = UIImage(imageLiteralResourceName: "semfoto")
+                    cell.imagem.reloadInputViews()
+                    
+                    Alamofire.request("http://lkrjunior-com.umbler.net/api/AnimalGet/GetAnimal?idTipo=1&idAnimal=" + String(idArray[indexPath.row]), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+                        {
+                            response in
+                            
+                            if let data = response.data
+                            {
+                                let json = String(data: data, encoding: String.Encoding.utf8)
+                                print("Response: \(String(describing: json))")
+                                if (json == nil || json == "" || json == "null")
+                                {
+                                    print("Erro ao carregar foto")
+                                }
+                                else
+                                {
+                                    let listaDict = Util.converterParaDictionary(text: json!)
+                                    let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                                    
+                                    if lista != nil
+                                    {
+                                        for dict in lista!
+                                        {
+                                            
+                                            let imagem = Util.JSON_RetornaStringInterna(dict: dict, objeto: "foto", campo: "fotoString")
+                                            self.fotosId.append(self.idArray[indexPath.row])
+                                            self.fotos.append(imagem)
+                                            
+                                            let imageArray = NSData(base64Encoded: imagem, options: [])
+                                            cell.imagem.image = UIImage(data: imageArray! as Data)
+                                            cell.imagem.reloadInputViews()
+                                        }
+                                    }
+                                }
+                            }
+                    }
+
+                    
+                    
+                }
+                else
+                {
+                
+                    if fotosId.count > 0
+                    {
+                        print(String(indexPath.row))
+                        var i = 0
+                        for _ in fotosId {
+                            if fotosId[i] == idArray[indexPath.row]
+                            {
+                                let imageArray = NSData(base64Encoded: fotos[i], options: [])
+                                cell.imagem.image = UIImage(data: imageArray! as Data)
+                                cell.imagem.reloadInputViews()
+                            }
+                            i = i + 1
+                        }
+                    }
+                }
+            }
         }
         
         NSLog("1")
@@ -225,7 +404,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //refresh
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        NSLog("Fim da view")
+        //27/08/2017
+        let  height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            print("end of table")
+            if ((paginaAtual * totalAnimalPagina) <= totalAnimal)
+            {
+                paginaAtual = paginaAtual + 1
+                self.GetDadosAnimal()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
