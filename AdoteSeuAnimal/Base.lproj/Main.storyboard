@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vWw-Sx-SKo" id="snq-IZ-Dfh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="161.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVa-td-Gwh" userLabel="Animal para">
@@ -299,7 +299,7 @@
         <scene sceneID="kq3-rD-SRF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qey-cs-RWL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Animais" id="qmm-cU-7dQ"/>
+                    <tabBarItem key="tabBarItem" title="Animais" image="tbAnimais" id="qmm-cU-7dQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kDl-DX-y4L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -377,7 +377,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Perfil" id="ghH-sv-zhS"/>
+                    <tabBarItem key="tabBarItem" title="Perfil" image="tbUsuario" id="ghH-sv-zhS"/>
                     <connections>
                         <outlet property="btnLogout" destination="mfy-N1-T92" id="cqG-Az-Kls"/>
                         <outlet property="carrega" destination="q0s-xI-fVa" id="wPw-4c-5L4"/>
@@ -846,7 +846,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sinalizar" id="fkV-41-irf"/>
+                    <tabBarItem key="tabBarItem" title="Sinalizar" image="tbSinalizar" id="fkV-41-irf"/>
                     <connections>
                         <outlet property="tableViewAnimais" destination="J54-te-pAa" id="oVr-d2-9cc"/>
                     </connections>
@@ -932,7 +932,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Filtros" id="vkM-EC-PMH"/>
+                    <tabBarItem key="tabBarItem" title="Filtros" image="tbFiltros" id="vkM-EC-PMH"/>
                     <connections>
                         <outlet property="tableViewFiltros" destination="03W-31-Ibr" id="RZK-8T-xM6"/>
                     </connections>
@@ -1018,7 +1018,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Meus animais" id="H4G-6l-5ma"/>
+                    <tabBarItem key="tabBarItem" title="Meus animais" image="tbAdd" id="H4G-6l-5ma"/>
                     <connections>
                         <outlet property="tableMeusAnimais" destination="gbN-s6-Ipi" id="x05-2Y-jla"/>
                     </connections>
@@ -1055,6 +1055,11 @@
         <image name="camera" width="85" height="73"/>
         <image name="mail" width="128" height="128"/>
         <image name="semfoto" width="400" height="400"/>
+        <image name="tbAdd" width="20" height="20"/>
+        <image name="tbAnimais" width="20" height="20"/>
+        <image name="tbFiltros" width="20" height="20"/>
+        <image name="tbSinalizar" width="20" height="20"/>
+        <image name="tbUsuario" width="20" height="20"/>
         <image name="telephone" width="128" height="128"/>
     </resources>
 </document>
