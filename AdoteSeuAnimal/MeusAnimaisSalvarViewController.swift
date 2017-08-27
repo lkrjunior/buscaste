@@ -72,6 +72,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         if inicio == true
         {
             carregamento.center = self.view.center
+            carregamento.frame.origin.y = carregamento.frame.origin.y - 30
             carregamento.hidesWhenStopped = true
             carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             self.view.addSubview(carregamento)
@@ -380,14 +381,24 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         
         //Original let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.3)
         
-        let imagemSalvar = Util.compressImage_1536(imagem.image!)
+        //300kb let imagemSalvar = Util.compressImage_1536(imagem.image!)
+        //300kb let imagemDados = UIImageJPEGRepresentation(imagemSalvar, 0.5)
+        
+        //30kb let imagemSalvar = Util.compressImage_512(imagem.image!)
+        //30kb let imagemDados = UIImageJPEGRepresentation(imagemSalvar, 0.3)
+        
+        let imagemSalvar = Util.compressImage_1024(imagem.image!)
         let imagemDados = UIImageJPEGRepresentation(imagemSalvar, 0.5)
         
+        //let imagemSalvarPequena = Util.compressImage_512(imagem.image!)
+        //let imagemDadosPequena = UIImageJPEGRepresentation(imagemSalvarPequena, 0.3)
+        
         let img = imagemDados!.base64EncodedString()
+        //let imgPequena = imagemDadosPequena!.base64EncodedString()
         
         let params = ["nome": "nome",
                       "tipo": "jpg",
-                      "fotoString": img
+                      "fotoString": img,
             ] as [String : AnyObject]
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in

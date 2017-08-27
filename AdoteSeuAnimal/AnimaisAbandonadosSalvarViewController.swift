@@ -138,6 +138,7 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
 
     func showVoltar()
     {
+        gerenciadorLocalizacao.stopUpdatingLocation()
         let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
         tb.selectedIndex = 2
         self.present(tb, animated: true, completion: nil)
