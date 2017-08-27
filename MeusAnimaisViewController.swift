@@ -174,9 +174,10 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellMeusAnimais", for: indexPath) as! MeusAnimaisTableViewCell
+        Util.AddViewForCell(cell: cell, table: tableMeusAnimais)
         cell.lblDescricao.text = "teste"
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.Ajusta()
+        //cell.Ajusta()
         cell.lblNome.text = nome[indexPath.row]
         cell.lblGenero.text = genero[indexPath.row]
         cell.lblDescricao.text = descricao[indexPath.row]

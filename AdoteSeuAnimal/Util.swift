@@ -284,4 +284,26 @@ class Util
         
     }
     
+    static func AddViewForCell(cell : UITableViewCell, table : UITableView)
+    {
+        let viewForCell: UIView = UIView(frame: CGRect(x:0, y:0, width:table.frame.size.width , height:(cell.contentView.frame.size.height) - 8 ))
+        viewForCell.backgroundColor = UIColor(red: 213/255, green: 218/255, blue: 255/255, alpha: 1)
+        viewForCell.alpha = 1
+        viewForCell.isUserInteractionEnabled = true
+        viewForCell.layer.cornerRadius = 10
+        viewForCell.layer.masksToBounds = true
+        
+        viewForCell.layer.shadowColor = UIColor.black.cgColor
+        viewForCell.layer.shadowOpacity = 0.8
+        viewForCell.layer.shadowOffset = CGSize(width: -5, height: 5)
+        viewForCell.layer.shadowRadius = 5
+        
+        if cell.tag == 0
+        {
+            cell.contentView.addSubview(viewForCell)
+            cell.contentView.sendSubview(toBack: viewForCell)
+            cell.tag = 1
+        }
+    }
+    
 }

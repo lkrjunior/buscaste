@@ -135,8 +135,9 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellAnimaisAbandonados", for: indexPath) as! AnimaisAbandonadosTableViewCell
         
+        Util.AddViewForCell(cell: cell, table: tableViewAnimais)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        Util.AjustaLayoutCell(view: cell)
+        //Util.AjustaLayoutCell(view: cell)
         
         cell.lblDescricao.text = descricao[indexPath.row]
         cell.lblData.text = "Sinalizado em " + data[indexPath.row]

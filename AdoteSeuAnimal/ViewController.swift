@@ -290,10 +290,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellLinhaDoTempo", for: indexPath) as! CustomTableViewCell
         if animal.count > 0
         {
-            let myColor : CGColor = UIColor.darkText.cgColor
-            cell.contentView.layer.borderColor = myColor
-            cell.contentView.layer.borderWidth = 2
-            cell.contentView.layer.cornerRadius = 10
+            //let myColor : CGColor = UIColor.darkText.cgColor
+            //cell.contentView.layer.borderColor = myColor
+            //cell.contentView.layer.borderWidth = 2
+            //cell.contentView.layer.cornerRadius = 10
+            
+            Util.AddViewForCell(cell: cell, table: tableViewAnimal)
             
             cell.lblAnimal.text = animal[indexPath.row]
             cell.lblData.text = dataA[indexPath.row]
