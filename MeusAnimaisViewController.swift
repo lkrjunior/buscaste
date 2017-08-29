@@ -164,10 +164,12 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
             carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             self.view.addSubview(carregamento)
             carregamento.startAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         else
         {
             carregamento.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
 

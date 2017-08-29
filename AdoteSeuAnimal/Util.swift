@@ -41,6 +41,7 @@ class Util
         if (indicatorView != nil)
         {
             indicatorView.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
@@ -53,10 +54,14 @@ class Util
             carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             view.view.addSubview(carregamento)
             carregamento.startAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            //UIApplication.shared.beginIgnoringInteractionEvents()
         }
         else
         {
             carregamento.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            //UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
 

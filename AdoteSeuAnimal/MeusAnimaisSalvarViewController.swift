@@ -77,10 +77,12 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             self.view.addSubview(carregamento)
             carregamento.startAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         else
         {
             carregamento.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
@@ -330,6 +332,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                             
                             let vacinas = dict["vacinas"] as! String?
                             self.txtVacinas.text = vacinas!
+                            
                             
                         }
                         self.carrega(inicio: false)

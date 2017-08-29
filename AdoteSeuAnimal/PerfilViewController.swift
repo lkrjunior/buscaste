@@ -137,11 +137,13 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
             carrega.isHidden = false
             carrega.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         else
         {
             carrega.stopAnimating()
             //UIApplication.shared.endIgnoringInteractionEvents()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
 

@@ -69,11 +69,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.view.addSubview(carregamento)
             carregamento.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
         else
         {
             carregamento.stopAnimating()
             //UIApplication.shared.endIgnoringInteractionEvents()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
