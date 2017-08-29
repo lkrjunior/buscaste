@@ -35,6 +35,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     var idAnimal : Int = 0
     var carregarDados : Bool = false
     
+    //variaveis para controle do indicator
+    var carregandoCombo : Bool = false
+    var carregandoLista : Bool = false
+    //
+    
     @IBAction func btnSairClick(_ sender: Any)
     {
         self.showVoltar()
@@ -244,6 +249,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     
     func CarregaDados()
     {
+        carregandoLista = true
         print("Carregando dados")
         
         self.carrega(inicio: true)
@@ -333,11 +339,14 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                             let vacinas = dict["vacinas"] as! String?
                             self.txtVacinas.text = vacinas!
                             
-                            
                         }
-                        self.carrega(inicio: false)
+                        if (self.carregandoCombo == false)
+                        {
+                            self.carrega(inicio: false)
+                        }
                     }
                     self.carregarDados = false
+                    self.carregandoLista = false
                 }
         }
 
@@ -472,6 +481,9 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     
     func CarregaJSONCombos()
     {
+        //let dataAtual = Util.GetDateAtual()
+        carregandoCombo = true
+        
         self.carrega(inicio: true)
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
@@ -550,8 +562,12 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
 
                             }
                         }
-                        self.carrega(inicio: false)
+                        if (self.carregandoLista == false)
+                        {
+                            self.carrega(inicio: false)
+                        }
                     }
+                    self.carregandoCombo = false
                 }
         }
 

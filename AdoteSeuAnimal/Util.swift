@@ -362,4 +362,12 @@ class Util
         }
     }
     
+    static func GetDateAtual() -> String
+    {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date)
+    }
+    
 }

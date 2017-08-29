@@ -43,6 +43,11 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
     var idFiltro : Int = 0
     var carregarDados : Bool = false
     
+    //variaveis para controle do indicator
+    var carregandoCombo : Bool = false
+    var carregandoLista : Bool = false
+    //
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,6 +99,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
 
     func CarregaJSONCombos()
     {
+        carregandoCombo = true
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
@@ -150,8 +156,12 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                                 self.portesId = 0
                             }
                         }
-                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                        if (self.carregandoLista == false)
+                        {
+                            Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                        }
                     }
+                    self.carregandoCombo = false
                 }
         }
         
@@ -424,6 +434,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func CarregaDados()
     {
+        carregandoLista = true
         print("Carregando dados")
         
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
@@ -480,9 +491,13 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                             
                             
                         }
-                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                        if self.carregandoCombo == false
+                        {
+                            Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                        }
                     }
                     self.carregarDados = false
+                    self.carregandoLista = false
                 }
         }
         
