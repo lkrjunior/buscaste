@@ -83,6 +83,57 @@ class Util
         }
     }
     
+    static func GetDadosBD_Combos() -> Combos
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let requisicao = NSFetchRequest<Combos>(entityName : "Combos")
+        
+        do
+        {
+            let combos = try context.fetch(requisicao)
+            if combos.count > 0
+            {
+                return combos[0]
+            }
+            else
+            {
+                return Combos()
+            }
+        }
+        catch
+        {
+            print("Erro ao ler os dados do banco de dados")
+            return Combos()
+        }
+    }
+    
+    static func SaveDadosBD_Combos(combos : Combos)
+    {
+        do
+        {
+            let combosGet = self.GetDadosBD_Combos()
+            if combosGet.data != nil && combosGet.data != ""
+            {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                
+                let combosDelete = combosGet as NSManagedObject
+                context.delete(combosDelete)
+                try context.save()
+            
+                let combosSave = NSEntityDescription.insertNewObject(forEntityName: "Combos", into: context)
+                combosSave.setValue(combos.data, forKey: "data")
+                combosSave.setValue(combos.json, forKey: "json")
+                try context.save()
+            }
+        }
+        catch
+        {
+            print("Erro ao salvar os dados do banco de dados")
+        }
+    }
+    
     static func converterParaDictionary(text: String) -> [String: AnyObject]? {
         if let data = text.data(using: .utf8) {
             do {

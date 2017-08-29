@@ -36,6 +36,8 @@
 		C65E85F51F3F880F0068EF3E /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */; };
 		C68E38131F5117D800228EDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68E38121F5117D800228EDB /* CoreLocation.framework */; };
+		C6AE8DFA1F54F00C0093475F /* Combos+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AE8DF81F54F00C0093475F /* Combos+CoreDataClass.swift */; };
+		C6AE8DFB1F54F00C0093475F /* Combos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AE8DF91F54F00C0093475F /* Combos+CoreDataProperties.swift */; };
 		C6D68BBA1F4279ED00DA1232 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D68BB91F4279ED00DA1232 /* Util.swift */; };
 		C6E2DB621F48728300EC6FAC /* MeusAnimaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */; };
 		C6E2DB641F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */; };
@@ -115,6 +117,8 @@
 		C65E85F61F3FC93F0068EF3E /* ViewControllerInicial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInicial.swift; sourceTree = "<group>"; };
 		C65E85F81F3FDE980068EF3E /* AdoteSeuAnimal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdoteSeuAnimal.entitlements; sourceTree = "<group>"; };
 		C68E38121F5117D800228EDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C6AE8DF81F54F00C0093475F /* Combos+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combos+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C6AE8DF91F54F00C0093475F /* Combos+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combos+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C6D68BB91F4279ED00DA1232 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C6E2DB611F48728300EC6FAC /* MeusAnimaisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeusAnimaisViewController.swift; path = ../MeusAnimaisViewController.swift; sourceTree = "<group>"; };
 		C6E2DB631F48749D00EC6FAC /* MeusAnimaisTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeusAnimaisTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 		C61626511ED9BCC50021FF79 = {
 			isa = PBXGroup;
 			children = (
+				C6AE8DF81F54F00C0093475F /* Combos+CoreDataClass.swift */,
+				C6AE8DF91F54F00C0093475F /* Combos+CoreDataProperties.swift */,
 				C62EF4611F40A6BB004B7B24 /* Usuario+CoreDataClass.swift */,
 				C62EF4621F40A6BB004B7B24 /* Usuario+CoreDataProperties.swift */,
 				C616265C1ED9BCC50021FF79 /* AdoteSeuAnimal */,
@@ -398,11 +404,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6AE8DFB1F54F00C0093475F /* Combos+CoreDataProperties.swift in Sources */,
 				C62B53671EDB6DAD00C37E6F /* DetalheViewController.swift in Sources */,
 				C6E2DB621F48728300EC6FAC /* MeusAnimaisViewController.swift in Sources */,
 				C61626601ED9BCC50021FF79 /* ViewController.swift in Sources */,
 				C62EF4681F40C443004B7B24 /* TabBarController.swift in Sources */,
 				C6E2DB661F48B37300EC6FAC /* MeusAnimaisSalvarViewController.swift in Sources */,
+				C6AE8DFA1F54F00C0093475F /* Combos+CoreDataClass.swift in Sources */,
 				C62EF4631F40A6BB004B7B24 /* Usuario+CoreDataClass.swift in Sources */,
 				C63E3A8F1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift in Sources */,
 				C63E3A871F4CF94900F3E4E7 /* AnimaisAbandonadosViewController.swift in Sources */,
