@@ -59,11 +59,19 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
             {
                 response in
                 
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                    }
+                }
+                
                 if let data = response.data
                 {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Response: \(String(describing: json))")
-                    if (json == nil || json == "")
+                    if (json == nil || json == "" || json == "null")
                     {
                         Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
                     }
@@ -182,6 +190,14 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
             
             Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
                 
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                    }
+                }
+                
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Response: \(String(describing: json))")
@@ -196,6 +212,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                     }
                     else
                     {
+                        Util.AlertaErroView(mensagem: "Erro ao deletar os dados!", view: self, indicatorView: self.carregamento)
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }

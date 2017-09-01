@@ -258,11 +258,19 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             {
                 response in
                 
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                    }
+                }
+                
                 if let data = response.data
                 {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Response: \(String(describing: json))")
-                    if (json == nil || json == "")
+                    if (json == nil || json == "" || json == "null")
                     {
                         Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
                     }
@@ -415,6 +423,14 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
             
+            if let erro = response.error
+            {
+                if erro.localizedDescription != ""
+                {
+                    Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                }
+            }
+            
             if let data = response.data {
                 let json = String(data: data, encoding: String.Encoding.utf8)
                 print("Response: \(String(describing: json))")
@@ -445,6 +461,14 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                         ] as [String : AnyObject]
                     Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
                         
+                        if let erro = response.error
+                        {
+                            if erro.localizedDescription != ""
+                            {
+                                Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                            }
+                        }
+                        
                         if let data = response.data {
                             let json = String(data: data, encoding: String.Encoding.utf8)
                             print("Response: \(String(describing: json))")
@@ -459,6 +483,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                             }
                             else
                             {
+                                Util.AlertaErroView(mensagem: "Erro ao salvar os dados", view: self, indicatorView: self.carregamento)
                                 self.carrega(inicio: false)
                             }
                         }
@@ -473,6 +498,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 }
                 else
                 {
+                    Util.AlertaErroView(mensagem: "Erro ao salvar a foto do animal!", view: self, indicatorView: self.carregamento)
                     self.carrega(inicio: false)
                 }
             }
@@ -490,11 +516,19 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             {
                 response in
                 
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                    }
+                }
+                
                 if let data = response.data
                 {
                     let json = String(data: data, encoding: String.Encoding.utf8)
                     print("Response: \(String(describing: json))")
-                    if (json == nil || json == "")
+                    if (json == nil || json == "" || json == "null")
                     {
                         Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
                     }

@@ -303,6 +303,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(String(describing: response))")
+                Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
             }
             
             let responseString = String(data: data, encoding: .utf8)

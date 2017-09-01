@@ -62,6 +62,14 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Pessoa/SavePessoa", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
             
+            if let erro = response.error
+            {
+                if erro.localizedDescription != ""
+                {
+                    Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carrega)
+                }
+            }
+            
             if let data = response.data {
                 let json = String(data: data, encoding: String.Encoding.utf8)
                 print("Response: \(String(describing: json))")
@@ -78,6 +86,10 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                     self.carrega(inicio: false)
                     
                     self.showApp()
+                }
+                else
+                {
+                    Util.AlertaErroView(mensagem: "Erro ao salvar os dados!", view: self, indicatorView: self.carrega)
                 }
             }
         }
