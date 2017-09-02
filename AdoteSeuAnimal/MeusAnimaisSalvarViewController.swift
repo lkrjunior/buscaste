@@ -139,6 +139,17 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     
     func AjustaTextFields()
     {
+        self.txtNome.placeholder = "Nome do animal"
+        self.txtGenero.placeholder = "Genero"
+        self.txtRaca.placeholder = "Raça"
+        self.txtIdade.placeholder = "Idade (em anos)"
+        self.txtPorte.placeholder = "Porte"
+        self.txtPeso.placeholder = "Peso (em kg)"
+        self.txtUF.placeholder = "UF"
+        self.txtCidade.placeholder = "Cidade"
+        self.txtDescricao.placeholder = "Descrição breve do animal"
+        self.txtVacinas.placeholder = "Vacinas realizadas no animal"
+        
         txtIdade.keyboardType = .numberPad
         txtPeso.keyboardType = .decimalPad
         self.addToolBar(textField: txtNome)
@@ -232,6 +243,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     {
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
+            textFieldTouchInside(textField: nextField)
         } else {
             textField.resignFirstResponder()
         }
@@ -344,8 +356,9 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                                 self.CarregaCidadesPeloUf()
                             }
                             
-                            let vacinas = dict["vacinas"] as! String?
-                            self.txtVacinas.text = vacinas!
+                            //let vacinas = dict["vacinas"] as! String?
+                            let vacinas = Util.JSON_RetornaString(dict: dict, campo: "vacinas")
+                            self.txtVacinas.text = vacinas
                             
                         }
                         if (self.carregandoCombo == false)
@@ -399,6 +412,40 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     {
         self.carrega(inicio: true)
         
+        
+        //Valida os campos obrigatórios
+        if !(Util.ValidaCampoString(textField: self.txtNome, mensagem: "Informe o nome do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoInt(int: self.generosId, textField: self.txtGenero, mensagem: "Informe o genero do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoInt(int: self.racasId, textField: self.txtRaca, mensagem: "Informe a raça do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoString(textField: self.txtIdade, mensagem: "Informe a idade do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoInt(int: self.portesId, textField: self.txtPorte, mensagem: "Informe o porte do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoString(textField: self.txtPeso, mensagem: "Informe o peso do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoInt(int: self.ufsId, textField: self.txtUF, mensagem: "Informe sua UF", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoInt(int: self.cidadesId, textField: self.txtCidade, mensagem: "Informe sua cidade", view: self, indicator: self.carregamento))
+        { return }
+        
+        if !(Util.ValidaCampoString(textField: self.txtDescricao, mensagem: "Informe uma breve descrição do animal", view: self, indicator: self.carregamento))
+        { return }
+        
+        if (txtVacinas.text?.isEmpty)!
+        {
+            txtVacinas.text = ""
+        }
+        
         //Original let imagemDados = UIImageJPEGRepresentation(imagem.image!, 0.3)
         
         //300kb let imagemSalvar = Util.compressImage_1536(imagem.image!)
@@ -443,14 +490,16 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                     
                     //Salvar o animal
                     let pesoString = self.txtPeso.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
+                    let idade = self.txtIdade.text! == "" ? "0" : self.txtIdade.text!
+                    let peso = pesoString == "" ? "0" : pesoString
                     let paramsCad = ["id" : self.idAnimal,
                                      "animalTipo": 1,
                                      "pessoa": ["idPessoa": self.idPessoa],
                                      "genero": ["idGenero": self.generosId],
                                      "raca": ["idRaca": self.racasId],
-                                     "idade": self.txtIdade.text!,
+                                     "idade": idade,
                                      "porte": ["idPorte": self.portesId],
-                                     "peso": pesoString,
+                                     "peso": peso,
                                      "cidade": ["idCidade": self.cidadesId, "Uf" : ["idUf": self.ufsId]],
                                      "telefone": self.telefonePessoa,
                                      "email": self.emailPessoa,
@@ -722,30 +771,35 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     {
         txtGenero.inputView?.removeFromSuperview()
         txtGenero.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtGenero) {}
     }
     
     func DonePickerRaca()
     {
         txtRaca.inputView?.removeFromSuperview()
         txtRaca.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtRaca) {}
     }
     
     func DonePickerPorte()
     {
         txtPorte.inputView?.removeFromSuperview()
         txtPorte.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtPorte) {}
     }
     
     func DonePickerCidade()
     {
         txtCidade.inputView?.removeFromSuperview()
         txtCidade.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtCidade) {}
     }
     
     func DonePickerUf()
     {
         txtUF.inputView?.removeFromSuperview()
         txtUF.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtUF) {}
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

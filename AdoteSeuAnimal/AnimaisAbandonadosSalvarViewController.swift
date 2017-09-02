@@ -149,6 +149,10 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
         
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
+        //Valida os campos obrigatórios
+        if !(Util.ValidaCampoString(textField: self.txtDescricao, mensagem: "Informe uma descrição para salvar o animal abandonado", view: self, indicator: self.carregamento))
+        { return }
+        
         //Salvar o animal abandonado
         let descricaoString = self.txtDescricao.text! == "" ? "" : self.txtDescricao.text!
         let paramsCad = ["id": self.idAnimal,

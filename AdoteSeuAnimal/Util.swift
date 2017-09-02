@@ -45,6 +45,20 @@ class Util
         }
     }
     
+    static func AlertaErroViewValidacao(mensagem : String, textField : UITextField, view : UIViewController, indicatorView : UIActivityIndicatorView!)
+    {
+        let alert = UIAlertController(title: "Campos obrigatórios", message: mensagem, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            textField.becomeFirstResponder()
+        }))
+        view.present(alert, animated: true, completion: nil)
+        if (indicatorView != nil)
+        {
+            indicatorView.stopAnimating()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+    }
+    
     static func carrega(carregamento: UIActivityIndicatorView, view: UIViewController, inicio: Bool)
     {
         if inicio == true
@@ -184,6 +198,20 @@ class Util
         else
         {
             return ""
+        }
+    }
+    
+    static func JSON_RetornaObjLista(dict: Dictionary<String, AnyObject>, campo : String) -> [[String: AnyObject]]
+    {
+        let obj = dict[campo] as AnyObject?
+        if !(obj is NSNull)
+        {
+            let objInt = dict[campo] as! [[String: AnyObject]]
+            return objInt
+        }
+        else
+        {
+            return [[String: AnyObject]]()
         }
     }
     
@@ -368,6 +396,26 @@ class Util
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter.string(from: date)
+    }
+    
+    static func ValidaCampoString(textField : UITextField, mensagem : String, view : UIViewController, indicator : UIActivityIndicatorView) -> Bool
+    {
+        if (textField.text?.isEmpty)!
+        {
+            Util.AlertaErroViewValidacao(mensagem: mensagem, textField: textField, view: view, indicatorView: indicator)
+            return false
+        }
+        return true
+    }
+    
+    static func ValidaCampoInt(int : Int, textField : UITextField, mensagem : String, view : UIViewController, indicator : UIActivityIndicatorView) -> Bool
+    {
+        if int == 0
+        {
+            Util.AlertaErroViewValidacao(mensagem: mensagem, textField: textField, view: view, indicatorView: indicator)
+            return false
+        }
+        return true
     }
     
 }

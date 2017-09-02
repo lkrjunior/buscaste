@@ -131,13 +131,13 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
         return UIImage(cgImage: cgImage)
     }
     
-    func readJSONObjectAnimal(object: [String: AnyObject]) {
+    func NAOUSAR_readJSONObjectAnimal(object: [String: AnyObject]) {
         guard let lista = object["lista"] as? [[String: AnyObject]] else
         { return }
         
         for listaObj in lista {
             guard let animalTipo = listaObj["animalTipoInt"] as? Int else { return }
-            guard let id = listaObj["id"] as? Int else { return }
+            //guard let id = listaObj["id"] as? Int else { return }
             if animalTipo == 1
             {
                 var listaDic = listaObj as Dictionary
@@ -151,7 +151,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                         guard let tipoFoto = fotoObj["tipo"] as? String else { return }
                         //NSLog(fotoByte)
                         NSLog(tipoFoto)
-                    
+                        
                         mapKitView.isHidden = true
                         
                         if let fileBase64 = fotoObj["fotoString"] as? String {
@@ -168,18 +168,18 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                         }
                         
                         /*
-                        if let fileBase64 = fotoObj["foto"] as? String {
-                            DispatchQueue.main.async() {
-                                let imageArray = NSData(base64Encoded: fileBase64, options: [])
-                                self.imageView.image = UIImage(data: imageArray! as Data)
-                                self.imageView.reloadInputViews()
-                                self.carrega(inicio: false)
-                            }
-                        
-                        } else {
-                            print("missing `file` entry")
-                        }
-                        */
+                         if let fileBase64 = fotoObj["foto"] as? String {
+                         DispatchQueue.main.async() {
+                         let imageArray = NSData(base64Encoded: fileBase64, options: [])
+                         self.imageView.image = UIImage(data: imageArray! as Data)
+                         self.imageView.reloadInputViews()
+                         self.carrega(inicio: false)
+                         }
+                         
+                         } else {
+                         print("missing `file` entry")
+                         }
+                         */
                     }
                     else
                     {
@@ -208,7 +208,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                         guard let oDescRaca = oRaca["raca"] as? String else { return }
                         dRaca = oDescRaca
                     }
-
+                    
                     guard let oIdade = listaObj["idade"] as? Int else { return }
                     dIdade = String(oIdade) + " anos"
                     
@@ -253,13 +253,142 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                         self.carrega(inicio: false)
                     }
                 }
-
+                
             }
             else
             {
                 imageView.isHidden = true
                 guard let latitude = listaObj["latitude"] as? Double else { return }
                 guard let longitude = listaObj["longitude"] as? Double else { return }
+                NSLog(String(latitude))
+                NSLog(String(longitude))
+                
+                DispatchQueue.main.async() {
+                    let annotation = MKPointAnnotation()
+                    let centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    annotation.coordinate = centerCoordinate
+                    annotation.title = "Localizacao"
+                    self.mapKitView.addAnnotation(annotation)
+                    
+                    let pinToZoomOn = annotation
+                    //let span = MKCoordinateSpanMake(0.1, 0.1)
+                    let span = MKCoordinateSpanMake(0.005, 0.005)
+                    let region = MKCoordinateRegion(center: pinToZoomOn.coordinate, span: span)
+                    self.mapKitView.setRegion(region, animated: true)
+                    self.carrega(inicio: false)
+                }
+            }
+            //guard let data = listaObj["dataFormatada"] as? String else { return }
+            //guard let desc = listaObj["descricao"] as? String else { break }
+            
+        }
+        
+    }
+    
+    func readJSONObjectAnimal(object: [String: AnyObject]) {
+        let lista = Util.JSON_RetornaObjLista(dict: object, campo: "lista")
+        
+        for listaObj in lista {
+            let animalTipo = Util.JSON_RetornaInt(dict: listaObj, campo: "animalTipoInt")
+            if animalTipo == 1
+            {
+                var listaDic = listaObj as Dictionary
+                if !(listaDic["foto"] is NSNull)
+                {
+                    let idFoto = Util.JSON_RetornaIntInterna(dict: listaDic, objeto: "foto", campo: "idFoto")
+                    if idFoto > 0
+                    {
+                        mapKitView.isHidden = true
+                        
+                        let fileBase64 = Util.JSON_RetornaStringInterna(dict: listaDic, objeto: "foto", campo: "fotoString")
+                        if fileBase64 != "" {
+                            DispatchQueue.main.async() {
+                                let imageArray = NSData(base64Encoded: fileBase64, options: [])
+                                self.imageView.image = UIImage(data: imageArray! as Data)
+                                self.imageView.reloadInputViews()
+                                self.carrega(inicio: false)
+                            }
+                            
+                        } else {
+                            print("missing `file` entry")
+                            self.carrega(inicio: false)
+                        }
+                        
+                    }
+                    else
+                    {
+                        DispatchQueue.main.async() {
+                            self.carrega(inicio: false)
+                        }
+                    }
+
+                    let oNome = Util.JSON_RetornaString(dict: listaObj, campo: "nome")
+                    dNome = "Nome: " + oNome
+                    nomeLink = oNome
+                    
+                    let oIdGenero = Util.JSON_RetornaIntInterna(dict: listaObj, objeto: "genero", campo: "idGenero")
+                    if oIdGenero > 0
+                    {
+                        let oDescGenero = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "genero", campo: "genero")
+                        dGenero = oDescGenero
+                    }
+                    
+                    let oIdRaca = Util.JSON_RetornaIntInterna(dict: listaObj, objeto: "raca", campo: "idRaca")
+                    if oIdRaca > 0
+                    {
+                        let oDescRaca = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "raca", campo: "raca")
+                        dRaca = oDescRaca
+                    }
+
+                    let oIdade = Util.JSON_RetornaInt(dict: listaObj, campo: "idade")
+                    dIdade = String(oIdade) + " anos"
+                    
+                    let oIdPorte = Util.JSON_RetornaIntInterna(dict: listaObj, objeto: "porte", campo: "idPorte")
+                    if oIdPorte > 0
+                    {
+                        let oDescPorte = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "porte", campo: "porte")
+                        dPorte = "Porte " + oDescPorte
+                    }
+                    
+                    let oPeso = Util.JSON_RetornaDouble(dict: listaObj, campo: "peso")
+                    dPeso = String(oPeso) + " kg"
+                    
+                    let oIdCidade = Util.JSON_RetornaIntInterna(dict: listaObj, objeto: "cidade", campo: "idCidade")
+                    if oIdCidade > 0
+                    {
+                        let oDescCidade = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "cidade", campo: "cidade")
+                        let oUF = Util.JSON_RetornaObjInterna(dict: listaObj, objeto: "cidade", campo: "uf")
+                        let oDescUF = Util.JSON_RetornaString(dict: oUF, campo: "uf")
+                        dCidade = oDescCidade + "/" + oDescUF
+                    }
+                    
+                    let oVacina = Util.JSON_RetornaString(dict: listaObj, campo: "vacinas")
+                    dVacina = "Vacinas: " + oVacina
+                    
+                    guard let oPessoa = listaObj["pessoa"] as? [String : AnyObject] else { return }
+                    guard let oNomePessoa = oPessoa["nome"] as? String else { return }
+                    guard let oTelefone = listaObj["telefone"] as? String else { return }
+                    dTelefone = "Contato: " + oNomePessoa + " (" + oTelefone + ")"
+                    telephoneLink = oTelefone
+                    
+                    guard let oEmail = listaObj["email"] as? String else { return }
+                    dEmail = "E-mail: " + oEmail
+                    emailLink = oEmail
+                    
+                }
+                else
+                {
+                    DispatchQueue.main.async() {
+                        self.carrega(inicio: false)
+                    }
+                }
+
+            }
+            else
+            {
+                imageView.isHidden = true
+                let latitude = Util.JSON_RetornaDouble(dict: listaObj, campo: "latitude")
+                let longitude = Util.JSON_RetornaDouble(dict: listaObj, campo: "longitude")
                 NSLog(String(latitude))
                 NSLog(String(longitude))
                 

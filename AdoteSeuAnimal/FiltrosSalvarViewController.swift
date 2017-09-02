@@ -65,6 +65,8 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
         let pesoMaxString = self.txtPesoMax.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
         let idadeMin = self.txtIdadeMim.text! == "" ? "0" : self.txtIdadeMim.text!
         let idadeMax = self.txtIdadeMax.text! == "" ? "0" : self.txtIdadeMax.text!
+        let pesoMin = pesoMinString == "" ? "0" : pesoMinString
+        let pesoMax = pesoMaxString == "" ? "0" : pesoMaxString
         let paramsCad = ["idPessoaFiltro" : self.idFiltro,
                          "pessoa": ["idPessoa": self.idPessoa],
                          "genero": ["idGenero": self.generosId],
@@ -72,8 +74,8 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                          "porte": ["idPorte": self.portesId],
                          "idadeMin": idadeMin,
                          "idadeMax": idadeMax,
-                         "pesoMin": pesoMinString,
-                         "pesoMax": pesoMaxString,
+                         "pesoMin": pesoMin,
+                         "pesoMax": pesoMax,
                          ] as [String : AnyObject]
         Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
             
@@ -255,6 +257,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
     {
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
+            textFieldTouchInside(textField: nextField)
         } else {
             textField.resignFirstResponder()
         }
@@ -362,18 +365,21 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
     {
         txtGenero.inputView?.removeFromSuperview()
         txtGenero.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtGenero) {}
     }
 
     func DonePickerRaca()
     {
         txtRaca.inputView?.removeFromSuperview()
         txtRaca.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtRaca) {}
     }
 
     func DonePickerPorte()
     {
         txtPorte.inputView?.removeFromSuperview()
         txtPorte.inputAccessoryView?.removeFromSuperview()
+        if textFieldShouldReturn(txtPorte) {}
     }
 
     

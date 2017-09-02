@@ -42,9 +42,31 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     func Save()
     {
         self.carrega(inicio: true)
+        
+        //Valida os campos obrigatórios
+        if !(Util.ValidaCampoString(textField: self.txtNome, mensagem: "Informe seu nome", view: self, indicator: self.carrega))
+        { return }
+        
+        if !(Util.ValidaCampoString(textField: self.txtTelefone, mensagem: "Informe seu telefone", view: self, indicator: self.carrega))
+        { return }
+        
+        if !(Util.ValidaCampoString(textField: self.txtEmail, mensagem: "Informe seu e-mail", view: self, indicator: self.carrega))
+        { return }
+        
         nomeUsuario = txtNome.text!
-        telefone = txtTelefone.text!
         email = txtEmail.text!
+        
+        let telefoneString = txtTelefone.text!
+        let index = telefoneString.index(telefoneString.startIndex, offsetBy: 1)
+        let primeiroNumero = telefoneString.substring(to: index)
+        if primeiroNumero != "0"
+        {
+            telefone = "0" + txtTelefone.text!
+        }
+        else
+        {
+            telefone = txtTelefone.text!
+        }
         
         var jsonRepresentation : String {
             let jsonDict = ["idPessoa" : String(idPessoa), "nome" : nomeUsuario, "telefone" : telefone, "email" : email]
@@ -195,6 +217,10 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.txtNome.placeholder = "Nome"
+        self.txtEmail.placeholder = "Email"
+        self.txtTelefone.placeholder = "Telefone (DDD+Numero)"
         
         // Do any additional setup after loading the view.
         print(nomeUsuario)
