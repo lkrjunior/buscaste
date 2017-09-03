@@ -365,13 +365,12 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                     let oVacina = Util.JSON_RetornaString(dict: listaObj, campo: "vacinas")
                     dVacina = "Vacinas: " + oVacina
                     
-                    guard let oPessoa = listaObj["pessoa"] as? [String : AnyObject] else { return }
-                    guard let oNomePessoa = oPessoa["nome"] as? String else { return }
-                    guard let oTelefone = listaObj["telefone"] as? String else { return }
+                    let oNomePessoa = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "pessoa", campo: "nome")
+                    let oTelefone = Util.JSON_RetornaString(dict: listaObj, campo: "telefone")
                     dTelefone = "Contato: " + oNomePessoa + " (" + oTelefone + ")"
                     telephoneLink = oTelefone
                     
-                    guard let oEmail = listaObj["email"] as? String else { return }
+                    let oEmail = Util.JSON_RetornaString(dict: listaObj, campo: "email")
                     dEmail = "E-mail: " + oEmail
                     emailLink = oEmail
                     

@@ -113,8 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             localizacao = [String]()
         }
         
-        guard let lista = object["lista"] as? [[String: AnyObject]] else
-        { return }
+        let lista = Util.JSON_RetornaObjLista(dict: object, campo: "lista")
         //totalAnimal = lista.count
         totalAnimal = totalAnimal + lista.count
 
@@ -351,11 +350,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                 else
                                 {
                                     let listaDict = Util.converterParaDictionary(text: json!)
-                                    let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                                    let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                                     
-                                    if lista != nil
+                                    if lista.count > 0
                                     {
-                                        for dict in lista!
+                                        for dict in lista
                                         {
                                             
                                             let imagem = Util.JSON_RetornaStringInterna(dict: dict, objeto: "foto", campo: "fotoString")
