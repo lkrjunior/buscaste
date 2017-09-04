@@ -289,30 +289,27 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        for dict in lista!
+                        for dict in lista
                         {
                             var listaDic = dict as Dictionary
                             
                             //let idAnimal = dict["id"] as! Int?
-                            let nomeAnimal = dict["nome"] as! String?
-                            let descricao = dict["descricao"] as! String?
+                            let nomeAnimal = Util.JSON_RetornaString(dict: dict, campo: "nome")
+                            let descricao = Util.JSON_RetornaString(dict: dict, campo: "descricao")
                             
                             self.txtNome.text = nomeAnimal
                             self.txtDescricao.text = descricao
                             
-                            if !(listaDic["genero"] is NSNull)
-                            {
-                                let generoObj = dict["genero"] as? [String : AnyObject]
-                                self.txtGenero.text = generoObj?["genero"] as? String
-                                self.generosId = (generoObj?["idGenero"] as? Int)!
-                            }
+                            self.txtGenero.text = Util.JSON_RetornaStringInterna(dict: dict, objeto: "genero", campo: "genero")
+                            self.generosId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "genero", campo: "idGenero")
                             
                             if !(listaDic["foto"] is NSNull)
                             {
-                                let fotoObj = dict["foto"] as? [String : AnyObject]
-                                if let fileBase64 = fotoObj?["fotoString"] as? String
+                                let fotoObj = Util.JSON_RetornaStringInterna(dict: dict, objeto: "foto", campo: "fotoString")
+                                let fileBase64 = fotoObj
+                                if fileBase64 != ""
                                 {
                                     let imageArray = NSData(base64Encoded: fileBase64, options: [])
                                     self.imagem.image = UIImage(data: imageArray! as Data)
@@ -321,37 +318,28 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
 
                             }
                             
-                            if !(listaDic["raca"] is NSNull)
+                            self.txtRaca.text = Util.JSON_RetornaStringInterna(dict: dict, objeto: "raca", campo: "raca")
+                            self.racasId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "raca", campo: "idRaca")
+                            
+                            let idade = Util.JSON_RetornaInt(dict: dict, campo: "idade")
+                            self.txtIdade.text = String(idade)
+                            
+                            self.txtPorte.text = Util.JSON_RetornaStringInterna(dict: dict, objeto: "porte", campo: "porte")
+                            self.portesId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "porte", campo: "idPorte")
+                            
+                            let peso = Util.JSON_RetornaDouble(dict: dict, campo: "peso")
+                            self.txtPeso.text = String(peso)
+                            
+                            let oIdCidade = Util.JSON_RetornaIntInterna(dict: dict, objeto: "cidade", campo: "idCidade")
+                            
+                            if oIdCidade > 0
                             {
-                                let racaObj = dict["raca"] as? [String : AnyObject]
-                                self.txtRaca.text = racaObj?["raca"] as? String
-                                self.racasId = (racaObj?["idRaca"] as? Int)!
-                            }
-                            
-                            let idade = dict["idade"] as! Int?
-                            self.txtIdade.text = String(idade!)
-                            
-                            
-                            if !(listaDic["porte"] is NSNull)
-                            {
-                                let porteObj = dict["porte"] as? [String : AnyObject]
-                                self.txtPorte.text = porteObj?["porte"] as? String
-                                self.portesId = (porteObj?["idPorte"] as? Int)!
-                            }
-                            
-                            let peso = dict["peso"] as! Double?
-                            self.txtPeso.text = String(peso!)
-                            
-                            
-                            if !(listaDic["cidade"] is NSNull)
-                            {
-                                let cidadeObj = dict["cidade"] as? [String : AnyObject]
-                                self.txtCidade.text = cidadeObj?["cidade"] as? String
-                                self.cidadesId = (cidadeObj?["idCidade"] as? Int)!
+                                self.txtCidade.text = Util.JSON_RetornaStringInterna(dict: dict, objeto: "cidade", campo: "cidade")
+                                self.cidadesId = Util.JSON_RetornaIntInterna(dict: dict, objeto: "cidade", campo: "idCidade")
                                 
-                                let ufObj = cidadeObj?["uf"] as? [String : AnyObject]
-                                self.txtUF.text = ufObj?["uf"] as? String
-                                self.ufsId = (ufObj?["idUf"] as? Int)!
+                                let ufObj = Util.JSON_RetornaObjInterna(dict: dict, objeto: "cidade", campo: "uf")
+                                self.txtUF.text = Util.JSON_RetornaString(dict: ufObj, campo: "uf")
+                                self.ufsId = Util.JSON_RetornaInt(dict: ufObj, campo: "idUf")
                                 
                                 self.CarregaCidadesPeloUf()
                             }
@@ -368,6 +356,12 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                     }
                     self.carregarDados = false
                     self.carregandoLista = false
+                }
+                else
+                {
+                    self.carregarDados = false
+                    self.carregandoLista = false
+                    self.carrega(inicio: false)
                 }
         }
 
@@ -483,8 +477,8 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 print("Response: \(String(describing: json))")
                 
                 let dict = Util.converterParaDictionary(text: json!)
-                let status = dict?["status"] as! Int
-                let idFoto = dict?["id"] as! Int
+                let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                let idFoto = Util.JSON_RetornaInt(dict: dict!, campo: "id")
                 if status == 1
                 {
                     
@@ -523,7 +517,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                             print("Response: \(String(describing: json))")
                             
                             let dict = Util.converterParaDictionary(text: json!)
-                            let status = dict?["status"] as! Int
+                            let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
                             if status == 1
                             {
                                 self.carrega(inicio: false)
@@ -536,11 +530,10 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                                 self.carrega(inicio: false)
                             }
                         }
+                        else
+                        { self.carrega(inicio: false) }
                     }
 
-                    
-                    
-                    
                     //self.carrega(inicio: false)
                     
                     //self.showVoltar()
@@ -551,6 +544,8 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                     self.carrega(inicio: false)
                 }
             }
+            else
+            { self.carrega(inicio: false) }
         }
     }
     
@@ -584,42 +579,42 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        for dict in lista!
+                        for dict in lista
                         {
-                            let tipo = dict["tipo"] as! String?
-                            let id = dict["id"] as! Int?
-                            let id2 = dict["id2"] as! Int?
-                            let descricao = dict["descricao"] as! String?
+                            let tipo = Util.JSON_RetornaString(dict: dict, campo: "tipo")
+                            let id = Util.JSON_RetornaInt(dict: dict, campo: "id")
+                            let id2 = Util.JSON_RetornaInt(dict: dict, campo: "id2")
+                            let descricao = Util.JSON_RetornaString(dict: dict, campo: "descricao")
                             
-                            if (tipo != nil)
+                            if (tipo != "")
                             {
                                 if (tipo == "Cidade")
                                 {
-                                    self.cidades.append(descricao!)
-                                    self.cidadesIds.append(id!)
-                                    self.cidadesIdsUfs.append(id2!)
+                                    self.cidades.append(descricao)
+                                    self.cidadesIds.append(id)
+                                    self.cidadesIdsUfs.append(id2)
                                 }
                                 else if (tipo == "Uf")
                                 {
-                                    self.ufs.append(descricao!)
-                                    self.ufsIds.append(id!)
+                                    self.ufs.append(descricao)
+                                    self.ufsIds.append(id)
                                 }
                                 else if (tipo == "Genero")
                                 {
-                                    self.generos.append(descricao!)
-                                    self.generosIds.append(id!)
+                                    self.generos.append(descricao)
+                                    self.generosIds.append(id)
                                 }
                                 else if (tipo == "Raca")
                                 {
-                                    self.racas.append(descricao!)
-                                    self.racasIds.append(id!)
+                                    self.racas.append(descricao)
+                                    self.racasIds.append(id)
                                 }
                                 else if (tipo == "Porte")
                                 {
-                                    self.portes.append(descricao!)
-                                    self.portesIds.append(id!)
+                                    self.portes.append(descricao)
+                                    self.portesIds.append(id)
                                 }
                             }
                             else
@@ -651,6 +646,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                         }
                     }
                     self.carregandoCombo = false
+                }
+                else
+                {
+                    self.carregandoCombo = false
+                    self.carrega(inicio: false)
                 }
         }
 
