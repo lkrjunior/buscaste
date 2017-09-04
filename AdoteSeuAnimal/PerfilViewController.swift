@@ -97,8 +97,8 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                 print("Response: \(String(describing: json))")
                 
                 let dict = self.convertToDictionary(text: json!)
-                let status = dict?["status"] as! Int
-                let id = dict?["id"] as! Int
+                let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                let id = Util.JSON_RetornaInt(dict: dict!, campo: "id")
                 if status == 1
                 {
                     self.idPessoa = id
@@ -114,6 +114,8 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                     Util.AlertaErroView(mensagem: "Erro ao salvar os dados!", view: self, indicatorView: self.carrega)
                 }
             }
+            else
+            { self.carrega(inicio: false) }
         }
         
         print(jsonRepresentation)
@@ -127,7 +129,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                 print(error.localizedDescription)
             }
         }
-        return nil
+        return [String: AnyObject]()
     }
     
     func SaveBD(somenteExcluir : Bool = false)
@@ -286,8 +288,8 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                 _ = result as! Dictionary<String, AnyObject>
                 if let jsonResult = result as? Dictionary<String, AnyObject>
                 {
-                    guard let nome = jsonResult["name"] as? String else { return }
-                    guard let email = jsonResult["email"] as? String else { return }
+                    let nome = Util.JSON_RetornaString(dict: jsonResult, campo: "name")
+                    let email = Util.JSON_RetornaString(dict: jsonResult, campo: "email")
                     self.txtEmail.text = email
                     self.txtNome.text = nome
                     self.carrega(inicio: false)

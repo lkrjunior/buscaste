@@ -156,12 +156,14 @@ class Util
                 print(error.localizedDescription)
             }
         }
-        return nil
+        return [String: AnyObject]()
     }
     
     static func JSON_RetornaDouble(dict: Dictionary<String, AnyObject>, campo : String) -> Double
     {
         let obj = dict[campo] as AnyObject?
+        if obj == nil { return 0 }
+        
         if !(obj is NSNull)
         {
             let double = dict[campo] as! Double?
@@ -176,6 +178,8 @@ class Util
     static func JSON_RetornaInt(dict: Dictionary<String, AnyObject>, campo : String) -> Int
     {
         let obj = dict[campo] as AnyObject?
+        if obj == nil { return 0 }
+        
         if !(obj is NSNull)
         {
             let int = dict[campo] as! Int?
@@ -190,6 +194,8 @@ class Util
     static func JSON_RetornaString(dict: Dictionary<String, AnyObject>, campo : String) -> String
     {
         let obj = dict[campo] as AnyObject?
+        if obj == nil { return "" }
+        
         if !(obj is NSNull)
         {
             let string = dict[campo] as! String?
@@ -204,6 +210,8 @@ class Util
     static func JSON_RetornaObjLista(dict: Dictionary<String, AnyObject>, campo : String) -> [[String: AnyObject]]
     {
         let obj = dict[campo] as AnyObject?
+        if obj == nil { return [[String: AnyObject]]() }
+        
         if !(obj is NSNull)
         {
             let objInt = dict[campo] as! [[String: AnyObject]]
@@ -220,7 +228,11 @@ class Util
         if !(dict[objeto] is NSNull)
         {
             let obj = dict[objeto] as? [String : AnyObject]
+            if obj == nil { return "" }
+            
             let interno = obj?[campo] as AnyObject!
+            if interno == nil { return "" }
+            
             if !(interno is NSNull)
             {
                 let string = obj?[campo] as! String
@@ -242,7 +254,11 @@ class Util
         if !(dict[objeto] is NSNull)
         {
             let obj = dict[objeto] as? [String : AnyObject]
+            if obj == nil { return 0 }
+            
             let interno = obj?[campo] as AnyObject!
+            if interno == nil { return 0 }
+            
             if !(interno is NSNull)
             {
                 let int = obj?[campo] as! Int
@@ -264,7 +280,11 @@ class Util
         if !(dict[objeto] is NSNull)
         {
             let obj = dict[objeto] as? [String : AnyObject]
+            if obj == nil { return [String : AnyObject]() }
+            
             let interno = obj?[campo] as AnyObject!
+            if interno == nil { return [String : AnyObject]() }
+            
             if !(interno is NSNull)
             {
                 let obj = obj?[campo] as! [String : AnyObject]
