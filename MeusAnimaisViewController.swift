@@ -74,53 +74,31 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        self.totalItens = lista!.count
+                        self.totalItens = lista.count
                         
-                        for dict in lista!
+                        for dict in lista
                         {
                             //let dict = Util.converterParaDictionary(text: listaObj)
-                            var listaDic = dict as Dictionary
+                            _ = dict as Dictionary
                             
-                            let idAnimal = dict["id"] as! Int?
-                            let nomeAnimal = dict["nome"] as! String?
-                            let descricao = dict["descricao"] as! String?
+                            let idAnimal = Util.JSON_RetornaInt(dict: dict, campo: "id")
+                            let nomeAnimal = Util.JSON_RetornaString(dict: dict, campo: "nome")
+                            let descricao = Util.JSON_RetornaString(dict: dict, campo: "descricao")
+                            let generoDesc = Util.JSON_RetornaStringInterna(dict: dict, objeto: "genero", campo: "genero")
                             
-                            self.id.append(idAnimal!)
-                            
-                            if !(listaDic["genero"] is NSNull)
-                            {
-                                let generoObj = dict["genero"] as? [String : AnyObject]
-                                self.genero.append(generoObj?["genero"] as! String)
-                            }
-                            else
-                            {
-                                self.genero.append("")
-                            }
-                        
-                            if (nomeAnimal != nil)
-                            {
-                                self.nome.append(nomeAnimal!)
-                            }
-                            else
-                            {
-                                self.nome.append("")
-                            }
-                        
-                            if (descricao != nil)
-                            {
-                                self.descricao.append(descricao!)
-                            }
-                            else
-                            {
-                                self.descricao.append("")
-                            }
+                            self.id.append(idAnimal)
+                            self.genero.append(generoDesc)
+                            self.nome.append(nomeAnimal)
+                            self.descricao.append(descricao)
                         }
                         self.tableMeusAnimais.reloadData()
                         self.carrega(inicio: false)
                     }
                 }
+                else
+                { self.carrega(inicio: false) }
             }
     }
     
@@ -246,7 +224,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                     print("Response: \(String(describing: json))")
                     
                     let dict = Util.converterParaDictionary(text: json!)
-                    let status = dict?["status"] as! Int
+                    let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
                     if status == 1
                     {
                         self.carrega(inicio: false)
@@ -259,6 +237,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                         self.carrega(inicio: false)
                     }
                 }
+                else { self.carrega(inicio: false) }
             }
 
             
