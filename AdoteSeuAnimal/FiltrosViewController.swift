@@ -77,11 +77,11 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        self.totalItens = lista!.count
+                        self.totalItens = lista.count
                         
-                        for dict in lista!
+                        for dict in lista
                         {
                             let listaDic = dict as Dictionary
                             
@@ -130,6 +130,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }
+                else
+                { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
         }
     }
     
@@ -220,7 +222,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                     print("Response: \(String(describing: json))")
                     
                     let dict = Util.converterParaDictionary(text: json!)
-                    let status = dict?["status"] as! Int
+                    let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
                     if status == 1
                     {
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
@@ -233,6 +235,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }
+                else
+                { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
             }
             
             

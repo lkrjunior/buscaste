@@ -78,11 +78,11 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        self.totalItens = lista!.count
+                        self.totalItens = lista.count
                         
-                        for dict in lista!
+                        for dict in lista
                         {
                             let listaDic = dict as Dictionary
                             
@@ -117,6 +117,8 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }
+                else
+                { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
         }
         
         //Atualiza as localiza
@@ -203,7 +205,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                     print("Response: \(String(describing: json))")
                     
                     let dict = Util.converterParaDictionary(text: json!)
-                    let status = dict?["status"] as! Int
+                    let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
                     if status == 1
                     {
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
@@ -216,6 +218,8 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }
+                else
+                { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
             }
             
             

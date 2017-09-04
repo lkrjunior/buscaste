@@ -92,7 +92,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                 print("Response: \(String(describing: json))")
                 
                 let dict = Util.converterParaDictionary(text: json!)
-                let status = dict?["status"] as! Int
+                let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
                 if status == 1
                 {
                     Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
@@ -105,6 +105,8 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                     Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                 }
             }
+            else
+            { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
         }
     }
 
@@ -136,9 +138,9 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        for dict in lista!
+                        for dict in lista
                         {
                             let tipo = Util.JSON_RetornaString(dict: dict, campo: "tipo")
                             let id = Util.JSON_RetornaInt(dict: dict, campo: "id")
@@ -181,6 +183,11 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                         }
                     }
                     self.carregandoCombo = false
+                }
+                else
+                {
+                    self.carregandoCombo = false
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                 }
         }
         
@@ -485,9 +492,9 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                     else
                     {
                         let listaDict = Util.converterParaDictionary(text: json!)
-                        let lista = listaDict?["lista"] as? [[String: AnyObject]]
+                        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
                         
-                        for dict in lista!
+                        for dict in lista
                         {
                             
                             let genero = Util.JSON_RetornaStringInterna(dict: dict, objeto: "genero", campo: "genero")
@@ -529,6 +536,12 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                     }
                     self.carregarDados = false
                     self.carregandoLista = false
+                }
+                else
+                {
+                    self.carregarDados = false
+                    self.carregandoLista = false
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                 }
         }
         

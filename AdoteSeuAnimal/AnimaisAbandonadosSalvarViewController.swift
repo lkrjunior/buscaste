@@ -179,7 +179,7 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
                 print("Response: \(String(describing: json))")
                 
                 let dict = Util.converterParaDictionary(text: json!)
-                let status = dict?["status"] as! Int
+                let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
                 if status == 1
                 {
                     Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
@@ -192,6 +192,8 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
                     Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                 }
             }
+            else
+            { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
         }
         
     }
