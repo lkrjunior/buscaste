@@ -35,9 +35,14 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
     var emailLink : String = ""
     var nomeLink : String = ""
     
+    var fotoString : String = ""
+    var localizacao : String = ""
+    var endereco : String = ""
+    
     @IBOutlet weak var detalheTableViewOutlet: UITableView!
     @IBOutlet weak var mapKitView: MKMapView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imagemAbandonado: UIImageView!
     
     @IBAction func buttonTelephoneClick(_ sender: Any)
     {
@@ -388,6 +393,9 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                 imageView.isHidden = true
                 let latitude = Util.JSON_RetornaDouble(dict: listaObj, campo: "latitude")
                 let longitude = Util.JSON_RetornaDouble(dict: listaObj, campo: "longitude")
+                fotoString = Util.JSON_RetornaString(dict: listaObj, campo: "fotoString")
+                endereco = Util.JSON_RetornaString(dict: listaObj, campo: "endereco")
+                localizacao = Util.JSON_RetornaString(dict: listaObj, campo: "localizacao")
                 NSLog(String(latitude))
                 NSLog(String(longitude))
                 
@@ -403,6 +411,11 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                     let span = MKCoordinateSpanMake(0.005, 0.005)
                     let region = MKCoordinateRegion(center: pinToZoomOn.coordinate, span: span)
                     self.mapKitView.setRegion(region, animated: true)
+                    
+                    let imageArray = NSData(base64Encoded: self.fotoString, options: [])
+                    self.imagemAbandonado.image = UIImage(data: imageArray! as Data)
+                    self.imagemAbandonado.reloadInputViews()
+                    
                     self.carrega(inicio: false)
                 }
             }
@@ -485,9 +498,9 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         else
         {
-            cell.lblNome.isHidden = true
+            cell.lblNome.isHidden = false
             cell.lblGenero.isHidden = true
-            cell.lblRaca.isHidden = true
+            cell.lblRaca.isHidden = false
             cell.lblIdade.isHidden = true
             cell.lblPorte.isHidden = true
             cell.lblPeso.isHidden = true
@@ -511,6 +524,17 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.buttonTelephone.frame.size = CGSize(width: 36, height: 36)
         cell.buttonMail.frame.size = CGSize(width: 36, height: 36)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
+        if self.tipoAnimal == 2
+        {
+            cell.lblNome.text = self.endereco
+            cell.lblRaca.text = self.localizacao
+            if !(fotoString.isEmpty)
+            {
+                self.imagemAbandonado.isHidden = false
+            }
+        }
+        
         return cell
         
     }

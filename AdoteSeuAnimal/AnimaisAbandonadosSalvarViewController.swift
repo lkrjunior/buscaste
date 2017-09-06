@@ -11,9 +11,10 @@ import MapKit
 import CoreLocation
 import Alamofire
 
-class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var gerenciadorLocalizacao = CLLocationManager()
+    var imagePicker = UIImagePickerController()
     
     @IBAction func btnSalvarClick(_ sender: Any)
     {
@@ -28,17 +29,32 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
     @IBOutlet weak var lblLocalizacao: UILabel!
     @IBOutlet weak var mkMapa: MKMapView!
     @IBOutlet weak var carregamento: UIActivityIndicatorView!
+    @IBOutlet weak var lblEndereco: UILabel!
+    @IBOutlet weak var imagemAnimal: UIImageView!
     
+    @IBAction func btnCamera(_ sender: Any) {
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
     var idAnimal : Int = 0
     var animalTipo : Int = 2
     var latitude : Double = 0
     var longitude : Double = 0
     var localizacao : String = ""
+    var endereco : String = ""
     var idPessoa : Int = 0
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let imagemRecuperada = info [ UIImagePickerControllerOriginalImage ] as! UIImage
+        imagemAnimal.image = imagemRecuperada
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        imagePicker.delegate = self
+        
         self.AjustaTextFields()
         self.AjustaOpcoesMapa()
         
@@ -87,11 +103,22 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
         CLGeocoder().reverseGeocodeLocation(localizacaoUsuario!, completionHandler: { (detalhesLocal, erro) in
             if (erro == nil)
             {
-                let dadosLocal = detalhesLocal?.first
-                if dadosLocal != nil
+                if let localGps = detalhesLocal
                 {
-                    self.localizacao = (dadosLocal?.locality)! + "/" + (dadosLocal?.administrativeArea)!
-                    self.lblLocalizacao.text = self.localizacao
+                    if let dadosLocal = localGps.first
+                    {
+                        if let cidade = dadosLocal.locality, let uf = dadosLocal.administrativeArea
+                        {
+                            self.localizacao = cidade + "/" + uf
+                            self.lblLocalizacao.text = self.localizacao
+                            
+                        }
+                        if let end = dadosLocal.thoroughfare, let nr = dadosLocal.subThoroughfare
+                        {
+                            self.endereco = end + "," + nr
+                            self.lblEndereco.text = self.endereco
+                        }
+                    }
                 }
             }
             else
@@ -105,6 +132,7 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
     func AjustaTextFields()
     {
         lblLocalizacao.text = ""
+        lblEndereco.text = ""
         txtDescricao.delegate = self
         self.addToolBar(textField: txtDescricao)
     }
@@ -155,6 +183,11 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
         
         //Salvar o animal abandonado
         let descricaoString = self.txtDescricao.text! == "" ? "" : self.txtDescricao.text!
+        
+        let imagemSalvar = Util.compressImage_512(imagemAnimal.image!)
+        let imagemDados = UIImageJPEGRepresentation(imagemSalvar, 0.5)
+        let img = imagemDados!.base64EncodedString()
+        
         let paramsCad = ["id": self.idAnimal,
                          "animalTipo": self.animalTipo,
                          "pessoa": ["idPessoa": self.idPessoa],
@@ -162,6 +195,8 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
                          "latitude": self.latitude,
                          "longitude": self.longitude,
                          "localizacao": self.localizacao,
+                         "endereco": self.endereco,
+                         "fotoString": img,
                          ] as [String : AnyObject]
         
         Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
