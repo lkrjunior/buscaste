@@ -32,8 +32,85 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    func SaveTest()
+    {
+        Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
+        
+        //Salvar teste
+        let paramsCad = ["idGenero" : 0,
+                         "genero": "timeout",
+                         ] as [String : AnyObject]
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/SaveTest", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let erro = response.error
+            {
+                if erro.localizedDescription != ""
+                {
+                    Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                }
+            }
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                let dict = Util.converterParaDictionary(text: json!)
+                let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                if status == 1
+                {
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                    
+                    print("test ok")
+                }
+                else
+                {
+                    Util.AlertaErroView(mensagem: "Erro ao salvar os dados!", view: self, indicatorView: self.carregamento)
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                }
+            }
+            else
+            { Util.carrega(carregamento: self.carregamento, view: self, inicio: false) }
+        }
+    }
+    
+    func GetTest()
+    {
+        Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos?simulaTimeout=true", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            {
+                response in
+                
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                    }
+                }
+                
+                if let data = response.data
+                {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    if (json == nil || json == "" || json == "null")
+                    {
+                        Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
+                    }
+                    else
+                    {
+                        print("ok")
+                    }
+                }
+                else
+                {
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
