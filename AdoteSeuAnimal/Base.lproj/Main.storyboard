@@ -1013,7 +1013,7 @@
                                                 <action selector="btnVoltarClick:" destination="9lJ-M4-sbZ" id="CGn-NV-gdA"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="n9v-4h-Viy">
+                                        <barButtonItem key="rightBarButtonItem" image="tbFiltros" id="n9v-4h-Viy">
                                             <connections>
                                                 <action selector="btnPesquisarClick:" destination="9lJ-M4-sbZ" id="Bts-bA-wc9"/>
                                             </connections>
@@ -1121,10 +1121,15 @@
                                     <action selector="btnLimparClick:" destination="9lJ-M4-sbZ" eventType="touchUpInside" id="jmb-pF-ZHv"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Zpx-5e-YcF">
+                                <rect key="frame" x="177" y="300" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="carregamento" destination="Zpx-5e-YcF" id="4rG-4O-GQc"/>
                         <outlet property="switchAbandonado" destination="NMk-pm-gMe" id="9SA-Wf-gAY"/>
                         <outlet property="switchDoacao" destination="6Lm-22-oVy" id="eac-4f-AdC"/>
                         <outlet property="txtCidade" destination="Y6a-tk-rnu" id="64D-1L-6FS"/>

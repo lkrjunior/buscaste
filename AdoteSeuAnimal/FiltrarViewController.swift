@@ -9,6 +9,7 @@
 import UIKit
 
 class FiltrarViewController: UIViewController {
+    @IBOutlet weak var carregamento: UIActivityIndicatorView!
     @IBOutlet weak var txtGenero: UITextField!
     @IBOutlet weak var txtRaca: UITextField!
     @IBOutlet weak var txtPorte: UITextField!
