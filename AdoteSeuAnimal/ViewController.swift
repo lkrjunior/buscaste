@@ -288,7 +288,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 pesquisa = pesquisa + "&pesoMax=" + String(filtros.fPesoMax)
                 addTipoAnimal = true
             }
-            if addTipoAnimal == true
+            if addTipoAnimal == true && filtros.fTipoAnimal == 0
             {
                 pesquisa = pesquisa + "&tipoAnimal=1"
             }
