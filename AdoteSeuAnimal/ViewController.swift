@@ -13,6 +13,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     var carregamento:UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBAction func btnFiltro(_ sender: Any)
+    {
+        let view = self.storyboard?.instantiateViewController(withIdentifier:"FiltrarSid") as! FiltrarViewController
+        self.present(view, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var tableViewAnimal: UITableView!
     
     //27/08/2017

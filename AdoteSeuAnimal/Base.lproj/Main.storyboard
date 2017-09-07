@@ -116,7 +116,13 @@
                             <constraint firstItem="zZp-22-G3A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vaS-JT-sJQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Busca Pet" id="hB3-27-9Uf"/>
+                    <navigationItem key="navigationItem" title="Busca Pet" id="hB3-27-9Uf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="zlD-kH-2l8">
+                            <connections>
+                                <action selector="btnFiltro:" destination="BYZ-38-t0r" id="T8t-eu-Wue"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableViewAnimal" destination="zZp-22-G3A" id="sx8-MP-o0z"/>
                     </connections>
@@ -146,7 +152,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="247"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IQn-uC-aBf" id="2cN-cK-Plh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="246.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="247"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJ4-L0-Ih1">
@@ -983,6 +989,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaz-CJ-bHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1549.5999999999999" y="1018.7406296851575"/>
+        </scene>
+        <!--Filtrar View Controller-->
+        <scene sceneID="e1I-k6-lvV">
+            <objects>
+                <viewController restorationIdentifier="FiltrarRid" storyboardIdentifier="FiltrarSid" id="9lJ-M4-sbZ" customClass="FiltrarViewController" customModule="AdoteSeuAnimal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k9i-ZW-5t0"/>
+                        <viewControllerLayoutGuide type="bottom" id="W2c-Mq-Qkr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uwf-7u-jPE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xwW-YK-lOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2332" y="1022"/>
         </scene>
         <!--Meus animais-->
         <scene sceneID="G4j-yj-46J">
