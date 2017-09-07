@@ -21,4 +21,9 @@ public class ClassFiltrar
     var fIdadeMax : Int = 0
     var fPesoMin : Double = 0
     var fPesoMax : Double = 0
+    var genero : String = ""
+    var raca : String = ""
+    var porte : String = ""
+    var uf : String = ""
+    var cidade : String = ""
 }

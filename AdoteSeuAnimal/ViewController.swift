@@ -40,6 +40,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var fotos = [String]()
     var localizacao = [String]()
     
+    var filtros : ClassFiltrar = ClassFiltrar()
+    
     //refresh
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -98,8 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         paginaAtual = 1
         totalAnimal = 0
         
-        //Util.FiltrarSave()
-        //Util.FiltrarGet()
+        filtros = Util.FiltrarGet()
         
         self.GetDadosAnimal()
         

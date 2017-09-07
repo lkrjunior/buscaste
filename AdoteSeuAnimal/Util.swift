@@ -455,6 +455,11 @@ class Util
             let fIdadeMax = UserDefaults.standard.object(forKey: "fIdadeMax") as! Int
             let fPesoMin = UserDefaults.standard.object(forKey: "fPesoMin") as! Double
             let fPesoMax = UserDefaults.standard.object(forKey: "fPesoMax") as! Double
+            let genero = UserDefaults.standard.object(forKey: "genero") as! String
+            let raca = UserDefaults.standard.object(forKey: "raca") as! String
+            let porte = UserDefaults.standard.object(forKey: "porte") as! String
+            let uf = UserDefaults.standard.object(forKey: "uf") as! String
+            let cidade = UserDefaults.standard.object(forKey: "cidade") as! String
             
             filtros.fPesquisar = fPesquisar
             filtros.fTipoAnimal = fTipoAnimal
@@ -467,6 +472,11 @@ class Util
             filtros.fIdadeMax = fIdadeMax
             filtros.fPesoMin = fPesoMin
             filtros.fPesoMax = fPesoMax
+            filtros.genero = genero
+            filtros.raca = raca
+            filtros.porte = porte
+            filtros.uf = uf
+            filtros.cidade = cidade
                 
             return filtros
         }
@@ -488,6 +498,11 @@ class Util
             UserDefaults.standard.set(0, forKey: "fIdadeMax")
             UserDefaults.standard.set(0, forKey: "fPesoMin")
             UserDefaults.standard.set(0, forKey: "fPesoMax")
+            UserDefaults.standard.set("", forKey: "genero")
+            UserDefaults.standard.set("", forKey: "raca")
+            UserDefaults.standard.set("", forKey: "porte")
+            UserDefaults.standard.set("", forKey: "uf")
+            UserDefaults.standard.set("", forKey: "cidade")
             UserDefaults.standard.synchronize()
         }
         else
@@ -503,6 +518,11 @@ class Util
             UserDefaults.standard.set(filtros.fIdadeMax, forKey: "fIdadeMax")
             UserDefaults.standard.set(filtros.fPesoMin, forKey: "fPesoMin")
             UserDefaults.standard.set(filtros.fPesoMax, forKey: "fPesoMax")
+            UserDefaults.standard.set(filtros.genero, forKey: "genero")
+            UserDefaults.standard.set(filtros.raca, forKey: "raca")
+            UserDefaults.standard.set(filtros.porte, forKey: "porte")
+            UserDefaults.standard.set(filtros.uf, forKey: "uf")
+            UserDefaults.standard.set(filtros.cidade, forKey: "cidade")
             UserDefaults.standard.synchronize()
         }
     }

@@ -37,6 +37,52 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func Pesquisar()
     {
+        if !switchDoacao.isOn && !switchAbandonado.isOn
+        {
+            Util.AlertaErroView(mensagem: "Informe pelo menos um tipo", view: self, indicatorView: nil)
+            return
+        }
+        
+        let filtros : ClassFiltrar = ClassFiltrar()
+        
+        filtros.fPesquisar = true
+        if (switchDoacao.isOn && switchAbandonado.isOn)
+        {
+            filtros.fTipoAnimal = 0
+        }
+        else if (switchDoacao.isOn)
+        {
+            filtros.fTipoAnimal = 1
+        }
+        else if (switchAbandonado.isOn)
+        {
+            filtros.fTipoAnimal = 2
+        }
+        filtros.fIdGenero = self.generosId
+        filtros.fIdRaca = self.racasId
+        filtros.fIdPorte = self.portesId
+        filtros.fIdUf = self.ufsId
+        filtros.fIdCidade = self.cidadesId
+        
+        let pesoMinString = self.txtPesoMin.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
+        let pesoMaxString = self.txtPesoMax.text!.replacingOccurrences(of: ",", with: ".", options: .literal, range: nil)
+        let idadeMin = self.txtIdadeMin.text! == "" ? "0" : self.txtIdadeMin.text!
+        let idadeMax = self.txtIdadeMax.text! == "" ? "0" : self.txtIdadeMax.text!
+        let pesoMin = pesoMinString == "" ? "0" : pesoMinString
+        let pesoMax = pesoMaxString == "" ? "0" : pesoMaxString
+        
+        filtros.fIdadeMin = Int(idadeMin)!
+        filtros.fIdadeMax = Int(idadeMax)!
+        filtros.fPesoMin = Double(pesoMin)!
+        filtros.fPesoMax = Double(pesoMax)!
+        filtros.genero = txtGenero.text!
+        filtros.raca = txtRaca.text!
+        filtros.porte = txtPorte.text!
+        filtros.uf = txtUf.text!
+        filtros.cidade = txtCidade.text!
+        
+        Util.FiltrarSave(filtros: filtros, limpar: false)
+        
         let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
         tb.selectedIndex = 0
         self.present(tb, animated: true, completion: nil)
@@ -61,10 +107,12 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         switchDoacao.isOn = true
         switchAbandonado.isOn = true
         self.CarregaCombos()
+        Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
     }
     
     func showVoltar()
     {
+        //Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
         let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
         tb.selectedIndex = 0
         self.present(tb, animated: true, completion: nil)
@@ -95,6 +143,42 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.CarregaCombos()
         self.CarregaJSONCombos()
         self.AjustarCampos()
+        self.CarregaFiltros()
+    }
+    
+    func CarregaFiltros()
+    {
+        let filtros = Util.FiltrarGet()
+        self.generosId = filtros.fIdGenero
+        self.racasId = filtros.fIdRaca
+        self.portesId = filtros.fIdPorte
+        self.ufsId = filtros.fIdUf
+        self.cidadesId = filtros.fIdCidade
+        self.txtGenero.text = filtros.genero
+        self.txtRaca.text = filtros.raca
+        self.txtPorte.text = filtros.porte
+        self.txtUf.text = filtros.uf
+        self.txtCidade.text = filtros.cidade
+        self.txtIdadeMin.text = filtros.fIdadeMin == 0 ? "" : String(filtros.fIdadeMin)
+        self.txtIdadeMax.text = filtros.fIdadeMax == 0 ? "" : String(filtros.fIdadeMax)
+        self.txtPesoMin.text = filtros.fPesoMin == 0 ? "" : String(filtros.fPesoMin)
+        self.txtPesoMax.text = filtros.fPesoMax == 0 ? "" : String(filtros.fPesoMax)
+        
+        if filtros.fTipoAnimal == 1
+        {
+            switchDoacao.isOn = true
+            switchAbandonado.isOn = false
+        }
+        else if filtros.fTipoAnimal == 2
+        {
+            switchDoacao.isOn = false
+            switchAbandonado.isOn = true
+        }
+        else
+        {
+            switchDoacao.isOn = true
+            switchAbandonado.isOn = true
+        }
     }
 
     func AjustarCampos()
