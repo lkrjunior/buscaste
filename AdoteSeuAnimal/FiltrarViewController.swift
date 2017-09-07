@@ -10,6 +10,14 @@ import UIKit
 import Alamofire
 
 class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    @IBAction func doacaoClick(_ sender: Any)
+    {
+        self.clickAnimal()
+    }
+    @IBAction func abandonadoClick(_ sender: Any)
+    {
+        self.clickAnimal()
+    }
     @IBOutlet weak var carregamento: UIActivityIndicatorView!
     @IBOutlet weak var txtGenero: UITextField!
     @IBOutlet weak var txtRaca: UITextField!
@@ -25,6 +33,7 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBAction func btnLimparClick(_ sender: Any)
     {
         self.Limpar()
+        self.clickAnimal()
     }
     @IBAction func btnVoltarClick(_ sender: Any)
     {
@@ -33,6 +42,34 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBAction func btnPesquisarClick(_ sender: Any)
     {
         self.Pesquisar()
+    }
+    
+    func clickAnimal()
+    {
+        if (switchAbandonado.isOn && !switchDoacao.isOn)
+        {
+            txtGenero.isEnabled = false
+            txtRaca.isEnabled = false
+            txtPorte.isEnabled = false
+            txtUf.isEnabled = false
+            txtCidade.isEnabled = false
+            txtIdadeMin.isEnabled = false
+            txtIdadeMax.isEnabled = false
+            txtPesoMin.isEnabled = false
+            txtPesoMax.isEnabled = false
+        }
+        else
+        {
+            txtGenero.isEnabled = true
+            txtRaca.isEnabled = true
+            txtPorte.isEnabled = true
+            txtUf.isEnabled = true
+            txtCidade.isEnabled = true
+            txtIdadeMin.isEnabled = true
+            txtIdadeMax.isEnabled = true
+            txtPesoMin.isEnabled = true
+            txtPesoMax.isEnabled = true
+        }
     }
     
     func Pesquisar()
@@ -81,6 +118,24 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         filtros.uf = txtUf.text!
         filtros.cidade = txtCidade.text!
         
+        if (filtros.fTipoAnimal == 2)
+        {
+            filtros.fIdGenero = 0
+            filtros.fIdRaca = 0
+            filtros.fIdPorte = 0
+            filtros.fIdUf = 0
+            filtros.fIdCidade = 0
+            filtros.fIdadeMin = 0
+            filtros.fIdadeMax = 0
+            filtros.fPesoMin = 0
+            filtros.fPesoMax = 0
+            filtros.genero = ""
+            filtros.raca = ""
+            filtros.porte = ""
+            filtros.uf = ""
+            filtros.cidade = ""
+        }
+        
         Util.FiltrarSave(filtros: filtros, limpar: false)
         
         let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
@@ -88,7 +143,7 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.present(tb, animated: true, completion: nil)
     }
     
-    func Limpar()
+    func Limpar(switchNao : Bool = false)
     {
         self.generosId = 0
         self.racasId = 0
@@ -104,8 +159,11 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.txtIdadeMax.text = ""
         self.txtPesoMin.text = ""
         self.txtPesoMax.text = ""
-        switchDoacao.isOn = true
-        switchAbandonado.isOn = true
+        if switchNao == false
+        {
+            switchDoacao.isOn = true
+            switchAbandonado.isOn = true
+        }
         self.CarregaCombos()
         Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
     }
@@ -179,6 +237,7 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             switchDoacao.isOn = true
             switchAbandonado.isOn = true
         }
+        self.clickAnimal()
     }
 
     func AjustarCampos()
