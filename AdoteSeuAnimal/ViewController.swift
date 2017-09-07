@@ -232,13 +232,77 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             idArray.append(id)
         }
     }
+    
+    func MontaStringPesquisa() -> String
+    {
+        var pesquisa = ""
+        var addTipoAnimal = false
+        if filtros.fPesquisar == true
+        {
+            if filtros.fTipoAnimal != 0
+            {
+                pesquisa = pesquisa + "&tipoAnimal=" + String(filtros.fTipoAnimal)
+            }
+            if filtros.fIdGenero != 0
+            {
+                pesquisa = pesquisa + "&idGenero=" + String(filtros.fIdGenero)
+                addTipoAnimal = true
+            }
+            if filtros.fIdRaca != 0
+            {
+                pesquisa = pesquisa + "&idRaca=" + String(filtros.fIdRaca)
+                addTipoAnimal = true
+            }
+            if filtros.fIdPorte != 0
+            {
+                pesquisa = pesquisa + "&idPorte=" + String(filtros.fIdPorte)
+                addTipoAnimal = true
+            }
+            if filtros.fIdUf != 0
+            {
+                pesquisa = pesquisa + "&idUf=" + String(filtros.fIdUf)
+                addTipoAnimal = true
+            }
+            if filtros.fIdCidade != 0
+            {
+                pesquisa = pesquisa + "&idCidade=" + String(filtros.fIdCidade)
+                addTipoAnimal = true
+            }
+            if filtros.fIdadeMin != 0
+            {
+                pesquisa = pesquisa + "&idadeMin=" + String(filtros.fIdadeMin)
+                addTipoAnimal = true
+            }
+            if filtros.fIdadeMax != 0
+            {
+                pesquisa = pesquisa + "&idadeMax=" + String(filtros.fIdadeMax)
+                addTipoAnimal = true
+            }
+            if filtros.fPesoMin != 0
+            {
+                pesquisa = pesquisa + "&pesoMin=" + String(filtros.fPesoMin)
+                addTipoAnimal = true
+            }
+            if filtros.fPesoMin != 0
+            {
+                pesquisa = pesquisa + "&pesoMax=" + String(filtros.fPesoMax)
+                addTipoAnimal = true
+            }
+            if addTipoAnimal == true
+            {
+                pesquisa = pesquisa + "&tipoAnimal=1"
+            }
+        }
+        return pesquisa
+    }
 
     func GetDadosAnimal()
     {
         self.carrega(inicio: true)
         //27/08/2017
         let paginacao = "?pagina=\(paginaAtual)&itens=\(totalAnimalPagina)"
-        var request = URLRequest(url: URL(string: "http://lkrjunior-com.umbler.net/api/Animal/GetAnimal" + paginacao)!)
+        let pesquisa = self.MontaStringPesquisa()
+        var request = URLRequest(url: URL(string: "http://lkrjunior-com.umbler.net/api/Animal/GetAnimal" + paginacao + pesquisa)!)
         request.httpMethod = "GET"
         //var timeoutPadrao = request.timeoutInterval
         request.timeoutInterval = 90
@@ -256,27 +320,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             let responseString = String(data: data, encoding: .utf8)
-   
-            do {
-                let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                if let dictionary = object as? [String: AnyObject] {
-                    self.readJSONObjectAnimal(object: dictionary)
-
-                    DispatchQueue.main.sync {
-                        self.tableViewAnimal.delegate = self
-                        self.tableViewAnimal.dataSource = self
-                        self.tableViewAnimal.reloadData()
-                        self.carrega(inicio: false)
-                        //self.CarregaImagens()
-                    }
-                    //DispatchQueue.main.async {
-                    //    self.CarregaImagens()
-                    //}
-                }
-            } catch {
-                // Handle Error
-            }
             
+            if responseString != nil && responseString != "null"
+            {
+                do {
+                    let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    if let dictionary = object as? [String: AnyObject] {
+                        self.readJSONObjectAnimal(object: dictionary)
+                        
+                        DispatchQueue.main.sync {
+                            self.tableViewAnimal.delegate = self
+                            self.tableViewAnimal.dataSource = self
+                            self.tableViewAnimal.reloadData()
+                            self.carrega(inicio: false)
+                            //self.CarregaImagens()
+                        }
+                        //DispatchQueue.main.async {
+                        //    self.CarregaImagens()
+                        //}
+                    }
+                } catch {
+                    // Handle Error
+                }
+            }
+            else
+            {
+                Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
+                self.carrega(inicio: false)
+            }
+    
             print("responseString = \(String(describing: responseString))")
         }
         task.resume()
