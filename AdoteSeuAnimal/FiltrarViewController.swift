@@ -254,8 +254,8 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         txtIdadeMin.keyboardType = .numberPad
         txtIdadeMax.keyboardType = .numberPad
-        txtPesoMin.keyboardType = .decimalPad
-        txtPesoMax.keyboardType = .decimalPad
+        txtPesoMin.keyboardType = .numberPad
+        txtPesoMax.keyboardType = .numberPad
         self.addToolBar(textField: txtIdadeMin)
         self.addToolBar(textField: txtIdadeMax)
         self.addToolBar(textField: txtPesoMin)

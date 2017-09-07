@@ -260,14 +260,16 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
             self.Deletar(idFiltro: self.id[indexPath.row])
         }
         
+        /*
         let share = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
             print("Editar " + String(self.id[indexPath.row]))
             self.Editar(idFiltro: self.id[indexPath.row])
         }
         
         share.backgroundColor = UIColor.blue
+        */
         
-        return [delete, share]
+        return [delete]
     }
 
     func Deletar(idFiltro : Int)

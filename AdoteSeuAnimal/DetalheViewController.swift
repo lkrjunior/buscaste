@@ -462,22 +462,35 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let responseString = String(data: data, encoding: .utf8)
             
-            do {
-                let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                if let dictionary = object as? [String: AnyObject] {
-                    self.readJSONObjectAnimal(object: dictionary)
-                    
-                    DispatchQueue.main.async() {
-                        self.detalheTableViewOutlet.delegate = self
-                        self.detalheTableViewOutlet.dataSource = self
-                        self.detalheTableViewOutlet.reloadData()
+            if responseString != nil && responseString != "null"
+            {
+                do {
+                    let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    if let dictionary = object as? [String: AnyObject] {
+                        self.readJSONObjectAnimal(object: dictionary)
                         
+                        DispatchQueue.main.async() {
+                            self.detalheTableViewOutlet.delegate = self
+                            self.detalheTableViewOutlet.dataSource = self
+                            self.detalheTableViewOutlet.reloadData()
+                            
+                        }
+                        if self.tipoAnimal == 0
+                        {
+                            Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
+                            self.carrega(inicio: false)
+                        }
                     }
+                } catch {
+                    
+                    
+                    // Handle Error
                 }
-            } catch {
-                
-
-                // Handle Error
+            }
+            else
+            {
+                Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
+                self.carrega(inicio: false)
             }
             
             print("responseString = \(String(describing: responseString))")

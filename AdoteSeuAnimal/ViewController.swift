@@ -338,6 +338,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         //DispatchQueue.main.async {
                         //    self.CarregaImagens()
                         //}
+                        if self.totalAnimal == 0
+                        {
+                            Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
+                            self.carrega(inicio: false)
+                        }
                     }
                 } catch {
                     // Handle Error
