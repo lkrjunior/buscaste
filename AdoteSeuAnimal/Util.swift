@@ -438,4 +438,73 @@ class Util
         return true
     }
     
+    static func FiltrarGet() -> ClassFiltrar
+    {
+        if let pesquisar = UserDefaults.standard.object(forKey: "fPesquisar")
+        {
+            let filtros : ClassFiltrar = ClassFiltrar()
+            
+            let fPesquisar = pesquisar as! Bool
+            let fTipoAnimal = UserDefaults.standard.object(forKey: "fTipoAnimal") as! Int
+            let fIdGenero = UserDefaults.standard.object(forKey: "fIdGenero") as! Int
+            let fIdRaca = UserDefaults.standard.object(forKey: "fIdRaca") as! Int
+            let fIdPorte = UserDefaults.standard.object(forKey: "fIdPorte") as! Int
+            let fIdUf = UserDefaults.standard.object(forKey: "fIdUf") as! Int
+            let fIdCidade = UserDefaults.standard.object(forKey: "fIdCidade") as! Int
+            let fIdadeMin = UserDefaults.standard.object(forKey: "fIdadeMin") as! Int
+            let fIdadeMax = UserDefaults.standard.object(forKey: "fIdadeMax") as! Int
+            let fPesoMin = UserDefaults.standard.object(forKey: "fPesoMin") as! Double
+            let fPesoMax = UserDefaults.standard.object(forKey: "fPesoMax") as! Double
+            
+            filtros.fPesquisar = fPesquisar
+            filtros.fTipoAnimal = fTipoAnimal
+            filtros.fIdGenero = fIdGenero
+            filtros.fIdRaca = fIdRaca
+            filtros.fIdPorte = fIdPorte
+            filtros.fIdUf = fIdUf
+            filtros.fIdCidade = fIdCidade
+            filtros.fIdadeMin = fIdadeMin
+            filtros.fIdadeMax = fIdadeMax
+            filtros.fPesoMin = fPesoMin
+            filtros.fPesoMax = fPesoMax
+                
+            return filtros
+        }
+        return ClassFiltrar()
+    }
+    
+    static func FiltrarSave(filtros : ClassFiltrar, limpar : Bool)
+    {
+        if limpar == true
+        {
+            UserDefaults.standard.set(false, forKey: "fPesquisar")
+            UserDefaults.standard.set(0, forKey: "fTipoAnimal")
+            UserDefaults.standard.set(0, forKey: "fIdGenero")
+            UserDefaults.standard.set(0, forKey: "fIdRaca")
+            UserDefaults.standard.set(0, forKey: "fIdPorte")
+            UserDefaults.standard.set(0, forKey: "fIdUf")
+            UserDefaults.standard.set(0, forKey: "fIdCidade")
+            UserDefaults.standard.set(0, forKey: "fIdadeMin")
+            UserDefaults.standard.set(0, forKey: "fIdadeMax")
+            UserDefaults.standard.set(0, forKey: "fPesoMin")
+            UserDefaults.standard.set(0, forKey: "fPesoMax")
+            UserDefaults.standard.synchronize()
+        }
+        else
+        {
+            UserDefaults.standard.set(filtros.fPesquisar, forKey: "fPesquisar")
+            UserDefaults.standard.set(filtros.fTipoAnimal, forKey: "fTipoAnimal")
+            UserDefaults.standard.set(filtros.fIdGenero, forKey: "fIdGenero")
+            UserDefaults.standard.set(filtros.fIdRaca, forKey: "fIdRaca")
+            UserDefaults.standard.set(filtros.fIdPorte, forKey: "fIdPorte")
+            UserDefaults.standard.set(filtros.fIdUf, forKey: "fIdUf")
+            UserDefaults.standard.set(filtros.fIdCidade, forKey: "fIdCidade")
+            UserDefaults.standard.set(filtros.fIdadeMin, forKey: "fIdadeMin")
+            UserDefaults.standard.set(filtros.fIdadeMax, forKey: "fIdadeMax")
+            UserDefaults.standard.set(filtros.fPesoMin, forKey: "fPesoMin")
+            UserDefaults.standard.set(filtros.fPesoMax, forKey: "fPesoMax")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
 }

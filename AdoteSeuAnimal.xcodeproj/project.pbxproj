@@ -28,6 +28,7 @@
 		C63E3A8D1F4CF9EA00F3E4E7 /* FiltrosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A8C1F4CF9EA00F3E4E7 /* FiltrosViewController.swift */; };
 		C63E3A8F1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A8E1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift */; };
 		C63E3A911F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E3A901F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift */; };
+		C647E6E21F618B9000D63F60 /* ClassFiltrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C647E6E11F618B9000D63F60 /* ClassFiltrar.swift */; };
 		C65E85ED1F3F87E30068EF3E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EC1F3F87E30068EF3E /* Bolts.framework */; };
 		C65E85EF1F3F87EE0068EF3E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */; };
 		C65E85F11F3F87FE0068EF3E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */; };
@@ -112,6 +113,7 @@
 		C63E3A8C1F4CF9EA00F3E4E7 /* FiltrosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrosViewController.swift; sourceTree = "<group>"; };
 		C63E3A8E1F4CFA0600F3E4E7 /* FiltrosSalvarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrosSalvarViewController.swift; sourceTree = "<group>"; };
 		C63E3A901F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltrosTableViewCell.swift; sourceTree = "<group>"; };
+		C647E6E11F618B9000D63F60 /* ClassFiltrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassFiltrar.swift; sourceTree = "<group>"; };
 		C65E85EC1F3F87E30068EF3E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		C65E85EE1F3F87EE0068EF3E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C65E85F01F3F87FE0068EF3E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				C6D68BB91F4279ED00DA1232 /* Util.swift */,
+				C647E6E11F618B9000D63F60 /* ClassFiltrar.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				C63E3A8B1F4CF99C00F3E4E7 /* AnimaisAbandonadosTableViewCell.swift in Sources */,
 				C63E3A8D1F4CF9EA00F3E4E7 /* FiltrosViewController.swift in Sources */,
 				C65E85F71F3FC93F0068EF3E /* ViewControllerInicial.swift in Sources */,
+				C647E6E21F618B9000D63F60 /* ClassFiltrar.swift in Sources */,
 				C63E3A911F4CFA2200F3E4E7 /* FiltrosTableViewCell.swift in Sources */,
 				C6F2A1AE1F40FF3000240BD3 /* CadastroJSON.swift in Sources */,
 				C61626661ED9BCC50021FF79 /* AdoteSeuAnimal.xcdatamodeld in Sources */,

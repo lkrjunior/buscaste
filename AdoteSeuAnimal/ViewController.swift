@@ -98,6 +98,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         paginaAtual = 1
         totalAnimal = 0
         
+        //Util.FiltrarSave()
+        //Util.FiltrarGet()
+        
         self.GetDadosAnimal()
         
     }

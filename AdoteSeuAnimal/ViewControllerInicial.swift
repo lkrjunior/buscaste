@@ -63,6 +63,8 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             print("Erro ao recuperar os dados do SQLite")
         }
         
+        Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
+        
         if idUsuario > 0
         {
             self.showTelaInicial()
