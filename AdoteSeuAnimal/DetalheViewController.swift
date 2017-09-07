@@ -39,10 +39,23 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
     var localizacao : String = ""
     var endereco : String = ""
     
+    @IBOutlet weak var switchLabel: UISwitch!
     @IBOutlet weak var detalheTableViewOutlet: UITableView!
     @IBOutlet weak var mapKitView: MKMapView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imagemAbandonado: UIImageView!
+    @IBOutlet weak var lblMostraFoto: UILabel!
+    @IBAction func switchFoto(_ sender: Any)
+    {
+        if switchLabel.isOn
+        {
+            self.imagemAbandonado.isHidden = false
+        }
+        else
+        {
+            self.imagemAbandonado.isHidden = true
+        }
+    }
     
     @IBAction func buttonTelephoneClick(_ sender: Any)
     {
@@ -529,10 +542,12 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
         {
             cell.lblNome.text = self.endereco
             cell.lblRaca.text = self.localizacao
-            if !(fotoString.isEmpty)
-            {
-                self.imagemAbandonado.isHidden = false
-            }
+            //if !(fotoString.isEmpty)
+            //{
+            //    self.imagemAbandonado.isHidden = false
+            //}
+            self.lblMostraFoto.isHidden = false
+            self.switchLabel.isHidden = false
         }
         
         return cell

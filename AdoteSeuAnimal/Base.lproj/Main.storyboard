@@ -146,7 +146,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="247"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IQn-uC-aBf" id="2cN-cK-Plh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="247"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="246.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJ4-L0-Ih1">
@@ -272,8 +272,23 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCR-7g-Sv5">
                                 <rect key="frame" x="0.0" y="335" width="375" height="283"/>
                             </imageView>
+                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Iw1-a9-7hu">
+                                <rect key="frame" x="310" y="126" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Mosta"/>
+                                <connections>
+                                    <action selector="switchFoto:" destination="vo6-Nn-PQZ" eventType="valueChanged" id="Bn9-tW-3qK"/>
+                                </connections>
+                            </switch>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Foto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb0-o9-3Df">
+                                <rect key="frame" x="317" y="104" width="35" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.43614515669999998" green="0.57700543039999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdr-ci-9rD">
-                                <rect key="frame" x="94" y="438" width="186" height="180"/>
+                                <rect key="frame" x="45" y="257" width="284" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -293,7 +308,9 @@
                         <outlet property="detalheTableViewOutlet" destination="8XD-Zh-jFg" id="qNF-69-huB"/>
                         <outlet property="imageView" destination="cCR-7g-Sv5" id="kxH-7h-QIZ"/>
                         <outlet property="imagemAbandonado" destination="Tdr-ci-9rD" id="D4b-wb-jtH"/>
+                        <outlet property="lblMostraFoto" destination="cb0-o9-3Df" id="Gsb-2D-IbV"/>
                         <outlet property="mapKitView" destination="mpB-Pv-YWo" id="3xz-2b-U4Q"/>
+                        <outlet property="switchLabel" destination="Iw1-a9-7hu" id="ANS-5t-b6F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUu-yU-NOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -462,18 +479,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="semfoto" translatesAutoresizingMaskIntoConstraints="NO" id="W3u-Y3-6Lb">
+                                <rect key="frame" x="16" y="428" width="274" height="219"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0S-EI-oft">
-                                <rect key="frame" x="157" y="428" width="61" height="47"/>
+                                <rect key="frame" x="298" y="428" width="61" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="camera"/>
                                 <connections>
                                     <action selector="btnCamera:" destination="hym-ka-5lL" eventType="touchUpInside" id="WYO-G7-9kc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="semfoto" translatesAutoresizingMaskIntoConstraints="NO" id="W3u-Y3-6Lb">
-                                <rect key="frame" x="83" y="483" width="209" height="164"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
