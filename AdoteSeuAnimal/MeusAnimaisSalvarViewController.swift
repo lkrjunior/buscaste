@@ -228,7 +228,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             }
             return
         case "cidade":
-            if (valor == "" && cidades.count > 0)
+            if (valor == "" && cidades.count > 0 && ufsId > 0)
             {
                 textField.text = cidades[0]
                 cidadesId = cidadesIds[0]
