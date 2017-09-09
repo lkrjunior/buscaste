@@ -377,7 +377,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellLinhaDoTempo", for: indexPath) as! CustomTableViewCell
-        if animal.count > 0
+        if animal.count > 0 && animal.indices.contains(indexPath.row)
         {
             //let myColor : CGColor = UIColor.darkText.cgColor
             //cell.contentView.layer.borderColor = myColor
