@@ -132,14 +132,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let id = Util.JSON_RetornaInt(dict: listaObj, campo: "id")
             let data = Util.JSON_RetornaString(dict: listaObj, campo: "dataFormatada")
             let desc = Util.JSON_RetornaString(dict: listaObj, campo: "descricao")
-            let generoObj = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "genero", campo: "genero")
-            genero.append(generoObj)
+            var generoObj = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "genero", campo: "genero")
             let racaObj = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "raca", campo: "raca")
-            raca.append(racaObj)
             
             let uf = Util.JSON_RetornaObjInterna(dict: listaObj, objeto: "cidade", campo: "uf")
             let cidade = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "cidade", campo: "cidade")
-            if uf.count > 0
+            if animalTipo == 1
             {
                 let ufInterna = Util.JSON_RetornaString(dict: uf, campo: "uf")
                 localizacao.append(cidade + "/" + ufInterna)
@@ -161,8 +159,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             {
                 animal.append("Animal abandonado")
                 nome.append("")
+                generoObj = Util.JSON_RetornaString(dict: listaObj, campo: "endereco")
             }
             
+            raca.append(racaObj)
+            genero.append(generoObj)
             dataA.append(data)
             descricao.append(desc)
             animalTipoArray.append(animalTipo)
@@ -403,7 +404,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 cell.imagem.reloadInputViews()
                 cell.lblGenero.text = descricao[indexPath.row]
                 cell.lblRaca.text = localizacao[indexPath.row]
-                cell.lblDesricao.text = ""
+                cell.lblDesricao.text = genero[indexPath.row]
                 cell.lblLocalizacao.text = ""
             }
             else
