@@ -563,6 +563,10 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                                 
                             }
                         }
+                        if self.ufsId > 0
+                        {
+                            self.CarregaCidadesPeloUf()
+                        }
                         Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
                     }
                 }
