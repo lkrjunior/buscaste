@@ -549,7 +549,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         }
     }
     
-    func CarregaJSONCombos()
+    func NAO_USAR_CarregaJSONCombos()
     {
         //let dataAtual = Util.GetDateAtual()
         carregandoCombo = true
@@ -654,6 +654,135 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                 }
         }
 
+    }
+    
+    func CarregaJSONCombos()
+    {
+        //let dataAtual = Util.GetDateAtual()
+        carregandoCombo = true
+        
+        self.carrega(inicio: true)
+        
+        let combosCache = Util.CombosGetCache()
+        if combosCache != ""
+        {
+            self.CarregaComboLista(json: combosCache)
+            if (self.carregandoLista == false)
+            {
+                self.carrega(inicio: false)
+            }
+            self.carregandoCombo = false
+        }
+        else
+        {
+            Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+                {
+                    response in
+                    
+                    if let erro = response.error
+                    {
+                        if erro.localizedDescription != ""
+                        {
+                            Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                        }
+                    }
+                    
+                    if let data = response.data
+                    {
+                        let json = String(data: data, encoding: String.Encoding.utf8)
+                        print("Response: \(String(describing: json))")
+                        if (json == nil || json == "" || json == "null")
+                        {
+                            Util.AlertaErroView(mensagem: "Erro ao carregar os dados", view: self, indicatorView: self.carregamento)
+                        }
+                        else
+                        {
+                            self.CarregaComboLista(json: json)
+                            if (self.carregandoLista == false)
+                            {
+                                self.carrega(inicio: false)
+                            }
+                        }
+                        self.carregandoCombo = false
+                    }
+                    else
+                    {
+                        self.carregandoCombo = false
+                        self.carrega(inicio: false)
+                    }
+            }
+        }
+    }
+    
+    func CarregaComboLista(json : String!)
+    {
+        let listaDict = Util.converterParaDictionary(text: json!)
+        let lista = Util.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
+        
+        if lista.count > 0
+        {
+            Util.CombosSaveCache(combos: json)
+        }
+        
+        for dict in lista
+        {
+            let tipo = Util.JSON_RetornaString(dict: dict, campo: "tipo")
+            let id = Util.JSON_RetornaInt(dict: dict, campo: "id")
+            let id2 = Util.JSON_RetornaInt(dict: dict, campo: "id2")
+            let descricao = Util.JSON_RetornaString(dict: dict, campo: "descricao")
+            
+            if (tipo != "")
+            {
+                if (tipo == "Cidade")
+                {
+                    self.cidades.append(descricao)
+                    self.cidadesIds.append(id)
+                    self.cidadesIdsUfs.append(id2)
+                }
+                else if (tipo == "Uf")
+                {
+                    self.ufs.append(descricao)
+                    self.ufsIds.append(id)
+                }
+                else if (tipo == "Genero")
+                {
+                    self.generos.append(descricao)
+                    self.generosIds.append(id)
+                }
+                else if (tipo == "Raca")
+                {
+                    self.racas.append(descricao)
+                    self.racasIds.append(id)
+                }
+                else if (tipo == "Porte")
+                {
+                    self.portes.append(descricao)
+                    self.portesIds.append(id)
+                }
+            }
+            else
+            {
+                self.generos = [String]()
+                self.generosIds = [Int]()
+                self.generosId = 0
+                self.racas = [String]()
+                self.racasIds = [Int]()
+                self.racasId = 0
+                self.portes = [String]()
+                self.portesIds = [Int]()
+                self.portesId = 0
+                self.ufs = [String]()
+                self.ufsIds = [Int]()
+                self.ufsId = 0
+                self.cidades = [String]()
+                self.cidadesIds = [Int]()
+                self.cidadesIdsUfs = [Int]()
+                self.cidadesId = 0
+                self.cidadesAux = [String]()
+                self.cidadesAuxIds = [Int]()
+                
+            }
+        }
     }
     
     func CarregaCombos()

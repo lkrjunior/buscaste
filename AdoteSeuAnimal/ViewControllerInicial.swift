@@ -64,6 +64,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         }
         
         Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
+        Util.CombosSaveCache(combos: "")
         
         if idUsuario > 0
         {

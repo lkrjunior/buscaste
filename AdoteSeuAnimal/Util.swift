@@ -438,6 +438,24 @@ class Util
         return true
     }
     
+    static func CombosGetCache() -> String
+    {
+        if let listaCombos = UserDefaults.standard.object(forKey: "Combos")
+        {
+            return listaCombos as! String
+        }
+        else
+        {
+            return ""
+        }
+    }
+    
+    static func CombosSaveCache(combos : String)
+    {
+        UserDefaults.standard.set(combos, forKey: "Combos")
+        UserDefaults.standard.synchronize()
+    }
+
     static func FiltrarGet() -> ClassFiltrar
     {
         if let pesquisar = UserDefaults.standard.object(forKey: "fPesquisar")
