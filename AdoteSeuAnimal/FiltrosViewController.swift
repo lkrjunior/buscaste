@@ -238,14 +238,16 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellFiltros", for: indexPath) as! FiltrosTableViewCell
         
-        Util.AddViewForCell(cell: cell, table: tableViewFiltros)
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        //Util.AjustaLayoutCell(view: cell)
+        if genero.indices.contains(indexPath.row)
+        {
+            Util.AddViewForCell(cell: cell, table: tableViewFiltros)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            //Util.AjustaLayoutCell(view: cell)
         
-        cell.lblGenero.text = genero[indexPath.row]
-        cell.lblIdade.text = "Idade: " + String(idadeMin[indexPath.row]) + " a " + String(idadeMax[indexPath.row])
-        cell.lblPeso.text = "Peso: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
-        
+            cell.lblGenero.text = genero[indexPath.row]
+            cell.lblIdade.text = "Idade: " + String(idadeMin[indexPath.row]) + " a " + String(idadeMax[indexPath.row])
+            cell.lblPeso.text = "Peso: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
+        }
         return cell
         
     }

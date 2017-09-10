@@ -145,17 +145,20 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellAnimaisAbandonados", for: indexPath) as! AnimaisAbandonadosTableViewCell
         
-        Util.AddViewForCell(cell: cell, table: tableViewAnimais)
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        //Util.AjustaLayoutCell(view: cell)
-        
-        cell.lblDescricao.text = descricao[indexPath.row]
-        cell.lblData.text = "Sinalizado em " + data[indexPath.row]
-        cell.lblLocal.text = "Localização : "
-        let isIndexValid = local.indices.contains(indexPath.row)
-        if isIndexValid
+        if descricao.indices.contains(indexPath.row)
         {
-            cell.lblLocal.text = cell.lblLocal.text! + "" + local[indexPath.row]
+            Util.AddViewForCell(cell: cell, table: tableViewAnimais)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            //Util.AjustaLayoutCell(view: cell)
+        
+            cell.lblDescricao.text = descricao[indexPath.row]
+            cell.lblData.text = "Sinalizado em " + data[indexPath.row]
+            cell.lblLocal.text = "Localização : "
+            let isIndexValid = local.indices.contains(indexPath.row)
+            if isIndexValid
+            {
+                cell.lblLocal.text = cell.lblLocal.text! + "" + local[indexPath.row]
+            }
         }
         
         return cell
