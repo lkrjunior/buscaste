@@ -168,8 +168,8 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
             cell.lblDescricao.text = "teste"
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             //cell.Ajusta()
-            cell.lblNome.text = nome[indexPath.row]
-            cell.lblGenero.text = genero[indexPath.row]
+            cell.lblNome.text = "Nome: " + nome[indexPath.row]
+            cell.lblGenero.text = "Genero: " + genero[indexPath.row]
             cell.lblDescricao.text = descricao[indexPath.row]
         }
         return cell

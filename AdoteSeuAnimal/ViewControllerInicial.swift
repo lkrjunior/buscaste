@@ -94,9 +94,14 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     
     func showTelaInicial()
     {
-        let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
-        //tb.selectedIndex = 4
-        self.present(tb, animated: true, completion: nil)
+        //let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
+        //self.present(tb, animated: true, completion: nil)
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let view = storyboard.instantiateViewController(withIdentifier: "TabBarScene") as! TabBarController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = view
     }
     
     func showTelaPerfil()
