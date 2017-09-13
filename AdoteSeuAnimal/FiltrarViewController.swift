@@ -237,6 +237,13 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             switchDoacao.isOn = true
             switchAbandonado.isOn = true
         }
+        
+        
+        if self.ufsId > 0
+        {
+            self.CarregaCidadesPeloUf()
+        }
+        
         self.clickAnimal()
     }
 

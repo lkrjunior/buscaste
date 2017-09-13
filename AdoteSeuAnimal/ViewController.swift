@@ -339,7 +339,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         //DispatchQueue.main.async {
                         //    self.CarregaImagens()
                         //}
-                        if self.totalAnimal == 0
+                        if self.totalAnimal == 0 && self.filtros.fPesquisar == true
                         {
                             Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
                             self.carrega(inicio: false)
