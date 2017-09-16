@@ -23,6 +23,9 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     var carregamento : UIActivityIndicatorView = UIActivityIndicatorView()
     
     var idPessoa : Int = 0
+    var telefonePessoa : String = ""
+    var emailPessoa : String = ""
+    var nomePessoa : String = ""
     var totalItens : Int = 0
     var descricao : [String] = [String]()
     var data : [String] = [String]()
@@ -129,6 +132,9 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     {
         let view = self.storyboard?.instantiateViewController(withIdentifier:"AnimaisAbandonadosSalvarSid") as! AnimaisAbandonadosSalvarViewController
         view.idPessoa = self.idPessoa
+        view.nomePessoa = self.nomePessoa
+        view.telefonePessoa = self.telefonePessoa
+        view.emailPessoa = self.emailPessoa
         self.present(view, animated: true, completion: nil)
     }
     
@@ -139,6 +145,9 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
         if usuario.count > 0
         {
             idPessoa = Int(usuario[0].idUsuario)
+            emailPessoa = usuario[0].email!
+            telefonePessoa = usuario[0].telefone!
+            nomePessoa = usuario[0].nome!
         }
     }
     

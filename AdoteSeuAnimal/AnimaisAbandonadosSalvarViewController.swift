@@ -43,6 +43,9 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
     var localizacao : String = ""
     var endereco : String = ""
     var idPessoa : Int = 0
+    var nomePessoa : String = ""
+    var telefonePessoa : String = ""
+    var emailPessoa : String = ""
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let imagemRecuperada = info [ UIImagePickerControllerOriginalImage ] as! UIImage
@@ -190,7 +193,7 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
         
         let paramsCad = ["id": self.idAnimal,
                          "animalTipo": self.animalTipo,
-                         "pessoa": ["idPessoa": self.idPessoa],
+                         "pessoa": ["idPessoa": self.idPessoa, "email" : self.emailPessoa],
                          "descricao": descricaoString,
                          "latitude": self.latitude,
                          "longitude": self.longitude,
