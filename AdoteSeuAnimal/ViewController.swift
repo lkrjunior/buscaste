@@ -61,6 +61,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         paginaAtual = 1
         totalAnimal = 0
         
+        self.tableViewAnimal.reloadData()
+        
         self.GetDadosAnimal()
         
         //self.tableViewAnimal.reloadData()
@@ -446,12 +448,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                         {
                                             
                                             let imagem = Util.JSON_RetornaStringInterna(dict: dict, objeto: "foto", campo: "fotoString")
-                                            self.fotosId.append(self.idArray[indexPath.row])
-                                            self.fotos.append(imagem)
+                                            if self.idArray.indices.contains(indexPath.row)
+                                            {
+                                                self.fotosId.append(self.idArray[indexPath.row])
+                                                self.fotos.append(imagem)
                                             
-                                            let imageArray = NSData(base64Encoded: imagem, options: [])
-                                            cell.imagem.image = UIImage(data: imageArray! as Data)
-                                            cell.imagem.reloadInputViews()
+                                                let imageArray = NSData(base64Encoded: imagem, options: [])
+                                                cell.imagem.image = UIImage(data: imageArray! as Data)
+                                                cell.imagem.reloadInputViews()
+                                            }
                                         }
                                     }
                                 }
