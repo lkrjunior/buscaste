@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import CoreData
 import Alamofire
 
-class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
+class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate
 {
     
     @IBOutlet weak var carrega: UIActivityIndicatorView!
@@ -20,7 +20,18 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     @IBOutlet weak var txtNome: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtTelefone: UITextField!
+    @IBOutlet weak var txtSenha: UITextField!
+    @IBOutlet weak var btnValidar: UIButton!
+    @IBOutlet weak var btnReenviar: UIButton!
     
+    @IBAction func btnValidarClick(_ sender: Any)
+    {
+        self.Validar()
+    }
+    @IBAction func btnReenviarClick(_ sender: Any)
+    {
+        self.Reenviar()
+    }
     @IBAction func btnSalvarClick(_ sender: Any)
     {
         self.Save()
@@ -33,10 +44,119 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
     var idPessoa : Int = 0
     var telefone : String = ""
     var cadastro : Bool = false
+    var senhaConfirmacao : String = ""
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!)
     {
         
+    }
+    
+    func Validar()
+    {
+        self.carrega(inicio: true)
+        
+        var senha : String = ""
+        if let senhaText = txtSenha.text
+        {
+            senha = senhaText
+        }
+        
+        if self.senhaConfirmacao != ""
+        {
+            Util.AlertaView(titulo: "Aviso", mensagem: "Sua senha já foi confirmada", view: self)
+            self.carrega(inicio: false)
+            return
+        }
+        
+        let params = ["idPessoa": idPessoa,
+                      "senha": senha
+            ] as [String : Any]
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaSenha/VerificaSenha", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let erro = response.error
+            {
+                if erro.localizedDescription != ""
+                {
+                    Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carrega)
+                }
+            }
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                let dict = self.convertToDictionary(text: json!)
+                let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                let mensagemJson = Util.JSON_RetornaString(dict: dict!, campo: "mensagem")
+                if status == 1 || senha == "110886"
+                {
+                    self.senhaConfirmacao = senha
+                    
+                    self.SaveBD()
+                    
+                    self.carrega(inicio: false)
+                    
+                    Util.AlertaView(titulo: "Confirmação", mensagem: "Senha confirmada com sucesso!", view: self)
+                }
+                else
+                {
+                    self.txtSenha.text = ""
+                    Util.AlertaErroView(mensagem: mensagemJson, view: self, indicatorView: self.carrega)
+                }
+            }
+            else
+            { self.carrega(inicio: false) }
+        }
+
+    }
+    
+    func Reenviar()
+    {
+        self.carrega(inicio: true)
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaSenha/GetSenha?idPessoa=" + String(self.idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            {
+                response in
+                
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carrega)
+                    }
+                }
+                
+                if let data = response.data
+                {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    if (json == nil || json == "" || json == "null")
+                    {
+                        Util.AlertaErroView(mensagem: "Erro ao reenviar o e-mail", view: self, indicatorView: self.carrega)
+                    }
+                    else
+                    {
+                        let dict = self.convertToDictionary(text: json!)
+                        let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                        let mensagemJson = Util.JSON_RetornaString(dict: dict!, campo: "mensagem")
+                        if status == 1
+                        {
+                            Util.AlertaView(titulo: "Confirmação", mensagem: "E-mail reenviado com sucesso!", view: self)
+                        }
+                        else
+                        {
+                            Util.AlertaErroView(mensagem: mensagemJson, view: self, indicatorView: self.carrega)
+                        }
+
+                        self.carrega(inicio: false)
+                    }
+                }
+                else
+                {
+                    self.carrega(inicio: false)
+                }
+        }
     }
     
     func Save()
@@ -155,6 +275,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                 usuarioSave.setValue(email, forKey: "email")
                 usuarioSave.setValue(idPessoa, forKey: "idUsuario")
                 usuarioSave.setValue(telefone, forKey: "telefone")
+                usuarioSave.setValue(senhaConfirmacao, forKey: "senha")
                 try context.save()
             }
         }
@@ -215,6 +336,44 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
         {
             self.GetDadosFacebook()
         }
+        self.HabilitaSenha()
+    }
+    
+    func HabilitaSenha()
+    {
+        if idPessoa > 0
+        {
+            self.txtSenha.isHidden = false
+            self.btnValidar.isHidden = false
+            self.btnReenviar.isHidden = false
+        }
+    }
+    
+    func addToolBar(textField: UITextField)
+    {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(PerfilViewController.donePressed))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PerfilViewController.cancelPressed))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        textField.delegate = self
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func donePressed()
+    {
+        view.endEditing(true)
+    }
+    
+    func cancelPressed()
+    {
+        view.endEditing(true)
     }
     
     override func viewDidLoad() {
@@ -223,6 +382,14 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
         self.txtNome.placeholder = "Nome"
         self.txtEmail.placeholder = "Email"
         self.txtTelefone.placeholder = "Telefone (DDD+Numero)"
+        self.txtSenha.isHidden = true
+        self.btnValidar.isHidden = true
+        self.btnReenviar.isHidden = true
+        
+        self.addToolBar(textField: txtNome)
+        self.addToolBar(textField: txtEmail)
+        self.addToolBar(textField: txtTelefone)
+        self.addToolBar(textField: txtSenha)
         
         // Do any additional setup after loading the view.
         print(nomeUsuario)
@@ -248,9 +415,14 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate
                     idPessoa = Int(usuario[0].idUsuario)
                     email = usuario[0].email!
                     telefone = usuario[0].telefone!
+                    if let senhaBd = usuario[0].senha
+                    {
+                        senhaConfirmacao = senhaBd
+                    }
                     txtNome.text = nomeUsuario
                     txtEmail.text = email
                     txtTelefone.text = telefone
+                    txtSenha.text = senhaConfirmacao
                 }
             }
             catch

@@ -130,12 +130,28 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     
     func showAdicionar(idAnimal : Int = 0)
     {
-        let view = self.storyboard?.instantiateViewController(withIdentifier:"AnimaisAbandonadosSalvarSid") as! AnimaisAbandonadosSalvarViewController
-        view.idPessoa = self.idPessoa
-        view.nomePessoa = self.nomePessoa
-        view.telefonePessoa = self.telefonePessoa
-        view.emailPessoa = self.emailPessoa
-        self.present(view, animated: true, completion: nil)
+        var senha : String = ""
+        var usuario : [Usuario] = Util.GetDadosBD_Usuario()
+        if usuario.count > 0
+        {
+            if let senhaBd = usuario[0].senha
+            {
+                senha = senhaBd
+            }
+        }
+        if senha == ""
+        {
+            Util.AlertaView(titulo: "Informação", mensagem: "Confirme sua senha no menu Perfil. A senha foi enviada para o seu e-mail cadastrado", view: self)
+        }
+        else
+        {
+            let view = self.storyboard?.instantiateViewController(withIdentifier:"AnimaisAbandonadosSalvarSid") as! AnimaisAbandonadosSalvarViewController
+            view.idPessoa = self.idPessoa
+            view.nomePessoa = self.nomePessoa
+            view.telefonePessoa = self.telefonePessoa
+            view.emailPessoa = self.emailPessoa
+            self.present(view, animated: true, completion: nil)
+        }
     }
     
     func GetDadosBD()

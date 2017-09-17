@@ -394,15 +394,41 @@
                                 <rect key="frame" x="178" y="255" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m9h-PF-eCO">
+                                <rect key="frame" x="16" y="207" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EkO-m9-xIJ">
+                                <rect key="frame" x="163" y="207" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Validar"/>
+                                <connections>
+                                    <action selector="btnValidarClick:" destination="f74-64-J41" eventType="touchUpInside" id="JK4-4w-IEs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4B-G2-CHR">
+                                <rect key="frame" x="257" y="206" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reenviar senha"/>
+                                <connections>
+                                    <action selector="btnReenviarClick:" destination="f74-64-J41" eventType="touchUpInside" id="Zm8-n9-nsU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Perfil" image="tbUsuario" id="ghH-sv-zhS"/>
                     <connections>
                         <outlet property="btnLogout" destination="mfy-N1-T92" id="cqG-Az-Kls"/>
+                        <outlet property="btnReenviar" destination="k4B-G2-CHR" id="RY7-y0-NFK"/>
+                        <outlet property="btnValidar" destination="EkO-m9-xIJ" id="Uvv-Sj-Lro"/>
                         <outlet property="carrega" destination="q0s-xI-fVa" id="wPw-4c-5L4"/>
                         <outlet property="txtEmail" destination="sQ2-m3-fOo" id="5bl-zE-wuy"/>
                         <outlet property="txtNome" destination="cME-X8-q6B" id="3tD-ac-gnf"/>
+                        <outlet property="txtSenha" destination="m9h-PF-eCO" id="FMt-lU-06Q"/>
                         <outlet property="txtTelefone" destination="0jv-9W-1Fe" id="z4w-3o-fzk"/>
                     </connections>
                 </viewController>

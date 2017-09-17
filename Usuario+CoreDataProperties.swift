@@ -21,5 +21,6 @@ extension Usuario {
     @NSManaged public var nome: String?
     @NSManaged public var telefone: String?
     @NSManaged public var tokenFacebook: String?
+    @NSManaged public var senha: String?
 
 }

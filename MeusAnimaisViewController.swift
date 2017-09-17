@@ -104,16 +104,32 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     
     func showAdicionar(idAnimal : Int = 0)
     {
-        let view = self.storyboard?.instantiateViewController(withIdentifier:"MeusAnimaisSalvar") as! MeusAnimaisSalvarViewController
-        view.idPessoa = self.idPessoa
-        view.telefonePessoa = self.telefonePessoa
-        view.emailPessoa = self.emailPessoa
-        view.idAnimal = idAnimal
-        if (idAnimal > 0)
+        var senha : String = ""
+        var usuario : [Usuario] = Util.GetDadosBD_Usuario()
+        if usuario.count > 0
         {
-            view.carregarDados = true
+            if let senhaBd = usuario[0].senha
+            {
+                senha = senhaBd
+            }
         }
-        self.present(view, animated: true, completion: nil)
+        if senha == ""
+        {
+            Util.AlertaView(titulo: "Informação", mensagem: "Confirme sua senha no menu Perfil. A senha foi enviada para o seu e-mail cadastrado", view: self)
+        }
+        else
+        {
+            let view = self.storyboard?.instantiateViewController(withIdentifier:"MeusAnimaisSalvar") as! MeusAnimaisSalvarViewController
+            view.idPessoa = self.idPessoa
+            view.telefonePessoa = self.telefonePessoa
+            view.emailPessoa = self.emailPessoa
+            view.idAnimal = idAnimal
+            if (idAnimal > 0)
+            {
+                view.carregarDados = true
+            }
+            self.present(view, animated: true, completion: nil)
+        }
     }
     
     func GetDadosBD()
