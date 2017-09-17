@@ -272,11 +272,13 @@
                                     <outlet property="delegate" destination="vo6-Nn-PQZ" id="jSq-Nu-sQd"/>
                                 </connections>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mpB-Pv-YWo">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mpB-Pv-YWo">
                                 <rect key="frame" x="0.0" y="159" width="375" height="459"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCR-7g-Sv5">
-                                <rect key="frame" x="0.0" y="335" width="375" height="283"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCR-7g-Sv5">
+                                <rect key="frame" x="16" y="322" width="343" height="296"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Iw1-a9-7hu">
                                 <rect key="frame" x="310" y="126" width="51" height="31"/>
@@ -294,21 +296,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdr-ci-9rD">
-                                <rect key="frame" x="45" y="257" width="284" height="263"/>
+                                <rect key="frame" x="0.0" y="159" width="375" height="459"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="cCR-7g-Sv5" firstAttribute="top" secondItem="KFk-up-meN" secondAttribute="bottom" constant="271" id="C8z-BX-giX"/>
-                            <constraint firstItem="cCR-7g-Sv5" firstAttribute="leading" secondItem="0h5-JU-1WG" secondAttribute="leading" id="T0e-yp-Xcd"/>
-                            <constraint firstItem="mpB-Pv-YWo" firstAttribute="top" secondItem="KFk-up-meN" secondAttribute="bottom" constant="95" id="X5M-tY-HN0"/>
-                            <constraint firstAttribute="trailing" secondItem="cCR-7g-Sv5" secondAttribute="trailing" id="b8n-Zt-pGY"/>
-                            <constraint firstAttribute="trailing" secondItem="mpB-Pv-YWo" secondAttribute="trailing" id="bd2-ch-vKL"/>
-                            <constraint firstItem="mpB-Pv-YWo" firstAttribute="leading" secondItem="0h5-JU-1WG" secondAttribute="leading" id="nTS-2y-6ap"/>
-                            <constraint firstItem="2zd-vs-hz1" firstAttribute="top" secondItem="mpB-Pv-YWo" secondAttribute="bottom" id="sj6-0E-kyH"/>
-                            <constraint firstItem="2zd-vs-hz1" firstAttribute="top" secondItem="cCR-7g-Sv5" secondAttribute="bottom" id="tz1-nl-vAM"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="detalheTableViewOutlet" destination="8XD-Zh-jFg" id="qNF-69-huB"/>
