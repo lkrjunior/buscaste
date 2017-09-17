@@ -18,6 +18,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     var email : String = ""
     var telefone : String = ""
     
+    @IBOutlet weak var btnCad: UIButton!
     @IBAction func btnCadastro(_ sender: Any)
     {
         self.showTelaPerfil()
@@ -63,6 +64,9 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             print("Erro ao recuperar os dados do SQLite")
         }
         
+        botaoLogin.isHidden = false
+        btnCad.isHidden = false
+        
         Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
         Util.CombosSaveCache(combos: "")
         
@@ -100,6 +104,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         //self.present(tb, animated: true, completion: nil)
         
         botaoLogin.isHidden = true
+        btnCad.isHidden = true
         perform(#selector(showLinhaDoTempo), with: nil, afterDelay: 0)
     }
     

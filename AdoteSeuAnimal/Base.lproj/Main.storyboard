@@ -569,6 +569,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="btnCad" destination="Udc-Jn-Wlg" id="LJj-rY-JWu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sA5-ko-g1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
