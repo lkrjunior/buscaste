@@ -71,25 +71,27 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             self.showTelaInicial()
         }
         
-        //if let accessToken = FBSDKAccessToken.current()
-        //{
-        //    NSLog("Logado " + accessToken.tokenString)
-        //}
-        //else
-        //{
-        //    NSLog("Não Logado")
-        //}
-        
+    }
+    
+    func topMostController()
+    {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController
+        {
+            while (topController.presentedViewController != nil)
+            {
+                topController = topController.presentedViewController!
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if idUsuario > 0
-        {
-            self.showTelaInicial()
-        }
+        //if idUsuario > 0
+        //{
+        //    self.showTelaInicial()
+        //}
     }
     
     func showTelaInicial()
@@ -97,7 +99,13 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         //let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
         //self.present(tb, animated: true, completion: nil)
         
-        
+        botaoLogin.isHidden = true
+        perform(#selector(showLinhaDoTempo), with: nil, afterDelay: 0)
+    }
+    
+    func showLinhaDoTempo()
+    {
+        topMostController()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let view = storyboard.instantiateViewController(withIdentifier: "TabBarScene") as! TabBarController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
