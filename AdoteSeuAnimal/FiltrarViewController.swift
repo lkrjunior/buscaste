@@ -164,6 +164,7 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             switchDoacao.isOn = true
             switchAbandonado.isOn = true
         }
+        view.endEditing(true)
         self.CarregaCombos()
         Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
     }
@@ -454,8 +455,11 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
         else if (pickerView.restorationIdentifier == "Cidade")
         {
-            txtCidade.text =  cidadesAux[row]
-            cidadesId = cidadesAuxIds[row]
+            if cidadesAux.indices.contains(row)
+            {
+                txtCidade.text =  cidadesAux[row]
+                cidadesId = cidadesAuxIds[row]
+            }
         }
         else if (pickerView.restorationIdentifier == "Uf")
         {

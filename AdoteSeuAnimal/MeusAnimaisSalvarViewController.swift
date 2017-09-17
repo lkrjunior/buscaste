@@ -1004,8 +1004,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         }
         else if (pickerView.restorationIdentifier == "Cidade")
         {
-            txtCidade.text =  cidadesAux[row]
-            cidadesId = cidadesAuxIds[row]
+            if cidadesAux.indices.contains(row)
+            {
+                txtCidade.text =  cidadesAux[row]
+                cidadesId = cidadesAuxIds[row]
+            }
         }
         else if (pickerView.restorationIdentifier == "Uf")
         {
