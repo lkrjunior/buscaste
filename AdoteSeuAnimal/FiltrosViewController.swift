@@ -244,7 +244,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             //Util.AjustaLayoutCell(view: cell)
         
-            cell.lblGenero.text = genero[indexPath.row]
+            cell.lblGenero.text = "Genero: " + genero[indexPath.row]
             cell.lblIdade.text = "Idade: " + String(idadeMin[indexPath.row]) + " a " + String(idadeMax[indexPath.row])
             cell.lblPeso.text = "Peso: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
         }

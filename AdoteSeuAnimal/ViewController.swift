@@ -42,6 +42,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var filtros : ClassFiltrar = ClassFiltrar()
     
+    var idPessoa : Int = 0
+    
     //refresh
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -96,6 +98,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NSLog("viewDidLoad")
         self.automaticallyAdjustsScrollViewInsets = false
         
+        self.GetDadosBD()
+        
         //refresh
         self.tableViewAnimal.addSubview(self.refreshControl)
         
@@ -106,6 +110,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.GetDadosAnimal()
         
+    }
+    
+    func GetDadosBD()
+    {
+        var pessoa : [Usuario] = Util.GetDadosBD_Usuario()
+        if pessoa.count > 0
+        {
+            idPessoa = Int(pessoa[0].idUsuario)
+        }
     }
     
     func readJSONObjectAnimal(object: [String: AnyObject]) {
@@ -343,7 +356,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         //}
                         if self.totalAnimal == 0 && self.filtros.fPesquisar == true
                         {
-                            Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
+                            //Util.AlertaErroView(mensagem: "Nenhum registro encontrado", view: self, indicatorView: self.carregamento)
+                            self.SalvarFiltro()
                             self.carrega(inicio: false)
                         }
                     }
@@ -360,6 +374,86 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("responseString = \(String(describing: responseString))")
         }
         task.resume()
+    }
+    
+    func SalvarFiltro()
+    {
+        let alert = UIAlertController(title: "Pesquisa", message: "Nenhum animal encontrado! Você deseja salvar esta pesquisa para receber um alerta assim que estes filtros forem atendidos?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Sim", style: .default, handler: { (action: UIAlertAction!) in
+            print("Sim")
+            
+            self.carrega(inicio: true)
+            
+            let paramsCad = ["idPessoaFiltro": 0,
+                             "pessoa": ["idPessoa": self.idPessoa],
+                             "genero": ["idGenero": self.filtros.fIdGenero],
+                             "raca": ["idRaca": self.filtros.fIdRaca],
+                             "porte": ["idPorte": self.filtros.fIdPorte],
+                             "idadeMin": self.filtros.fIdadeMin,
+                             "idadeMax": self.filtros.fIdadeMax,
+                             "pesoMin": self.filtros.fPesoMin,
+                             "pesoMax": self.filtros.fPesoMax,
+                             "idUf": self.filtros.fIdUf,
+                             "idCidade": self.filtros.fIdCidade,
+                             "animalTipo": self.filtros.fTipoAnimal,
+                             ] as [String : AnyObject]
+            
+            Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+                
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        Util.AlertaErroView(mensagem: (response.error?.localizedDescription)!, view: self, indicatorView: self.carregamento)
+                    }
+                }
+                
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    
+                    let dict = Util.converterParaDictionary(text: json!)
+                    let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                    if status == 1
+                    {
+                        self.carrega(inicio: false)
+                        
+                        self.paginaAtual = 1
+                        self.totalAnimal = 0
+                        
+                        Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
+                        self.filtros = ClassFiltrar()
+                        
+                        self.GetDadosAnimal()
+                    }
+                    else
+                    {
+                        Util.AlertaErroView(mensagem: "Erro ao salvar os dados da pesquisa", view: self, indicatorView: self.carregamento)
+                        self.carrega(inicio: false)
+                    }
+                }
+                else { self.carrega(inicio: false) }
+            }
+            
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Não", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Não")
+            
+            self.carrega(inicio: false)
+            
+            self.paginaAtual = 1
+            self.totalAnimal = 0
+            
+            Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
+            self.filtros = ClassFiltrar()
+            
+            self.GetDadosAnimal()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 
     func convertToDictionary(text: String) -> [String: Any]? {
