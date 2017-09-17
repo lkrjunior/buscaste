@@ -100,6 +100,8 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
                     
                     self.carrega(inicio: false)
                     
+                    self.view.endEditing(true)
+                    
                     Util.AlertaView(titulo: "Confirmação", mensagem: "Senha confirmada com sucesso!", view: self)
                 }
                 else
