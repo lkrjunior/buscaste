@@ -55,6 +55,12 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     @IBAction func btnAlbumClick(_ sender: Any) {
         self.Album()
     }
+    @IBAction func btnSave(_ sender: Any) {
+        self.Save()
+    }
+    @IBAction func btnBack(_ sender: Any) {
+        self.showVoltar()
+    }
     
     @IBOutlet weak var carregamento: UIActivityIndicatorView!
     @IBOutlet weak var txtNome: UITextField!

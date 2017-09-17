@@ -36,6 +36,9 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
     {
         self.Save()
     }
+    @IBAction func btnSave(_ sender: Any) {
+        self.Save()
+    }
     
     var botaoLogin = FBSDKLoginButton()
     

@@ -122,7 +122,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         //let tb = self.storyboard?.instantiateViewController(withIdentifier:"TabBarScene") as! TabBarController
         //tb.selectedIndex = 4
         //self.present(tb, animated: true, completion: nil)
-        
+        topMostController()
         let view = self.storyboard?.instantiateViewController(withIdentifier:"PerfilScene") as! PerfilViewController
         view.setPerfil(pNome: nomeUsuario, pEmail: email)
         self.present(view, animated: true, completion: nil)

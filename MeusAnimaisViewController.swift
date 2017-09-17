@@ -29,6 +29,9 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     {
         self.showAdicionar()
     }
+    @IBAction func btnAdd(_ sender: Any) {
+        self.showAdicionar()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

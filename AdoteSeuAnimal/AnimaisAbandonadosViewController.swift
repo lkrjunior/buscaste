@@ -19,6 +19,9 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     {
         self.showAdicionar()
     }
+    @IBAction func btnAdd(_ sender: Any) {
+        self.showAdicionar()
+    }
 
     var carregamento : UIActivityIndicatorView = UIActivityIndicatorView()
     

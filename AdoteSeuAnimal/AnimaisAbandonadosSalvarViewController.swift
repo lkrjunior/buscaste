@@ -24,6 +24,12 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
     {
         self.showVoltar()
     }
+    @IBAction func btnSave(_ sender: Any) {
+        self.Save()
+    }
+    @IBAction func btnBack(_ sender: Any) {
+        self.showVoltar()
+    }
     
     @IBOutlet weak var txtDescricao: UITextField!
     @IBOutlet weak var lblLocalizacao: UILabel!
