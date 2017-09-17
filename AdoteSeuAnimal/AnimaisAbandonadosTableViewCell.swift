@@ -12,6 +12,7 @@ class AnimaisAbandonadosTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDescricao: UILabel!
     @IBOutlet weak var lblData: UILabel!
     @IBOutlet weak var lblLocal: UILabel!
+    @IBOutlet weak var lblDeslize: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

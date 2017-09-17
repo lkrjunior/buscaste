@@ -12,6 +12,7 @@ class FiltrosTableViewCell: UITableViewCell {
     @IBOutlet weak var lblGenero: UILabel!
     @IBOutlet weak var lblIdade: UILabel!
     @IBOutlet weak var lblPeso: UILabel!
+    @IBOutlet weak var lblDeslize: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

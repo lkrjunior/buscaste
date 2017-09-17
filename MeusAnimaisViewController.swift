@@ -171,6 +171,11 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
             cell.lblNome.text = "Nome: " + nome[indexPath.row]
             cell.lblGenero.text = "Genero: " + genero[indexPath.row]
             cell.lblDescricao.text = descricao[indexPath.row]
+            cell.lblDeslize.text = ""
+            if (indexPath.row == 0)
+            {
+                cell.lblDeslize.text = "< deslize"
+            }
         }
         return cell
         

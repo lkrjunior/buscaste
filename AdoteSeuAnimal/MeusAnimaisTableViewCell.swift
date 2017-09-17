@@ -18,6 +18,7 @@ class MeusAnimaisTableViewCell: UITableViewCell {
     @IBOutlet weak var lblGenero: UILabel!
 
     @IBOutlet weak var lblDescricao: UILabel!
+    @IBOutlet weak var lblDeslize: UILabel!
     
     public func Ajusta()
     {

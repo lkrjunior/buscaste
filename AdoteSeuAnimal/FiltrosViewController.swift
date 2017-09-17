@@ -247,6 +247,11 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.lblGenero.text = "Genero: " + genero[indexPath.row]
             cell.lblIdade.text = "Idade: " + String(idadeMin[indexPath.row]) + " a " + String(idadeMax[indexPath.row])
             cell.lblPeso.text = "Peso: " + String(pesoMin[indexPath.row]) + " a " + String(pesoMax[indexPath.row])
+            cell.lblDeslize.text = ""
+            if (indexPath.row == 0)
+            {
+                cell.lblDeslize.text = "< deslize"
+            }
         }
         return cell
         

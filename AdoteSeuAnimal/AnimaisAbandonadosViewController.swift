@@ -163,6 +163,11 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
             cell.lblDescricao.text = descricao[indexPath.row]
             cell.lblData.text = "Sinalizado em " + data[indexPath.row]
             cell.lblLocal.text = "Localização : "
+            cell.lblDeslize.text = ""
+            if (indexPath.row == 0)
+            {
+                cell.lblDeslize.text = "< deslize"
+            }
             let isIndexValid = local.indices.contains(indexPath.row)
             if isIndexValid
             {
