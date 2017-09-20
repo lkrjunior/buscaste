@@ -44,6 +44,8 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.totalItens = 0
+        self.tableViewAnimais.reloadData()
         self.GetDadosBD()
         self.GetDados()
     }

@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import CoreData
+import Alamofire
 
 class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     
@@ -17,6 +18,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     var nomeUsuario : String = ""
     var email : String = ""
     var telefone : String = ""
+    var carregamento : UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBOutlet weak var btnCad: UIButton!
     @IBAction func btnCadastro(_ sender: Any)
@@ -72,9 +74,63 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         
         if idUsuario > 0
         {
+            botaoLogin.isHidden = true
+            btnCad.isHidden = true
+            self.Requisicao()
             self.showTelaInicial()
         }
         
+    }
+    
+    func Requisicao()
+    {
+        Util.carrega(carregamento: carregamento, view: self, inicio: true)
+        
+        let params = ["status": 1
+            ] as [String : Any]
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/ServicosBackground/Post", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let erro = response.error
+            {
+                if erro.localizedDescription != ""
+                {
+                    print(erro.localizedDescription)
+                }
+            }
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                if (json != nil && json != "" && json != "null")    //Ajustes nas outras chamadas para não dar erro
+                {
+                    let dict = Util.converterParaDictionary(text: json!)
+                    let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                    if status == 1
+                    {
+                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                    }
+                    else
+                    {
+                        Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                    }
+                }
+                else
+                {
+                    Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+                }
+            }
+            else
+            {
+                Util.carrega(carregamento: self.carregamento, view: self, inicio: false)
+            }
+            
+            //self.showTelaInicial()
+            //DispatchQueue.main.async {
+            //    Util.CarregaCombosRequisicao()
+            //}
+        }
     }
     
     func topMostController()

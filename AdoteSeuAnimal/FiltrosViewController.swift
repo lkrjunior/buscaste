@@ -114,6 +114,8 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.totalItens = 0 
+        self.tableViewFiltros.reloadData()
         self.GetDadosBD()
         self.GetDados()
     }

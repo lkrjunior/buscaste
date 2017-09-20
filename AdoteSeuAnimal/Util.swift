@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import Alamofire
 
 class Util
 {
@@ -454,6 +455,47 @@ class Util
     {
         UserDefaults.standard.set(combos, forKey: "Combos")
         UserDefaults.standard.synchronize()
+    }
+    
+    static func CarregaCombosRequisicao()
+    {
+        
+        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            {
+                response in
+                
+                if let erro = response.error
+                {
+                    if erro.localizedDescription != ""
+                    {
+                        print(erro.localizedDescription)
+                    }
+                }
+                
+                if let data = response.data
+                {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Response: \(String(describing: json))")
+                    if (json == nil || json == "" || json == "null")
+                    {
+                        print("Erro ao carregar os dados da lista combos")
+                    }
+                    else
+                    {
+                        let listaDict = self.converterParaDictionary(text: json!)
+                        let lista = self.JSON_RetornaObjLista(dict: listaDict!, campo: "lista")
+                        
+                        if lista.count > 0
+                        {
+                            Util.CombosSaveCache(combos: json!)
+                        }
+                    }
+                }
+                else
+                {
+                    print("Erro ao carregar os dados da lista combos")
+                }
+        }
     }
 
     static func FiltrarGet() -> ClassFiltrar

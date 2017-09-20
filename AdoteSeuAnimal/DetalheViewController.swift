@@ -383,13 +383,18 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
                     let oVacina = Util.JSON_RetornaString(dict: listaObj, campo: "vacinas")
                     dVacina = "Vacinas: " + oVacina
                     
-                    let oNomePessoa = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "pessoa", campo: "nome")
+                    var oNomePessoa = Util.JSON_RetornaStringInterna(dict: listaObj, objeto: "pessoa", campo: "nome")
                     let oTelefone = Util.JSON_RetornaString(dict: listaObj, campo: "telefone")
-                    dTelefone = "Contato: " + oNomePessoa + " (" + oTelefone + ")"
+                    if oNomePessoa.characters.count > 15
+                    {
+                        let index = oNomePessoa.index(oNomePessoa.startIndex, offsetBy: 15)
+                        oNomePessoa = oNomePessoa.substring(to: index)
+                    }
+                    dTelefone = "" + oNomePessoa + " - " + oTelefone + ""
                     telephoneLink = oTelefone
                     
                     let oEmail = Util.JSON_RetornaString(dict: listaObj, campo: "email")
-                    dEmail = "E-mail: " + oEmail
+                    dEmail = "" + oEmail
                     emailLink = oEmail
                     
                 }

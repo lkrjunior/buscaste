@@ -39,6 +39,8 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.totalItens = 0
+        self.tableMeusAnimais.reloadData()
         self.GetDadosBD()
         self.GetDados()
     }
