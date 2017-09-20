@@ -219,8 +219,11 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
             }
             
             if let data = response.data {
-                let json = String(data: data, encoding: String.Encoding.utf8)
+                var json = String(data: data, encoding: String.Encoding.utf8)
                 print("Response: \(String(describing: json))")
+                
+                if (json == nil || json == "null")
+                {   json =  "" }
                 
                 let dict = Util.converterParaDictionary(text: json!)
                 let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
