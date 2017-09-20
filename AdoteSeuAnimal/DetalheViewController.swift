@@ -451,7 +451,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
         let url = "http://lkrjunior-com.umbler.net/api/AnimalGet/GetAnimalId?idTipo=" + String(tipoAnimal) + "&idAnimal=" + String (idAnimal)
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
-        request.timeoutInterval = 90
+        request.timeoutInterval = 60
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(String(describing: error))")

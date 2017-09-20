@@ -321,7 +321,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var request = URLRequest(url: URL(string: "http://lkrjunior-com.umbler.net/api/Animal/GetAnimal" + paginacao + pesquisa)!)
         request.httpMethod = "GET"
         //var timeoutPadrao = request.timeoutInterval
-        request.timeoutInterval = 90
+        request.timeoutInterval = 60
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(String(describing: error))")
