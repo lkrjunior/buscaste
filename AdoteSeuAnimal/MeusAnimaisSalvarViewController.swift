@@ -994,13 +994,19 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     {
         if (pickerView.restorationIdentifier == "Genero")
         {
-            txtGenero.text = generos[row]
-            generosId = generosIds[row]
+            if generos.indices.contains(row)
+            {
+                txtGenero.text = generos[row]
+                generosId = generosIds[row]
+            }
         }
         else if (pickerView.restorationIdentifier == "Porte")
         {
-            txtPorte.text = portes[row]
-            portesId = portesIds[row]
+            if portes.indices.contains(row)
+            {
+                txtPorte.text = portes[row]
+                portesId = portesIds[row]
+            }
         }
         else if (pickerView.restorationIdentifier == "Cidade")
         {
@@ -1012,15 +1018,21 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         }
         else if (pickerView.restorationIdentifier == "Uf")
         {
-            txtUF.text = ufs[row]
-            ufsId = ufsIds[row]
+            if ufs.indices.contains(row)
+            {
+                txtUF.text = ufs[row]
+                ufsId = ufsIds[row]
             
-            self.CarregaCidadesPeloUf()
+                self.CarregaCidadesPeloUf()
+            }
         }
         else
         {
-            txtRaca.text = racas[row]
-            racasId = racasIds[row]
+            if racas.indices.contains(row)
+            {
+                txtRaca.text = racas[row]
+                racasId = racasIds[row]
+            }
         }
     }
     
