@@ -301,7 +301,8 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
         if inicio == true
         {
             carrega.hidesWhenStopped = true
-            carrega.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            carrega.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            carrega.color = UIColor.black
             carrega.isHidden = false
             carrega.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()

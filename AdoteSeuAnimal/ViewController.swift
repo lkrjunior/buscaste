@@ -77,7 +77,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             carregamento.center = self.view.center
             carregamento.hidesWhenStopped = true
-            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            carregamento.color = UIColor.black
             self.view.addSubview(carregamento)
             carregamento.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()
@@ -362,7 +363,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         }
                     }
                 } catch {
-                    // Handle Error
+                    Util.AlertaErroView(mensagem: error.localizedDescription, view: self, indicatorView: self.carregamento)
+                    self.carrega(inicio: false)
                 }
             }
             else

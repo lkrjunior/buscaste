@@ -85,7 +85,8 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             carregamento.center = self.view.center
             carregamento.frame.origin.y = carregamento.frame.origin.y - 30
             carregamento.hidesWhenStopped = true
-            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            carregamento.color = UIColor.black
             self.view.addSubview(carregamento)
             carregamento.startAnimating()
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -479,8 +480,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
             }
             
             if let data = response.data {
-                let json = String(data: data, encoding: String.Encoding.utf8)
+                var json = String(data: data, encoding: String.Encoding.utf8)
                 print("Response: \(String(describing: json))")
+                
+                if (json == nil || json == "null")
+                {   json =  "" }
                 
                 let dict = Util.converterParaDictionary(text: json!)
                 let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
@@ -519,8 +523,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                         }
                         
                         if let data = response.data {
-                            let json = String(data: data, encoding: String.Encoding.utf8)
+                            var json = String(data: data, encoding: String.Encoding.utf8)
                             print("Response: \(String(describing: json))")
+                            
+                            if (json == nil || json == "null")
+                            {   json =  "" }
                             
                             let dict = Util.converterParaDictionary(text: json!)
                             let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")

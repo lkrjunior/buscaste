@@ -66,7 +66,8 @@ class Util
         {
             carregamento.center = view.view.center
             carregamento.hidesWhenStopped = true
-            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            carregamento.color = UIColor.black
             view.view.addSubview(carregamento)
             carregamento.startAnimating()
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
