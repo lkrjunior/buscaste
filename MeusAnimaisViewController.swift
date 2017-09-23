@@ -56,7 +56,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
         id = [Int]()
 
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/GetAnimal?idTipo=1&idCadastro=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/Animal/GetAnimal?idTipo=1&idCadastro=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -239,7 +239,7 @@ class MeusAnimaisViewController: UIViewController, UITableViewDelegate, UITableV
                           "excluir" : "true"
                 ] as [String : AnyObject]
             
-            Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(Util.getUrlApi() + "api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
                 
                 if let erro = response.error
                 {

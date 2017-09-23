@@ -89,7 +89,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         let params = ["status": 1
             ] as [String : Any]
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/ServicosBackground/Post", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+        Alamofire.request(Util.getUrlApi() + "api/ServicosBackground/Post", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
             
             if let erro = response.error
             {

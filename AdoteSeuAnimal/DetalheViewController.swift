@@ -449,7 +449,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
     func GetDadosAnimal()
     {
         self.carrega(inicio: true)
-        let url = "http://lkrjunior-com.umbler.net/api/AnimalGet/GetAnimalId?idTipo=" + String(tipoAnimal) + "&idAnimal=" + String (idAnimal)
+        let url = Util.getUrlApi() + "api/AnimalGet/GetAnimalId?idTipo=" + String(tipoAnimal) + "&idAnimal=" + String (idAnimal)
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
         request.timeoutInterval = 60

@@ -208,7 +208,7 @@ class AnimaisAbandonadosSalvarViewController: UIViewController, UITextFieldDeleg
                          "fotoString": img,
                          ] as [String : AnyObject]
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+        Alamofire.request(Util.getUrlApi() + "api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
             
             if let erro = response.error
             {

@@ -319,7 +319,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //27/08/2017
         let paginacao = "?pagina=\(paginaAtual)&itens=\(totalAnimalPagina)"
         let pesquisa = self.MontaStringPesquisa()
-        var request = URLRequest(url: URL(string: "http://lkrjunior-com.umbler.net/api/Animal/GetAnimal" + paginacao + pesquisa)!)
+        var request = URLRequest(url: URL(string: Util.getUrlApi() + "api/Animal/GetAnimal" + paginacao + pesquisa)!)
         request.httpMethod = "GET"
         //var timeoutPadrao = request.timeoutInterval
         request.timeoutInterval = 60
@@ -401,7 +401,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                              "animalTipo": self.filtros.fTipoAnimal,
                              ] as [String : AnyObject]
             
-            Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(Util.getUrlApi() + "api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
                 
                 if let erro = response.error
                 {
@@ -524,7 +524,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     cell.imagem.image = UIImage(imageLiteralResourceName: "semfoto")
                     cell.imagem.reloadInputViews()
                     
-                    Alamofire.request("http://lkrjunior-com.umbler.net/api/AnimalGet/GetAnimal?idTipo=1&idAnimal=" + String(idArray[indexPath.row]), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+                    Alamofire.request(Util.getUrlApi() + "api/AnimalGet/GetAnimal?idTipo=1&idAnimal=" + String(idArray[indexPath.row]), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
                         {
                             response in
                             

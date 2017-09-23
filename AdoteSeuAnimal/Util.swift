@@ -13,6 +13,14 @@ import Alamofire
 
 class Util
 {
+    static func getUrlApi() -> String
+    {
+        //Servidores
+        //Umbler 
+        //Redehost
+        return "http://lkrjunior-com.umbler.net/"
+    }
+    
     static func Alerta(titulo : String, mensagem : String) -> UIAlertController
     {
         let alert = UIAlertController(title: titulo, message: mensagem, preferredStyle: UIAlertControllerStyle.alert)

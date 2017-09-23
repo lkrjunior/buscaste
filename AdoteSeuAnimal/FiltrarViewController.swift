@@ -502,7 +502,7 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     {
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -613,7 +613,7 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
         else
         {
-            Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            Alamofire.request(Util.getUrlApi() + "api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
                 {
                     response in
                     

@@ -63,7 +63,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
         id = [Int]()
         
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/GetAnimal?idTipo=2&idCadastro=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/Animal/GetAnimal?idTipo=2&idCadastro=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -228,7 +228,7 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
                           "excluir" : "true"
                 ] as [String : AnyObject]
             
-            Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(Util.getUrlApi() + "api/Animal/SaveAnimal", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
                 
                 if let erro = response.error
                 {

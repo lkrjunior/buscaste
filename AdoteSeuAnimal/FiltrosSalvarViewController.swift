@@ -77,7 +77,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
                          "pesoMin": pesoMin,
                          "pesoMax": pesoMax,
                          ] as [String : AnyObject]
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+        Alamofire.request(Util.getUrlApi() + "api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
             
             if let erro = response.error
             {
@@ -118,7 +118,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
         carregandoCombo = true
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -472,7 +472,7 @@ class FiltrosSalvarViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/GetPessoaFiltro?idFiltro=" + String(idFiltro), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/PessoaFiltro/GetPessoaFiltro?idFiltro=" + String(idFiltro), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 

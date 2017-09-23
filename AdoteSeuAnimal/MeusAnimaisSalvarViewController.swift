@@ -273,7 +273,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         
         self.carrega(inicio: true)
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/AnimalGet/GetAnimal?idTipo=1&idAnimal=" + String(idAnimal), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/AnimalGet/GetAnimal?idTipo=1&idAnimal=" + String(idAnimal), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -469,7 +469,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                       "fotoString": img,
             ] as [String : AnyObject]
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+        Alamofire.request(Util.getUrlApi() + "api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
             
             if let erro = response.error
             {
@@ -512,7 +512,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                                      "foto": ["idFoto": idFoto],
                                      "nome": self.txtNome.text!,
                         ] as [String : AnyObject]
-                    Alamofire.request("http://lkrjunior-com.umbler.net/api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+                    Alamofire.request(Util.getUrlApi() + "api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
                         
                         if let erro = response.error
                         {
@@ -569,7 +569,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         
         self.carrega(inicio: true)
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -688,7 +688,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         }
         else
         {
-            Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+            Alamofire.request(Util.getUrlApi() + "api/Combos/GetCombos", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
                 {
                     response in
                     

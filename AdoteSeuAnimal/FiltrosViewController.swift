@@ -44,7 +44,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
         let paramsCad = ["idGenero" : 0,
                          "genero": "timeout",
                          ] as [String : AnyObject]
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/SaveTest", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+        Alamofire.request(Util.getUrlApi() + "api/Combos/SaveTest", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
             
             if let erro = response.error
             {
@@ -84,7 +84,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
     {
         Util.carrega(carregamento: self.carregamento, view: self, inicio: true)
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/Combos/GetCombos?simulaTimeout=true", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/Combos/GetCombos?simulaTimeout=true", method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -136,7 +136,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
         id = [Int]()
         
         
-        Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/GetPessoaFiltro?idPessoa=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
+        Alamofire.request(Util.getUrlApi() + "api/PessoaFiltro/GetPessoaFiltro?idPessoa=" + String(idPessoa), method: .get, parameters: nil, encoding: URLEncoding.httpBody).responseJSON
             {
                 response in
                 
@@ -298,7 +298,7 @@ class FiltrosViewController: UIViewController, UITableViewDataSource, UITableVie
                           "excluir" : "true"
                 ] as [String : AnyObject]
             
-            Alamofire.request("http://lkrjunior-com.umbler.net/api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(Util.getUrlApi() + "api/PessoaFiltro/SavePessoaFiltro", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
                 
                 if let erro = response.error
                 {
