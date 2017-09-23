@@ -101,6 +101,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         imageCamera.restorationIdentifier = "Camera"
         imageAlbum.restorationIdentifier = "Album"
         imageCamera.delegate = self

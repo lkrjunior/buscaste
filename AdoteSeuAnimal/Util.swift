@@ -420,6 +420,23 @@ class Util
         }
     }
     
+    static func AddViewFundoTela(view : UIViewController)
+    {
+        let viewFundo: UIView = UIView(frame: CGRect(x:0, y:20, width:view.view.frame.size.width , height:(view.view.frame.size.height)))
+        viewFundo.backgroundColor = self.getCorFundoAzulClaro()
+        viewFundo.alpha = 1
+        viewFundo.isUserInteractionEnabled = true
+        viewFundo.layer.masksToBounds = true
+        
+        view.view.addSubview(viewFundo)
+        view.view.sendSubview(toBack: viewFundo)
+    }
+    
+    static func getCorFundoAzulClaro () -> UIColor
+    {
+        return UIColor(red: 213/255, green: 218/255, blue: 255/255, alpha: 1)
+    }
+    
     static func GetDateAtual() -> String
     {
         let date = Date()
