@@ -215,6 +215,21 @@ class AnimaisAbandonadosViewController: UIViewController, UITableViewDelegate, U
     
     func Deletar(idAnimal : Int)
     {
+        var senha : String = ""
+        var usuario : [Usuario] = Util.GetDadosBD_Usuario()
+        if usuario.count > 0
+        {
+            if let senhaBd = usuario[0].senha
+            {
+                senha = senhaBd
+            }
+        }
+        if senha == ""
+        {
+            Util.AlertaView(titulo: "Informação", mensagem: "Confirme sua senha no menu Perfil. A senha foi enviada para o seu e-mail cadastrado", view: self)
+            return
+        }
+        
         let alert = UIAlertController(title: "Confirmação", message: "Confirma deletar o animal abandonado.", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Sim", style: .default, handler: { (action: UIAlertAction!) in
