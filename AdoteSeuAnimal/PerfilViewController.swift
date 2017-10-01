@@ -39,6 +39,15 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
     @IBAction func btnSave(_ sender: Any) {
         self.Save()
     }
+    @IBAction func btnSuporte(_ sender: Any)
+    {
+        let subject = "Busca Pet - Suporte técnico"
+        let body = ""
+        let coded = "mailto:" + "lkrjunior@terra.com.br" + "?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: coded)!
+        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
     
     var botaoLogin = FBSDKLoginButton()
     
