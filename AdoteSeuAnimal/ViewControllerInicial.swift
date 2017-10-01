@@ -32,8 +32,9 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
 
         botaoLogin.readPermissions = ["public_profile", "email", "user_friends"]
         botaoLogin.center = view.center
+        botaoLogin.frame.origin.y = botaoLogin.frame.origin.y + 15
         btnCadOutlet.center = view.center
-        btnCadOutlet.frame.origin.y = btnCadOutlet.frame.origin.y + 35
+        btnCadOutlet.frame.origin.y = btnCadOutlet.frame.origin.y + 50
         botaoLogin.addTarget(self, action: #selector(botaoLoginClick), for: UIControlEvents.touchUpInside)
         botaoLogin.delegate = self
         view.addSubview(botaoLogin)
