@@ -20,6 +20,7 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
     var telefone : String = ""
     var carregamento : UIActivityIndicatorView = UIActivityIndicatorView()
     
+    @IBOutlet weak var btnCadOutlet: UIButton!
     @IBOutlet weak var btnCad: UIButton!
     @IBAction func btnCadastro(_ sender: Any)
     {
@@ -31,6 +32,8 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
 
         botaoLogin.readPermissions = ["public_profile", "email", "user_friends"]
         botaoLogin.center = view.center
+        btnCadOutlet.center = view.center
+        btnCadOutlet.frame.origin.y = btnCadOutlet.frame.origin.y + 35
         botaoLogin.addTarget(self, action: #selector(botaoLoginClick), for: UIControlEvents.touchUpInside)
         botaoLogin.delegate = self
         view.addSubview(botaoLogin)

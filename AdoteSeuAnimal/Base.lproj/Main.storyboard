@@ -580,9 +580,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="adote" translatesAutoresizingMaskIntoConstraints="NO" id="nmn-bu-pPF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adote" translatesAutoresizingMaskIntoConstraints="NO" id="nmn-bu-pPF">
                                 <rect key="frame" x="0.0" y="58" width="375" height="238"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Busca Pet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fef-iH-96Z">
                                 <rect key="frame" x="16" y="28" width="343" height="22"/>
@@ -613,9 +612,16 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nmn-bu-pPF" secondAttribute="bottom" constant="371" id="4gQ-Sf-oyw"/>
+                            <constraint firstItem="nmn-bu-pPF" firstAttribute="leading" secondItem="e1R-dZ-LoK" secondAttribute="leading" id="Ooz-wS-6Jw"/>
+                            <constraint firstItem="nmn-bu-pPF" firstAttribute="top" secondItem="e1R-dZ-LoK" secondAttribute="top" constant="58" id="haL-sY-e4M"/>
+                            <constraint firstAttribute="trailing" secondItem="nmn-bu-pPF" secondAttribute="trailing" id="nnW-UF-f5y"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="btnCad" destination="Udc-Jn-Wlg" id="LJj-rY-JWu"/>
+                        <outlet property="btnCadOutlet" destination="Udc-Jn-Wlg" id="yw7-Uy-aDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sA5-ko-g1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
