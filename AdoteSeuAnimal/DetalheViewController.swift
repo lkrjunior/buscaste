@@ -106,6 +106,7 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
             self.imageView.isHidden = true
         }
         
+        self.detalheTableViewOutlet.isScrollEnabled = false
         self.GetDadosAnimal()
         
     }
