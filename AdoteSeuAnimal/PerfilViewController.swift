@@ -41,6 +41,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
     }
     @IBAction func btnSuporte(_ sender: Any)
     {
+        print("botaoSuporte_click")
         let subject = "Busca Pet - Suporte técnico"
         let body = ""
         let coded = "mailto:" + "lkrjunior@terra.com.br" + "?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -313,6 +314,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
             carrega.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
             carrega.color = UIColor.black
             carrega.isHidden = false
+            self.view.bringSubview(toFront: carrega)
             carrega.startAnimating()
             //UIApplication.shared.beginIgnoringInteractionEvents()
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -459,6 +461,7 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
             botaoLogin.center = view.center
             botaoLogin.delegate = self
             view.addSubview(botaoLogin)
+            btnLogout.center = view.center
         }
         
     }

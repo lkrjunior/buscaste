@@ -59,11 +59,13 @@ class DetalheViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func buttonTelephoneClick(_ sender: Any)
     {
+        print("telefone_click")
         let url = URL(string: "tel://" + telephoneLink.replacingOccurrences(of: " ", with: ""))!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     @IBAction func buttonEmailClick(_ sender: Any)
     {
+        print("email_click")
         let subject = "Quero adotar " + nomeLink
         let body = ""
         let coded = "mailto:" + emailLink + "?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
