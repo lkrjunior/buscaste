@@ -76,6 +76,9 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
         Util.FiltrarSave(filtros: ClassFiltrar(), limpar: true)
         Util.CombosSaveCache(combos: "")
         
+        //Teste para salvar a tabela Configuracoes -> Token para Notificacao
+        //self.TesteNotificacaoSave()
+        
         if idUsuario > 0
         {
             botaoLogin.isHidden = true
@@ -84,6 +87,26 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             self.showTelaInicial()
         }
         
+    }
+    
+    func TesteNotificacaoSave()
+    {
+        let configLista = Util.GetDadosBD_Configuracoes()
+        if configLista.count > 0
+        {
+            let config = configLista[0]
+            if let s = config.tokenFacebook
+            {
+                print(s)
+                Util.SaveDadosBD_Configuracoes(tokenFacebook: "teste_alteracao")
+                
+                Util.DeleteDadosBD_Configuracoes()
+            }
+        }
+        else
+        {
+            Util.SaveDadosBD_Configuracoes(tokenFacebook: "teste_inclusao")
+        }
     }
     
     func Requisicao()

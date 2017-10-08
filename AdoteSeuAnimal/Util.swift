@@ -158,7 +158,7 @@ class Util
         }
     }
     
-    static func GetDadosBD_Configuracoes() -> Configuracoes
+    static func GetDadosBD_Configuracoes() -> [Configuracoes]
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -169,17 +169,17 @@ class Util
             let config = try context.fetch(requisicao)
             if config.count > 0
             {
-                return config[0]
+                return config
             }
             else
             {
-                return Configuracoes()
+                return [Configuracoes]()
             }
         }
         catch
         {
-            print("Erro ao ler os dados do banco de dados")
-            return Configuracoes()
+            print("Erro ao ler os dados do banco de dados -> Configuracoes")
+            return [Configuracoes]()
         }
     }
     
@@ -187,9 +187,11 @@ class Util
     {
         do
         {
-            let configGet = self.GetDadosBD_Configuracoes()
-            if configGet.tokenFacebook != nil && configGet.tokenFacebook != ""
+            let configGetLista = self.GetDadosBD_Configuracoes()
+            if configGetLista.count > 0
             {
+                let configGet = configGetLista[0]
+                
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
                 
@@ -200,11 +202,44 @@ class Util
                 let configSave = NSEntityDescription.insertNewObject(forEntityName: "Configuracoes", into: context)
                 configSave.setValue(tokenFacebook, forKey: "tokenFacebook")
                 try context.save()
+                
+            }
+            else
+            {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                
+                let configSave = NSEntityDescription.insertNewObject(forEntityName: "Configuracoes", into: context)
+                configSave.setValue(tokenFacebook, forKey: "tokenFacebook")
+                try context.save()
             }
         }
         catch
         {
-            print("Erro ao salvar os dados do banco de dados")
+            print("Erro ao salvar os dados do banco de dados -> Configuracoes")
+        }
+    }
+    
+    static func DeleteDadosBD_Configuracoes()
+    {
+        do
+        {
+            let configGetLista = self.GetDadosBD_Configuracoes()
+            if configGetLista.count > 0
+            {
+                let configGet = configGetLista[0]
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                
+                let combosDelete = configGet as NSManagedObject
+                context.delete(combosDelete)
+                try context.save()
+            }
+        }
+        catch
+        {
+            print("Erro ao deletar os dados do banco de dados -> Configuracoes")
         }
     }
     
