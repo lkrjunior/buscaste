@@ -158,6 +158,56 @@ class Util
         }
     }
     
+    static func GetDadosBD_Configuracoes() -> Configuracoes
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let requisicao = NSFetchRequest<Configuracoes>(entityName : "Configuracoes")
+        
+        do
+        {
+            let config = try context.fetch(requisicao)
+            if config.count > 0
+            {
+                return config[0]
+            }
+            else
+            {
+                return Configuracoes()
+            }
+        }
+        catch
+        {
+            print("Erro ao ler os dados do banco de dados")
+            return Configuracoes()
+        }
+    }
+    
+    static func SaveDadosBD_Configuracoes(tokenFacebook : String)
+    {
+        do
+        {
+            let configGet = self.GetDadosBD_Configuracoes()
+            if configGet.tokenFacebook != nil && configGet.tokenFacebook != ""
+            {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                
+                let combosDelete = configGet as NSManagedObject
+                context.delete(combosDelete)
+                try context.save()
+                
+                let configSave = NSEntityDescription.insertNewObject(forEntityName: "Configuracoes", into: context)
+                configSave.setValue(tokenFacebook, forKey: "tokenFacebook")
+                try context.save()
+            }
+        }
+        catch
+        {
+            print("Erro ao salvar os dados do banco de dados")
+        }
+    }
+    
     static func converterParaDictionary(text: String) -> [String: AnyObject]? {
         if let data = text.data(using: .utf8) {
             do {
