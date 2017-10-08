@@ -205,9 +205,10 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
-                self.GetDadosFacebook()
-                self.showTelaPerfil()
+                //self.GetDadosFacebook()
+                //self.showTelaPerfil()
             }
+            self.showTelaPerfil()
         }
     }
     
