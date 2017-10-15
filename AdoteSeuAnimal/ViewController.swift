@@ -96,6 +96,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         NSLog("viewDidLoad")
         self.automaticallyAdjustsScrollViewInsets = false
         
