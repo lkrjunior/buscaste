@@ -98,14 +98,14 @@ class ViewControllerInicial: UIViewController, FBSDKLoginButtonDelegate {
             if let s = config.tokenFacebook
             {
                 print(s)
-                Util.SaveDadosBD_Configuracoes(tokenFacebook: "teste_alteracao")
+                Util.SaveDadosBD_Configuracoes(tokenFacebook: "teste_alteracao", uploadOk: "0")
                 
                 Util.DeleteDadosBD_Configuracoes()
             }
         }
         else
         {
-            Util.SaveDadosBD_Configuracoes(tokenFacebook: "teste_inclusao")
+            Util.SaveDadosBD_Configuracoes(tokenFacebook: "teste_inclusao", uploadOk: "0")
         }
     }
     

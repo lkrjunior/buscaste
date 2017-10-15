@@ -246,6 +246,8 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
                     
                     self.SaveBD()
                     
+                    self.UploadTokenServidor()
+                    
                     self.carrega(inicio: false)
                     
                     self.showApp()
@@ -260,6 +262,25 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
         }
         
         print(jsonRepresentation)
+    }
+    
+    func UploadTokenServidor()
+    {
+        //Salva o token e sobe para o servidor
+        let idUsuario : Int = self.idPessoa
+        
+        let configLista = Util.GetDadosBD_Configuracoes()
+        if configLista.count > 0
+        {
+            let config = configLista[0]
+            if let u = config.uploadOk, let t = config.tokenFacebook
+            {
+                if u != "1" && idUsuario > 0
+                {
+                    Util.UploadTokenNotificacao(idPessoa: idUsuario, token: t)
+                }
+            }
+        }
     }
     
     func convertToDictionary(text: String) -> [String: AnyObject]? {
@@ -331,12 +352,14 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
     {
         self.SaveBD(somenteExcluir: true)
+        Util.DeleteDadosBD_Configuracoes()
         self.showTelaIncial()
     }
     
     @IBAction func btnLogoutClick(_ sender: Any)
     {
         self.SaveBD(somenteExcluir: true)
+        Util.DeleteDadosBD_Configuracoes()
         self.showTelaIncial()
     }
     

@@ -128,7 +128,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         print("Device Token: \(token)")
         
-        Util.SaveDadosBD_Configuracoes(tokenFacebook: token)
+        //Salva o token e sobe para o servidor
+        var idUsuario : Int = 0
+        var usuario : [Usuario] = Util.GetDadosBD_Usuario()
+        if usuario.count > 0
+        {
+            if usuario[0].idUsuario > 0
+            {
+                idUsuario = Int(usuario[0].idUsuario)
+            }
+        }
+        
+        let configLista = Util.GetDadosBD_Configuracoes()
+        if configLista.count > 0
+        {
+            let config = configLista[0]
+            if let u = config.uploadOk, let t = config.tokenFacebook
+            {
+                if u != "1" && idUsuario > 0
+                {
+                    Util.UploadTokenNotificacao(idPessoa: idUsuario, token: t)
+                }
+            }
+            else
+            {
+                Util.SaveDadosBD_Configuracoes(tokenFacebook: token, uploadOk: "0")
+            }
+        }
+        else
+        {
+            Util.SaveDadosBD_Configuracoes(tokenFacebook: token, uploadOk: "0")
+            if idUsuario > 0
+            {
+                Util.UploadTokenNotificacao(idPessoa: idUsuario, token: token)
+            }
+        }
     }
     
     func application(_ application: UIApplication,

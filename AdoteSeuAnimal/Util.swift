@@ -183,7 +183,7 @@ class Util
         }
     }
     
-    static func SaveDadosBD_Configuracoes(tokenFacebook : String)
+    static func SaveDadosBD_Configuracoes(tokenFacebook : String, uploadOk : String)
     {
         do
         {
@@ -201,6 +201,7 @@ class Util
                 
                 let configSave = NSEntityDescription.insertNewObject(forEntityName: "Configuracoes", into: context)
                 configSave.setValue(tokenFacebook, forKey: "tokenFacebook")
+                configSave.setValue(uploadOk, forKey: "uploadOk")
                 try context.save()
                 
             }
@@ -211,6 +212,7 @@ class Util
                 
                 let configSave = NSEntityDescription.insertNewObject(forEntityName: "Configuracoes", into: context)
                 configSave.setValue(tokenFacebook, forKey: "tokenFacebook")
+                configSave.setValue(uploadOk, forKey: "uploadOk")
                 try context.save()
             }
         }
@@ -606,6 +608,46 @@ class Util
                 {
                     print("Erro ao carregar os dados da lista combos")
                 }
+        }
+    }
+    
+    static func UploadTokenNotificacao(idPessoa : Int, token : String)
+    {
+        let params = ["idPessoa": idPessoa,
+                      "token" : token,
+            ] as [String : Any]
+        
+        Alamofire.request(Util.getUrlApi() + "api/PessoaToken/SalvaToken", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            if let erro = response.error
+            {
+                if erro.localizedDescription != ""
+                {
+                    print(erro.localizedDescription)
+                }
+            }
+            
+            if let data = response.data {
+                let json = String(data: data, encoding: String.Encoding.utf8)
+                print("Response: \(String(describing: json))")
+                
+                if (json != nil && json != "" && json != "null")
+                {
+                    let dict = Util.converterParaDictionary(text: json!)
+                    let status = Util.JSON_RetornaInt(dict: dict!, campo: "status")
+                    if status == 1
+                    {
+                        //Salva o upload Ok
+                        Util.SaveDadosBD_Configuracoes(tokenFacebook: token, uploadOk: "1")
+                    }
+                    else
+                    { }
+                }
+                else
+                { }
+            }
+            else
+            { }
         }
     }
 

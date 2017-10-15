@@ -17,5 +17,6 @@ extension Configuracoes {
     }
 
     @NSManaged public var tokenFacebook: String?
+    @NSManaged public var uploadOk: String?
 
 }
