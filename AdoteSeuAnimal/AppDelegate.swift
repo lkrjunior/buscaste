@@ -153,6 +153,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else
             {
                 Util.SaveDadosBD_Configuracoes(tokenFacebook: token, uploadOk: "0")
+                if idUsuario > 0
+                {
+                    Util.UploadTokenNotificacao(idPessoa: idUsuario, token: token)
+                }
             }
         }
         else
