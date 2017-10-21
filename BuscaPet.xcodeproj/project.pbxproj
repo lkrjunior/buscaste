@@ -88,7 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C616265A1ED9BCC50021FF79 /* AdoteSeuAnimal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdoteSeuAnimal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C616265A1ED9BCC50021FF79 /* BuscaPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuscaPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C616265D1ED9BCC50021FF79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C616265F1ED9BCC50021FF79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C61626621ED9BCC50021FF79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,10 +96,10 @@
 		C61626671ED9BCC50021FF79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C616266A1ED9BCC50021FF79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C616266C1ED9BCC50021FF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C61626711ED9BCC50021FF79 /* AdoteSeuAnimalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdoteSeuAnimalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61626711ED9BCC50021FF79 /* BuscaPetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuscaPetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61626751ED9BCC50021FF79 /* AdoteSeuAnimalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoteSeuAnimalTests.swift; sourceTree = "<group>"; };
 		C61626771ED9BCC50021FF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C616267C1ED9BCC50021FF79 /* AdoteSeuAnimalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdoteSeuAnimalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C616267C1ED9BCC50021FF79 /* BuscaPetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuscaPetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61626801ED9BCC50021FF79 /* AdoteSeuAnimalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoteSeuAnimalUITests.swift; sourceTree = "<group>"; };
 		C61626821ED9BCC50021FF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C61626CD1ED9FD6B0021FF79 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -187,9 +187,9 @@
 		C616265B1ED9BCC50021FF79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C616265A1ED9BCC50021FF79 /* AdoteSeuAnimal.app */,
-				C61626711ED9BCC50021FF79 /* AdoteSeuAnimalTests.xctest */,
-				C616267C1ED9BCC50021FF79 /* AdoteSeuAnimalUITests.xctest */,
+				C616265A1ED9BCC50021FF79 /* BuscaPet.app */,
+				C61626711ED9BCC50021FF79 /* BuscaPetTests.xctest */,
+				C616267C1ED9BCC50021FF79 /* BuscaPetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,27 +278,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C61626591ED9BCC50021FF79 /* AdoteSeuAnimal */ = {
+		C61626591ED9BCC50021FF79 /* BuscaPet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C61626851ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimal" */;
+			buildConfigurationList = C61626851ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "BuscaPet" */;
 			buildPhases = (
 				C61626561ED9BCC50021FF79 /* Sources */,
 				C61626571ED9BCC50021FF79 /* Frameworks */,
 				C61626581ED9BCC50021FF79 /* Resources */,
 				C65E85F21F3F88050068EF3E /* CopyFiles */,
+				C6E7392F1F98214F00A3562D /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = AdoteSeuAnimal;
+			name = BuscaPet;
 			productName = AdoteSeuAnimal;
-			productReference = C616265A1ED9BCC50021FF79 /* AdoteSeuAnimal.app */;
+			productReference = C616265A1ED9BCC50021FF79 /* BuscaPet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C61626701ED9BCC50021FF79 /* AdoteSeuAnimalTests */ = {
+		C61626701ED9BCC50021FF79 /* BuscaPetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C61626881ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimalTests" */;
+			buildConfigurationList = C61626881ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "BuscaPetTests" */;
 			buildPhases = (
 				C616266D1ED9BCC50021FF79 /* Sources */,
 				C616266E1ED9BCC50021FF79 /* Frameworks */,
@@ -309,14 +310,14 @@
 			dependencies = (
 				C61626731ED9BCC50021FF79 /* PBXTargetDependency */,
 			);
-			name = AdoteSeuAnimalTests;
+			name = BuscaPetTests;
 			productName = AdoteSeuAnimalTests;
-			productReference = C61626711ED9BCC50021FF79 /* AdoteSeuAnimalTests.xctest */;
+			productReference = C61626711ED9BCC50021FF79 /* BuscaPetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C616267B1ED9BCC50021FF79 /* AdoteSeuAnimalUITests */ = {
+		C616267B1ED9BCC50021FF79 /* BuscaPetUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C616268B1ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimalUITests" */;
+			buildConfigurationList = C616268B1ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "BuscaPetUITests" */;
 			buildPhases = (
 				C61626781ED9BCC50021FF79 /* Sources */,
 				C61626791ED9BCC50021FF79 /* Frameworks */,
@@ -327,9 +328,9 @@
 			dependencies = (
 				C616267E1ED9BCC50021FF79 /* PBXTargetDependency */,
 			);
-			name = AdoteSeuAnimalUITests;
+			name = BuscaPetUITests;
 			productName = AdoteSeuAnimalUITests;
-			productReference = C616267C1ED9BCC50021FF79 /* AdoteSeuAnimalUITests.xctest */;
+			productReference = C616267C1ED9BCC50021FF79 /* BuscaPetUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -367,7 +368,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C61626551ED9BCC50021FF79 /* Build configuration list for PBXProject "AdoteSeuAnimal" */;
+			buildConfigurationList = C61626551ED9BCC50021FF79 /* Build configuration list for PBXProject "BuscaPet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -380,9 +381,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C61626591ED9BCC50021FF79 /* AdoteSeuAnimal */,
-				C61626701ED9BCC50021FF79 /* AdoteSeuAnimalTests */,
-				C616267B1ED9BCC50021FF79 /* AdoteSeuAnimalUITests */,
+				C61626591ED9BCC50021FF79 /* BuscaPet */,
+				C61626701ED9BCC50021FF79 /* BuscaPetTests */,
+				C616267B1ED9BCC50021FF79 /* BuscaPetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -413,6 +414,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C6E7392F1F98214F00A3562D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C61626561ED9BCC50021FF79 /* Sources */ = {
@@ -471,12 +488,12 @@
 /* Begin PBXTargetDependency section */
 		C61626731ED9BCC50021FF79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C61626591ED9BCC50021FF79 /* AdoteSeuAnimal */;
+			target = C61626591ED9BCC50021FF79 /* BuscaPet */;
 			targetProxy = C61626721ED9BCC50021FF79 /* PBXContainerItemProxy */;
 		};
 		C616267E1ED9BCC50021FF79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C61626591ED9BCC50021FF79 /* AdoteSeuAnimal */;
+			target = C61626591ED9BCC50021FF79 /* BuscaPet */;
 			targetProxy = C616267D1ED9BCC50021FF79 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -646,7 +663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tcc.AdoteSeuAnimalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdoteSeuAnimal.app/AdoteSeuAnimal";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuscaPet.app/BuscaPet";
 			};
 			name = Debug;
 		};
@@ -660,7 +677,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tcc.AdoteSeuAnimalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdoteSeuAnimal.app/AdoteSeuAnimal";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuscaPet.app/BuscaPet";
 			};
 			name = Release;
 		};
@@ -693,7 +710,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C61626551ED9BCC50021FF79 /* Build configuration list for PBXProject "AdoteSeuAnimal" */ = {
+		C61626551ED9BCC50021FF79 /* Build configuration list for PBXProject "BuscaPet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61626831ED9BCC50021FF79 /* Debug */,
@@ -702,7 +719,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C61626851ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimal" */ = {
+		C61626851ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "BuscaPet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61626861ED9BCC50021FF79 /* Debug */,
@@ -711,7 +728,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C61626881ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimalTests" */ = {
+		C61626881ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "BuscaPetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C61626891ED9BCC50021FF79 /* Debug */,
@@ -720,7 +737,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C616268B1ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "AdoteSeuAnimalUITests" */ = {
+		C616268B1ED9BCC50021FF79 /* Build configuration list for PBXNativeTarget "BuscaPetUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C616268C1ED9BCC50021FF79 /* Debug */,

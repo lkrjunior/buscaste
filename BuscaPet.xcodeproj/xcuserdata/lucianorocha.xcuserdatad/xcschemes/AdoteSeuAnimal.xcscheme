@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C61626591ED9BCC50021FF79"
-               BuildableName = "AdoteSeuAnimal.app"
-               BlueprintName = "AdoteSeuAnimal"
-               ReferencedContainer = "container:AdoteSeuAnimal.xcodeproj">
+               BuildableName = "BuscaPet.app"
+               BlueprintName = "BuscaPet"
+               ReferencedContainer = "container:BuscaPet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C61626701ED9BCC50021FF79"
-               BuildableName = "AdoteSeuAnimalTests.xctest"
-               BlueprintName = "AdoteSeuAnimalTests"
-               ReferencedContainer = "container:AdoteSeuAnimal.xcodeproj">
+               BuildableName = "BuscaPetTests.xctest"
+               BlueprintName = "BuscaPetTests"
+               ReferencedContainer = "container:BuscaPet.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C616267B1ED9BCC50021FF79"
-               BuildableName = "AdoteSeuAnimalUITests.xctest"
-               BlueprintName = "AdoteSeuAnimalUITests"
-               ReferencedContainer = "container:AdoteSeuAnimal.xcodeproj">
+               BuildableName = "BuscaPetUITests.xctest"
+               BlueprintName = "BuscaPetUITests"
+               ReferencedContainer = "container:BuscaPet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C61626591ED9BCC50021FF79"
-            BuildableName = "AdoteSeuAnimal.app"
-            BlueprintName = "AdoteSeuAnimal"
-            ReferencedContainer = "container:AdoteSeuAnimal.xcodeproj">
+            BuildableName = "BuscaPet.app"
+            BlueprintName = "BuscaPet"
+            ReferencedContainer = "container:BuscaPet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C61626591ED9BCC50021FF79"
-            BuildableName = "AdoteSeuAnimal.app"
-            BlueprintName = "AdoteSeuAnimal"
-            ReferencedContainer = "container:AdoteSeuAnimal.xcodeproj">
+            BuildableName = "BuscaPet.app"
+            BlueprintName = "BuscaPet"
+            ReferencedContainer = "container:BuscaPet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C61626591ED9BCC50021FF79"
-            BuildableName = "AdoteSeuAnimal.app"
-            BlueprintName = "AdoteSeuAnimal"
-            ReferencedContainer = "container:AdoteSeuAnimal.xcodeproj">
+            BuildableName = "BuscaPet.app"
+            BlueprintName = "BuscaPet"
+            ReferencedContainer = "container:BuscaPet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
