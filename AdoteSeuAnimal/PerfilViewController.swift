@@ -219,8 +219,11 @@ class PerfilViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFi
                       "telefone": telefone
         ] as [String : Any]
         
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         Alamofire.request(Util.getUrlApi() + "api/Pessoa/SavePessoa", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
             
             if let erro = response.error
             {

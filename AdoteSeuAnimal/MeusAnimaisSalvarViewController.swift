@@ -84,6 +84,7 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
         {
             carregamento.center = self.view.center
             carregamento.frame.origin.y = carregamento.frame.origin.y - 30
+            //carregamento.frame.origin.y = self.imagem.frame.origin.y - 50
             carregamento.hidesWhenStopped = true
             carregamento.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
             carregamento.color = UIColor.black
@@ -470,7 +471,11 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                       "fotoString": img,
             ] as [String : AnyObject]
         
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
         Alamofire.request(Util.getUrlApi() + "api/Foto/SaveFoto", method: .post, parameters: params, encoding: URLEncoding.httpBody).responseJSON { response in
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
             
             if let erro = response.error
             {
@@ -513,7 +518,12 @@ class MeusAnimaisSalvarViewController: UIViewController, UIPickerViewDelegate, U
                                      "foto": ["idFoto": idFoto],
                                      "nome": self.txtNome.text!,
                         ] as [String : AnyObject]
+                    
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    
                     Alamofire.request(Util.getUrlApi() + "api/Animal/SaveAnimal", method: .post, parameters: paramsCad, encoding: URLEncoding.httpBody).responseJSON { response in
+                        
+                        UIApplication.shared.endIgnoringInteractionEvents()
                         
                         if let erro = response.error
                         {
