@@ -155,6 +155,8 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.txtPorte.text = ""
         self.txtUf.text = ""
         self.txtCidade.text = ""
+        self.cidadesAux.removeAll()
+        self.cidadesAuxIds.removeAll()
         self.txtIdadeMin.text = ""
         self.txtIdadeMax.text = ""
         self.txtPesoMin.text = ""
@@ -350,6 +352,8 @@ class FiltrarViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func CarregaCidadesPeloUf()
     {
+        cidadesAux.removeAll()
+        cidadesAuxIds.removeAll()
         var i : Int = 0
         for item in cidadesIdsUfs {
             if (item == self.ufsId)
